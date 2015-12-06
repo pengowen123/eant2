@@ -1,2 +1,4 @@
-pub mod network;
-pub mod functions;
+mod functions;
+mod stack;
+mod node;
+mod genome;
