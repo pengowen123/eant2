@@ -1,4 +1,5 @@
-mod functions;
+pub mod functions; // make private after testing
 mod stack;
-mod node;
-mod genome;
+pub mod node; // make private after testing
+pub mod fitness;
+pub mod network;

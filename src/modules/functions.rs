@@ -1,4 +1,3 @@
-// These might be deleted
 pub fn reverse<T: Clone>(vec: &Vec<T>) -> Vec<T> {
     if vec.len() == 0 {
         panic!("length was 0");
@@ -15,8 +14,8 @@ pub fn reverse<T: Clone>(vec: &Vec<T>) -> Vec<T> {
     new
 }
 
-pub fn sum_vec(vec: &Vec<i32>) -> i32 {
-    let mut total = 0;
+pub fn sum_vec(vec: &Vec<f64>) -> f64 {
+    let mut total = 0.0;
     for i in 0..vec.len() {
         total += vec[i];
     }

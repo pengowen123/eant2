@@ -1,22 +1,21 @@
-// This might be deleted
 pub struct Stack {
-    pub vec: Vec<i32>
+    pub vec: Vec<f64>
 }
 
 impl Stack {
-    pub fn pop(&mut self, count: i32) -> Vec<i32> {
+    pub fn pop(&mut self, count: i32) -> Vec<f64> {
         let mut result = Vec::new();
         for _ in 0..count {
             let item = self.vec.pop();
             result.push(match item {
                 Some(x) => x,
                 None => panic!("pop failed")
-            })
+            });
         }
         result
     }
 
-    pub fn push(&mut self, value: i32) {
+    pub fn push(&mut self, value: f64) {
         self.vec.push(value);
     }
 

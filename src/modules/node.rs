@@ -1,243 +1,83 @@
-pub trait NodeT {}
+#![allow(dead_code)]
+#![allow(unused_variables)]
 
-#[derive(Clone)]
-pub enum NodeType {
-    Neuron,
-    Input,
-    JForward,
-    JRecurrent
-}
-
-#[derive(Clone)]
-pub enum NodeAge {
-    New,
-    Old
-}
-
-#[derive(Clone)]
-pub enum NeuronType {
-    Output,
-    Hidden
-}
-
-// I wish I could fix having so many implementations
-// Each of these represents a variant of Node
-// This holds information about the nodes that are stored in a chromosome vector
-
-#[derive(Clone)]
-pub struct Node {
-    weight: f64,
-    current_value: f64,
-    learning_rate: f64,
-    node_type: NodeType,
-    node_age: NodeAge
-}
-
-#[derive(Clone)]
+#[derive(Clone, Copy)]
 pub struct Neuron {
-    weight: f64,
-    current_value: f64,
-    learning_rate: f64,
-    node_type: NodeType,
-    neuron_type: NeuronType,
-    node_age: NodeAge,
-    id_number: i32,
-    input_count: i32,
-    depth: i32,
-    sigmoid_time: f64,
-    sigmoid_rate: f64
+    // Neurons receive inputs and create outputs
+    // The input_count, depth, and id_number are calculated with a method from Genome and are
+    // not received as inputs for creating a new Neuron
+    pub current_value: f64, // For storing data while other things are calculated before moving on
+    pub weight: f64, // The output of the neuron is multiplied by the weight
+    pub depth: i32, // The amount of neurons between this one and the output of the network
+    pub input_count: i32, // The amount of inputs to the neuron
+    pub id_number: i32 // The identification number of the neuron
 }
 
-#[derive(Clone)]
+#[derive(Clone, Copy)]
 pub struct Input {
-    weight: f64,
-    current_value: f64,
-    learning_rate: f64,
-    node_type: NodeType,
-    node_age: NodeAge,
-    input_number: i32
+    // Inputs only create outputs, the id_number is calculated
+    pub current_value: f64,
+    pub weight: f64,
+    pub id_number: i32
 }
 
-#[derive(Clone)]
-pub struct JForward {
-    weight: f64,
-    current_value: f64,
-    learning_rate: f64,
-    node_type: NodeType,
-    node_age: NodeAge,
-    id_number: i32
+#[derive(Clone, Copy)]
+pub struct JumperF {
+    // Because of the encoding, neurons can only have one output. Jumpers let neurons have
+    // multiple outputs. The jumper's input is implicit and the output is stored as a field.
+    pub current_value: f64,
+    pub weight: f64,
+    pub id_number: i32 // The id_number of the neuron the connection is an input to
 }
 
-#[derive(Clone)]
-pub struct JRecurrent {
-    weight: f64,
-    current_value: f64,
-    learning_rate: f64,
-    node_type: NodeType,
-    node_age: NodeAge,
-    id_number: i32
+#[derive(Clone, Copy)]
+pub struct JumperR {
+    // JumperF connects a neuron to one of higher depth, while JumperR does the opposite
+    pub current_value: f64,
+    pub weight: f64,
+    pub id_number: i32
 }
 
+#[derive(Clone, Copy)]
+pub enum Node {
+    Neuron(Neuron),
+    Input(Input),
+    JumperF(JumperF),
+    JumperR(JumperR)
+}
 
 impl Node {
-    pub fn new(weight: f64,
-           current_value: f64,
-           learning_rate: f64,
-           node_type: NodeType,
-           node_age: NodeAge) -> Node {
-        Node {
-            weight: weight,
-            current_value: current_value,
-            learning_rate: learning_rate,
-            node_type: node_type,
-            node_age: node_age
-        }
-    }
-
-    pub fn new_empty() -> Node {
-        Node {
-            weight: 1.0,
+    pub fn new_neuron() -> Node {
+        Node::Neuron(Neuron {
             current_value: 0.0,
-            learning_rate: 1.0,
-            node_type: NodeType::Neuron,
-            node_age: NodeAge::New
-        }
-    }
-}
-
-impl Neuron {
-    pub fn new(weight: f64,
-           current_value: f64,
-           learning_rate: f64,
-           neuron_type: NeuronType,
-           node_age: NodeAge,
-           id_number: i32,
-           input_count: i32,
-           depth: i32,
-           sigmoid_time: f64,
-           sigmoid_rate: f64) -> Neuron {
-        Neuron {
-            weight: weight,
-            current_value: current_value,
-            learning_rate: learning_rate,
-            node_type: NodeType::Neuron,
-            neuron_type: neuron_type,
-            node_age: node_age,
-            id_number: id_number,
-            input_count: input_count,
-            depth: depth,
-            sigmoid_time: sigmoid_time,
-            sigmoid_rate: sigmoid_rate
-        }
-    }
-
-    pub fn new_empty() -> Neuron {
-        Neuron {
             weight: 1.0,
-            current_value: 0.0,
-            learning_rate: 1.0,
-            node_type: NodeType::Neuron,
-            neuron_type: NeuronType::Hidden,
-            node_age: NodeAge::New,
-            id_number: 0,
+            depth: 0,
             input_count: 1,
-            depth: 1,
-            sigmoid_time: 1.0,
-            sigmoid_rate: 1.0
-        }
-    }
-}
-
-impl Input {
-    pub fn new(weight: f64,
-           current_value: f64,
-           learning_rate: f64,
-           node_type: NodeType,
-           node_age: NodeAge,
-           input_number: i32) -> Input {
-        Input {
-            weight: weight,
-            current_value: current_value,
-            learning_rate: learning_rate,
-            node_type: node_type,
-            node_age: node_age,
-            input_number: input_number
-        }
-    }
-
-    pub fn new_empty() -> Input {
-        Input {
-            weight: 1.0,
-            current_value: 0.0,
-            learning_rate: 1.0,
-            node_type: NodeType::Input,
-            node_age: NodeAge::New,
-            input_number: 0
-        }
-    }
-}
-
-impl JForward {
-    pub fn new(weight: f64,
-           current_value: f64,
-           learning_rate: f64,
-           node_type: NodeType,
-           node_age: NodeAge,
-           id_number: i32) -> JForward {
-        JForward {
-            weight: weight,
-            current_value: current_value,
-            learning_rate: learning_rate,
-            node_type: node_type,
-            node_age: node_age,
-            id_number: id_number
-        }
-    }
-
-    pub fn new_empty() -> JForward {
-        JForward {
-            weight: 1.0,
-            current_value: 0.0,
-            learning_rate: 1.0,
-            node_type: NodeType::JForward,
-            node_age: NodeAge::New,
             id_number: 0
-        }
-    }
-}
-
-impl JRecurrent {
-    pub fn new(weight: f64,
-           current_value: f64,
-           learning_rate: f64,
-           node_type: NodeType,
-           node_age: NodeAge,
-           id_number: i32) -> JRecurrent {
-        JRecurrent {
-            weight: weight,
-            current_value: current_value,
-            learning_rate: learning_rate,
-            node_type: node_type,
-            node_age: node_age,
-            id_number: id_number
-        }
+        })
     }
 
-    pub fn new_empty() -> JRecurrent {
-        JRecurrent {
-            weight: 1.0,
+    pub fn new_input() -> Node {
+        Node::Input(Input {
             current_value: 0.0,
-            learning_rate: 1.0,
-            node_type: NodeType::JRecurrent,
-            node_age: NodeAge::New,
+            weight: 1.0,
+            id_number: 1
+        })
+    }
+
+    pub fn new_jumper_f() -> Node {
+        Node::JumperF(JumperF {
+            current_value: 0.0,
+            weight: 1.0,
             id_number: 0
-        }
+        })
+    }
+
+    pub fn new_jumper_r() -> Node {
+        Node::JumperR(JumperR {
+            current_value: 0.0,
+            weight: 1.0,
+            id_number: 0
+        })
     }
 }
-
-// allows Vec<Box<NodeT>> for mixed type vector
-impl NodeT for Node {}
-impl NodeT for Neuron {}
-impl NodeT for Input {}
-impl NodeT for JForward {}
-impl NodeT for JRecurrent {}
