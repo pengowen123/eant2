@@ -16,8 +16,8 @@ pub fn reverse<T: Clone>(vec: &Vec<T>) -> Vec<T> {
 
 pub fn sum_vec(vec: &Vec<f64>) -> f64 {
     let mut total = 0.0;
-    for i in 0..vec.len() {
-        total += vec[i];
+    for i in vec {
+        total += *i;
     }
     total
 }

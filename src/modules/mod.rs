@@ -1,5 +1,5 @@
-pub mod functions; // make private after testing
+mod functions;
 mod stack;
-pub mod node; // make private after testing
+mod node;
 pub mod fitness;
 pub mod network;
