@@ -1,3 +1,5 @@
+// Basic functions
+
 pub fn reverse<T: Clone>(vec: &Vec<T>) -> Vec<T> {
     if vec.len() == 0 {
         panic!("length was 0");

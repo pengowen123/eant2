@@ -1,3 +1,9 @@
+// An enumeration with each variant being a variant of a type, used in place of inheritance
+// A vector of nodes is stored as a genome in a network
+
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
 #[derive(Clone, Copy)]
 pub struct Neuron {
     // Neurons receive inputs and create outputs

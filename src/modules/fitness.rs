@@ -1,3 +1,5 @@
+// A trait with only a fitness function implemented by the user
+
 use modules::network;
 
 pub trait FitnessFunction {

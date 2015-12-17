@@ -1,3 +1,5 @@
+// A simple stack with push and pop methods used for evaluating a network
+
 pub struct Stack {
     pub vec: Vec<f64>
 }
