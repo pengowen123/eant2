@@ -15,7 +15,7 @@ use std::thread;
 
 use eant::network::Network;
 use eant::fitness::FitnessFunction;
-use cmaes::matrix;
+use cmaes::functions::*;
 use cmaes::network::NetworkCMAES;
 
 pub fn start<T>(_: T, generation: &Vec<Network>, sample_size: i32, threads: i32)
@@ -30,10 +30,10 @@ pub fn start<T>(_: T, generation: &Vec<Network>, sample_size: i32, threads: i32)
     while !end {
         for i in 0..sample_size {
             let i = i as usize;
-            generation[i].thing = matrix::sample_multivariate_normal(mean, &covariance_matrix);
+            generation[i].thing = sample_multivariate_normal(mean, &covariance_matrix);
             generation[i].fitness = T::get_fitness(&mut generation[i].network);
         }
-
+		
         generation.sort_by(|a, b| a.fitness.partial_cmp(&b.fitness).unwrap());
 
         // update state variables here

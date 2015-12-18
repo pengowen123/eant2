@@ -184,14 +184,17 @@ impl Network {
                 }) => {
                     if id_number == &id {
                         break;
-                    } else if index + 1 == self.genome.len() {
+                    }
+                    else if index + 1 == self.genome.len() {
                         panic!("no neuron with id: {} was found", id);
                     }
                 },
+                
                 _ => {}
             }
             index += 1usize;
         }
+        
         index
     }
 
@@ -214,11 +217,11 @@ impl Network {
                 }) => sum += 1 - *input_count,
                 _ => sum += 1
             }
-
+            
             if sum == 1 {
                 break;
             }
-
+            
             index += 1usize;
         }
 
