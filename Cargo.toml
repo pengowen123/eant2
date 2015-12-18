@@ -1,4 +1,9 @@
 [package]
+
 name = "eant_rust"
-version = "0.1.0"
-authors = ["admin"]
+version = "0.0.1"
+authors = [ "laptop" ]
+
+[[bin]]
+
+name = "eant_rust"

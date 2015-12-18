@@ -5,12 +5,15 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
 
-use modules::functions::*;
-use modules::stack::*;
-use modules::node::*;
+use std::collections::HashMap;
+
+use eant::functions::*;
+use eant::stack::*;
+use eant::node::*;
 
 const BIAS_INPUT: f64 = 1.0; // Allow this to be changeable in the future
 
+#[derive(Clone)]
 pub struct Network {
     // The size, id number, and parents of a genome are calculated and are not received as inputs
     // for creating a Genome
@@ -35,10 +38,9 @@ impl Network {
         // The genome is read right to left like Reverse Polish Notation
         let mut stack = Stack::new();
         let mut genome = reverse(&self.genome);
-        let mut current_input = 0;
         let mut i = 0;
 
-        // Reset inputs to 0
+        // Set inputs to 0
         while i < self.genome.len() {
             let element = &mut self.genome[i];
             match *element {
@@ -52,13 +54,16 @@ impl Network {
             i += 1;
         }
 
-        // Set inputs
-        // This is incorrect, use HashMap to allow each input to have an identifier and be cloned
+        // Put inputs into a hash map
+        let mut input_dict = HashMap::new();
+        i = 0;
+        for input in inputs {
+            input_dict.insert(i, input);
+            i += 1;
+        }
+
         i = 0;
         while i < genome.len() {
-            if current_input >= inputs.len() {
-                break;
-            }
 
             let element = &mut genome[i];
             match *element {
@@ -67,8 +72,10 @@ impl Network {
                     ref mut weight,
                     ref mut id_number
                 }) => {
-                    *current_value = inputs[current_input];
-                    current_input += 1;
+                    *current_value = match input_dict.get(&(*id_number as usize)) {
+                        Some(x) => *x,
+                        None => panic!("input does not exist")
+                    };
                 },
 
                 _ => {}

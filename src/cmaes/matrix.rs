@@ -1,9 +1,6 @@
 // Functions related to matrices to be used with CMA-ES
 
-// every covariance matrix is symmetric
-// i, j position is the covariance between the i th and j th elements
-
-use modules::functions::sum_vec;
+use eant::functions::sum_vec;
 
 pub fn covariance(a: Vec<f64>, b: Vec<f64>) -> f64 {
     let mut lengths = vec![a.len(), b.len()];
@@ -22,6 +19,6 @@ pub fn covariance(a: Vec<f64>, b: Vec<f64>) -> f64 {
     sum
 }
 
-pub fn sample_multivariate_normal() -> f64 {
+pub fn sample_multivariate_normal(mean: f64, covariance_matrix: &Vec<f64>) -> f64 {
     4.0
 }

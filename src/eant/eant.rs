@@ -2,5 +2,5 @@
 // High fitness networks are kept to be mutated, while low fitness networks are discarded
 // The loop ends when a solution is found
 
-use modules::network;
-use modules::cmaes;
+use eant::network;
+use cmaes::cmaes;

@@ -47,6 +47,7 @@ pub enum Node {
 }
 
 impl Node {
+    // Constructors
     pub fn new_neuron() -> Node {
         Node::Neuron(Neuron {
             current_value: 0.0,
