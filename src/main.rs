@@ -2,7 +2,8 @@
 // tests.
 // When it is finished and useful, publish it
 
-// remember to delete these after completion
+// change vectors to arrays
+// remember to delete these attributes after completion
 #![allow(dead_code)]
 #![allow(unused_variables)]
 #![allow(unused_mut)]
