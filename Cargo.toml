@@ -7,3 +7,7 @@ authors = [ "laptop" ]
 [[bin]]
 
 name = "eant_rust"
+
+[dependencies]
+
+nalgebra = "0.4.0"

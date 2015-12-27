@@ -29,7 +29,7 @@ impl Network {
             size: 0,
             id_number: 0,
             parents: Vec::new(),
-            genome: Vec::new(),
+            genome: Vec::new()
         }
     }
 
@@ -85,7 +85,7 @@ impl Network {
 
         // Bias input
         // Increment the current value of the first input if the bias input is used
-        if use_bias_input == true {
+        if use_bias_input {
             i = 0;
             while i < genome.len() {
 
