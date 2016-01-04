@@ -12,31 +12,17 @@
 #![allow(unused_imports)]
 
 extern crate eant_rust;
-extern crate nalgebra as na;
 
-use eant_rust::fitness::FitnessFunction;
-use eant_rust::network;
-
-use eant_rust::eant::functions::*;
-use eant_rust::cmaes::functions::multivariate_normal;
-
-use na::{DMat, Mean};
-
-/* Example implementation
+use eant_rust::*;
 
 struct Foo;
 
 impl FitnessFunction for Foo {
-	fn get_fitness(mut network: network::Network) -> f64 {
-		4.0
-	}
+	fn get_fitness(network: &mut Network) -> f64 { 0.0 }
 }
 
-*/
-
 fn main() {
-	let matrix = DMat::from_row_vec(2, 2, &[1.0, 0.0, 0.0, 1.0]);
-	let vector = vec![0.0, 0.50];
-	
-	println!("{:?}", multivariate_normal(&vec![0.0, 0.0], &vector, &matrix));
+	let mut network = Network::new();
+	let x = Foo::get_fitness(&mut network);
+	eant_loop(4);
 }

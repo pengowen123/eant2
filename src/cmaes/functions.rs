@@ -1,5 +1,7 @@
 // Functions to be used with CMA-ES
 
+// some of these are likely to disappear
+
 extern crate nalgebra as na;
 
 use std::f64::consts::{E, PI};
@@ -77,7 +79,7 @@ pub fn multivariate_normal(X: &Vec<f64>, mean_vector: &Vec<f64>, covariance_matr
 	let p = mean_vector.len() as f64; // dimensions
 	
 	let a = 1.0 / ((2.0 * PI).powf(p / 2.0) * determinant(&covariance_matrix).powf(0.5)); // fraction part
-	let b = E.powf(vector_by_vector(&matrix_by_vector(&covariance_matrix, &negative_vec(&sub_vec(&X, &mean_vector))), &X)); // exponent part
+	let b = E.powf(vector_by_vector(&matrix_by_vector(&covariance_matrix.inv().unwrap(), &negative_vec(&sub_vec(&X, &mean_vector))), &X)); // exponent part
 	
 	a * b
 }

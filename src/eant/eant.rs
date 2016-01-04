@@ -4,3 +4,7 @@
 
 use eant::network;
 use cmaes::cmaes;
+
+pub fn eant_loop(threads: u8) {
+	
+}

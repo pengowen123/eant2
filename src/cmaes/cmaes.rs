@@ -2,13 +2,7 @@
 
 // if possible make this concurrent, although it might be too complicated
 
-// something about the covariance matrix being (i, j) where i is the parameters of the network and
-// j is the fitness, it is also symmetric maybe
-// this means that the matrix is simply a measure of the effect each connection weight has on the
-// fitness
-// it is possible to adjust the weights based off of the matrix, similar to the way you train a
-// perceptron
-// this similarity might have something to do with them both being stochastic, whatever that means
+// mean vector is the current best solution i think
 
 extern crate nalgebra as na;
 
@@ -22,7 +16,7 @@ use eant::fitness::FitnessFunction;
 use cmaes::functions::*;
 use cmaes::network::NetworkCMAES;
 
-pub fn start<T>(_: T, generation: &Vec<Network>, sample_size: i32, threads: i32)
+pub fn cmaes_loop<T>(_: T, generation: &Vec<Network>, sample_size: i32, threads: i32)
     where T: FitnessFunction + Clone {
 
     let mut generation = NetworkCMAES::convert(generation);

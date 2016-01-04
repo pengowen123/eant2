@@ -1,4 +1,4 @@
-pub mod functions;
+mod functions;
 mod network;
 mod determinant;
 pub mod cmaes;

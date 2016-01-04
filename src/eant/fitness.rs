@@ -3,5 +3,5 @@
 use eant::network;
 
 pub trait FitnessFunction {
-    fn get_fitness(mut network: &mut network::Network) -> f64;
+    fn get_fitness(network: &mut network::Network) -> f64;
 }
