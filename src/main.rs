@@ -15,14 +15,17 @@ extern crate eant_rust;
 
 use eant_rust::*;
 
+// Example usage
 struct Foo;
 
 impl FitnessFunction for Foo {
-	fn get_fitness(network: &mut Network) -> f64 { 0.0 }
+    fn get_fitness(network: &mut Network) -> f64 {
+        0.0
+    }
 }
 
 fn main() {
-	let mut network = Network::new();
-	let x = Foo::get_fitness(&mut network);
-	eant_loop(4);
+    let mut network = Network::new();
+    let x = Foo::get_fitness(&mut network);
+    eant_loop(4);
 }

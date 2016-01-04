@@ -12,7 +12,7 @@ pub struct Neuron {
     pub current_value: f64, // For storing data while other things are calculated before moving on
     pub weight: f64, // The output of the neuron is multiplied by the weight
     pub input_count: i32, // The amount of inputs to the neuron
-    pub id_number: i32 // The identification number of the neuron
+    pub id_number: i32, // The identification number of the neuron
 }
 
 #[derive(Clone, Copy)]
@@ -20,7 +20,7 @@ pub struct Input {
     // Inputs only create outputs, the id_number is calculated
     pub current_value: f64,
     pub weight: f64,
-    pub id_number: i32
+    pub id_number: i32,
 }
 
 #[derive(Clone, Copy)]
@@ -28,14 +28,14 @@ pub struct JumperF {
     // Because of the encoding, neurons can only have one output. Jumpers let neurons have
     // multiple outputs. The jumper's output is implicit and the input is stored in id_number.
     pub weight: f64,
-    pub id_number: i32 // The id_number of the neuron the connection is an input to
+    pub id_number: i32, // The id_number of the neuron the connection is an input to
 }
 
 #[derive(Clone, Copy)]
 pub struct JumperR {
     // JumperF connects a neuron to one of higher depth, while JumperR does the opposite
     pub weight: f64,
-    pub id_number: i32
+    pub id_number: i32,
 }
 
 #[derive(Clone, Copy)]
@@ -43,7 +43,7 @@ pub enum Node {
     Neuron(Neuron),
     Input(Input),
     JumperF(JumperF),
-    JumperR(JumperR)
+    JumperR(JumperR),
 }
 
 impl Node {
@@ -53,7 +53,7 @@ impl Node {
             current_value: 0.0,
             weight: 1.0,
             input_count: 1,
-            id_number: 0
+            id_number: 0,
         })
     }
 
@@ -61,21 +61,21 @@ impl Node {
         Node::Input(Input {
             current_value: 0.0,
             weight: 1.0,
-            id_number: 1
+            id_number: 1,
         })
     }
 
     pub fn new_jumper_f() -> Node {
         Node::JumperF(JumperF {
             weight: 1.0,
-            id_number: 0
+            id_number: 0,
         })
     }
 
     pub fn new_jumper_r() -> Node {
         Node::JumperR(JumperR {
             weight: 1.0,
-            id_number: 0
+            id_number: 0,
         })
     }
 }

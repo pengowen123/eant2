@@ -1,9 +1,9 @@
-use eant::network::Network;
+use cge::network::Network;
 
 pub struct NetworkCMAES {
     pub network: Network,
     pub fitness: f64,
-    pub thing: f64
+    pub thing: f64,
 }
 
 
@@ -15,7 +15,7 @@ impl NetworkCMAES {
             converted.push(NetworkCMAES {
                 network: element.clone(),
                 fitness: 0.0,
-                thing: 0.0
+                thing: 0.0,
             });
         }
 

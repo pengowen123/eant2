@@ -1,15 +1,14 @@
-// A neural network struct that stores a genome and can be evaluated\
+// A neural network struct that stores a genome and can be evaluated
 
 // this whole thing is a mess, add methods to avoid large copy pasted sections
 
-#![allow(dead_code)]
 #![allow(unused_variables)]
 
 use std::collections::HashMap;
 
-use eant::functions::*;
-use eant::stack::*;
-use eant::node::*;
+use cge::functions::*;
+use cge::stack::*;
+use cge::node::*;
 
 const BIAS_INPUT: f64 = 1.0; // Allow this to be changeable in the future
 
@@ -20,7 +19,7 @@ pub struct Network {
     pub size: i32, // The amount of nodes in the genome
     pub id_number: i32, // The identification number of the genome
     pub parents: Vec<i32>, // A vector containing the id numbers of its parents
-    pub genome: Vec<Node> // A vector containing the nodes of the genome
+    pub genome: Vec<Node>, // A vector containing the nodes of the genome
 }
 
 impl Network {
@@ -29,7 +28,7 @@ impl Network {
             size: 0,
             id_number: 0,
             parents: Vec::new(),
-            genome: Vec::new()
+            genome: Vec::new(),
         }
     }
 
@@ -74,9 +73,9 @@ impl Network {
                 }) => {
                     *current_value = match input_dict.get(&(*id_number as usize)) {
                         Some(x) => *x,
-                        None => panic!("input does not exist")
+                        None => panic!("input does not exist"),
                     };
-                },
+                }
 
                 _ => {}
             }
@@ -98,7 +97,7 @@ impl Network {
                     }) => {
                         *current_value += BIAS_INPUT;
                         break;
-                    },
+                    }
 
                     _ => {}
                 }
@@ -130,7 +129,7 @@ impl Network {
                 }) => {
                     *current_value = sum_vec(&stack.pop(*input_count));
                     stack.push(*current_value * *weight); // Why don't I need a semi-colon here?
-                },
+                }
 
                 // If the element is a forward jumper, evaluate the subnetwork starting at the
                 // neuron with the id stored in the node, and push the output multiplied by
@@ -142,7 +141,7 @@ impl Network {
                     let mut subnetwork = self.get_subnetwork(*id_number);
                     let result = subnetwork.step(vec![], false)[0];
                     stack.push(result * *weight);
-                },
+                }
 
                 // If the element is a recurrent jumper, push the previous value of the neuron
                 // with the id stored in the node multiplied by the jumper's weight
@@ -158,7 +157,7 @@ impl Network {
                             ref input_count,
                             ref id_number
                         }) => current_value,
-                        _ => unreachable!()
+                        _ => unreachable!(),
                     };
                     stack.push(previous_value * *weight);
                 }
@@ -168,6 +167,30 @@ impl Network {
 
         self.genome = reverse(&genome);
         stack.vec
+    }
+
+    // Set the current value of all nodes to 0.0
+    pub fn clear_genome(&mut self) {
+        let mut i = 0;
+        while i < self.genome.len() {
+            let element = &mut self.genome[i];
+            match *element {
+                Node::Input(Input {
+                    ref mut current_value,
+                    ref mut weight,
+                    ref mut id_number
+                }) => *current_value = 0.0,
+
+                Node::Neuron(Neuron {
+                    ref mut current_value,
+                    ref mut weight,
+                    ref mut input_count,
+                    ref mut id_number
+                }) => *current_value = 0.0,
+                _ => {}
+            }
+            i += 1;
+        }
     }
 
     // Returns the index of the neuron with the given id
@@ -184,17 +207,16 @@ impl Network {
                 }) => {
                     if id_number == &id {
                         break;
-                    }
-                    else if index + 1 == self.genome.len() {
+                    } else if index + 1 == self.genome.len() {
                         panic!("no neuron with id: {} was found", id);
                     }
-                },
-                
+                }
+
                 _ => {}
             }
             index += 1usize;
         }
-        
+
         index
     }
 
@@ -215,13 +237,13 @@ impl Network {
                     ref input_count,
                     ref id_number
                 }) => sum += 1 - *input_count,
-                _ => sum += 1
+                _ => sum += 1,
             }
-            
+
             if sum == 1 {
                 break;
             }
-            
+
             index += 1usize;
         }
 
@@ -229,52 +251,7 @@ impl Network {
             size: 0,
             id_number: 0,
             parents: Vec::new(),
-            genome: genome
-        }
-    }
-
-    // requires magic
-    // figure this out soon
-    fn update_input_count(&mut self) {
-        let mut i = 0;
-        while i < self.genome.len() {
-            let element = &mut self.genome[i];
-            match *element {
-                Node::Neuron(Neuron {
-                    ref mut current_value,
-                    ref mut weight,
-                    ref mut input_count,
-                    ref mut id_number
-                }) => {
-
-                },
-                _ => {}
-            }
-            i += 1;
-        }
-    }
-
-    // Set the current value of all nodes to 0.0
-    fn clear_genome(&mut self) {
-        let mut i = 0;
-        while i < self.genome.len() {
-            let element = &mut self.genome[i];
-            match *element {
-                Node::Input(Input {
-                    ref mut current_value,
-                    ref mut weight,
-                    ref mut id_number
-                }) => *current_value = 0.0,
-
-                Node::Neuron(Neuron {
-                    ref mut current_value,
-                    ref mut weight,
-                    ref mut input_count,
-                    ref mut id_number
-                }) => *current_value = 0.0,
-                _ => {}
-            }
-            i += 1;
+            genome: genome,
         }
     }
 }

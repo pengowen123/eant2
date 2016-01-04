@@ -1,7 +1,7 @@
 // A simple stack with push and pop methods used for evaluating a network
 
 pub struct Stack {
-    pub vec: Vec<f64>
+    pub vec: Vec<f64>,
 }
 
 impl Stack {
@@ -11,7 +11,7 @@ impl Stack {
             let item = self.vec.pop();
             result.push(match item {
                 Some(x) => x,
-                None => panic!("pop failed")
+                None => panic!("pop failed"),
             });
         }
         result
@@ -22,8 +22,6 @@ impl Stack {
     }
 
     pub fn new() -> Stack {
-        Stack {
-            vec: Vec::new()
-        }
+        Stack { vec: Vec::new() }
     }
 }
