@@ -1,8 +1,6 @@
 // A neural network struct that stores a genome and can be evaluated
 
-// this whole thing is a mess, add methods to avoid large copy pasted sections
-
-#![allow(unused_variables)]
+// fix this
 
 use std::collections::HashMap;
 
@@ -32,7 +30,7 @@ impl Network {
         }
     }
 
-    pub fn step(&mut self, inputs: Vec<f64>, use_bias_input: bool) -> Vec<f64> {
+    pub fn step(&mut self, inputs: &Vec<f64>, use_bias_input: bool) -> Vec<f64> {
         // Create a stack for pushing values onto
         // The genome is read right to left like Reverse Polish Notation
         let mut stack = Stack::new();
@@ -60,9 +58,10 @@ impl Network {
             input_dict.insert(i, input);
             i += 1;
         }
-
+        
+        // Set inputs
         i = 0;
-        while i < genome.len() {
+        while i < genome.len() && inputs.len() > 0 {
 
             let element = &mut genome[i];
             match *element {
@@ -72,7 +71,7 @@ impl Network {
                     ref mut id_number
                 }) => {
                     *current_value = match input_dict.get(&(*id_number as usize)) {
-                        Some(x) => *x,
+                        Some(x) => **x,
                         None => panic!("input does not exist"),
                     };
                 }
@@ -127,25 +126,29 @@ impl Network {
                     ref mut input_count,
                     ref mut id_number
                 }) => {
+                	if *id_number == 0 {
+                		println!("{}", *current_value);
+                	}
                     *current_value = sum_vec(&stack.pop(*input_count));
-                    stack.push(*current_value * *weight); // Why don't I need a semi-colon here?
+                    stack.push(*current_value * *weight);
                 }
 
                 // If the element is a forward jumper, evaluate the subnetwork starting at the
                 // neuron with the id stored in the node, and push the output multiplied by
                 // the jumper's weight
-                Node::JumperF(JumperF {
+                Node::JumperForward(JumperForward {
                     ref mut weight,
                     ref mut id_number
                 }) => {
                     let mut subnetwork = self.get_subnetwork(*id_number);
-                    let result = subnetwork.step(vec![], false)[0];
+                    let vec: Vec<f64> = Vec::new();
+                    let result = subnetwork.step(&vec, false)[0];
                     stack.push(result * *weight);
                 }
 
                 // If the element is a recurrent jumper, push the previous value of the neuron
                 // with the id stored in the node multiplied by the jumper's weight
-                Node::JumperR(JumperR {
+                Node::JumperRecurrent(JumperRecurrent {
                     ref mut weight,
                     ref mut id_number
                 }) => {

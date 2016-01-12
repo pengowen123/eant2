@@ -14,6 +14,7 @@
 extern crate eant_rust;
 
 use eant_rust::*;
+use eant_rust::cge::node;
 
 // Example usage
 struct Foo;
@@ -27,5 +28,5 @@ impl FitnessFunction for Foo {
 fn main() {
     let mut network = Network::new();
     let x = Foo::get_fitness(&mut network);
-    eant_loop(4);
+    eant_loop(Foo, 4);
 }

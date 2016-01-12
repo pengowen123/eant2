@@ -1,9 +1,9 @@
 use cge::network::Network;
+use cge::node::Node;
 
 pub struct NetworkCMAES {
     pub network: Network,
-    pub fitness: f64,
-    pub thing: f64,
+    pub fitness: f64
 }
 
 
@@ -14,11 +14,16 @@ impl NetworkCMAES {
         for element in vec {
             converted.push(NetworkCMAES {
                 network: element.clone(),
-                fitness: 0.0,
-                thing: 0.0,
+                fitness: 0.0
             });
         }
 
         converted
+    }
+    
+    pub fn set_parameters(network: &mut NetworkCMAES) {
+    	for node in &mut network.network.genome {
+    		
+    	}
     }
 }

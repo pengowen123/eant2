@@ -1,9 +1,6 @@
 // An enumeration with each variant being a variant of a type, used in place of inheritance
 // A vector of nodes is stored as a genome in a network
 
-#![allow(dead_code)]
-#![allow(unused_variables)]
-
 #[derive(Clone, Copy)]
 pub struct Neuron {
     // Neurons receive inputs and create outputs
@@ -24,7 +21,7 @@ pub struct Input {
 }
 
 #[derive(Clone, Copy)]
-pub struct JumperF {
+pub struct JumperForward {
     // Because of the encoding, neurons can only have one output. Jumpers let neurons have
     // multiple outputs. The jumper's output is implicit and the input is stored in id_number.
     pub weight: f64,
@@ -32,8 +29,8 @@ pub struct JumperF {
 }
 
 #[derive(Clone, Copy)]
-pub struct JumperR {
-    // JumperF connects a neuron to one of higher depth, while JumperR does the opposite
+pub struct JumperRecurrent {
+    // JumperForward connects a neuron to one of higher depth, while JumperRecurrent does the opposite
     pub weight: f64,
     pub id_number: i32,
 }
@@ -42,8 +39,8 @@ pub struct JumperR {
 pub enum Node {
     Neuron(Neuron),
     Input(Input),
-    JumperF(JumperF),
-    JumperR(JumperR),
+    JumperForward(JumperForward),
+    JumperRecurrent(JumperRecurrent),
 }
 
 impl Node {
@@ -66,14 +63,14 @@ impl Node {
     }
 
     pub fn new_jumper_f() -> Node {
-        Node::JumperF(JumperF {
+        Node::JumperForward(JumperForward {
             weight: 1.0,
             id_number: 0,
         })
     }
 
     pub fn new_jumper_r() -> Node {
-        Node::JumperR(JumperR {
+        Node::JumperRecurrent(JumperRecurrent {
             weight: 1.0,
             id_number: 0,
         })
