@@ -257,4 +257,17 @@ impl Network {
             genome: genome,
         }
     }
+    
+    pub fn set_parameters(&mut self, parameters: &Vec<f64>) {
+        let mut i = 0;
+    	for node in &mut self.genome {
+    	    match *node {
+                Node::Input(Input { ref mut weight, ..}) => *weight = parameters[i],
+                Node::Neuron(Neuron { ref mut weight, .. }) => *weight = parameters[i],
+                Node::JumperForward(JumperForward { ref mut weight, .. }) => *weight = parameters[i],
+                Node::JumperRecurrent(JumperRecurrent { ref mut weight, .. }) => *weight = parameters[i]
+            }
+            i += 1;
+    	}
+    }       
 }

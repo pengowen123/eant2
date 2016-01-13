@@ -31,7 +31,18 @@ pub fn sum_vec(vec: &Vec<f64>) -> f64 {
     total
 }
 
+pub fn add_vec(a: &Vec<f64>, b: &Vec<f64>) -> Vec<f64> {
+    let mut new = Vec::new();
+
+    for i in 0..a.len() {
+        new.push(a[i] + b[i]);
+    }
+
+    new
+}
+
 pub fn sub_vec(a: &Vec<f64>, b: &Vec<f64>) -> Vec<f64> {
+    let mat = Matrix::new(2, 2, vec![1.0, 0.3, 0.3, 1.0]);
     let mut new = Vec::new();
 
     for i in 0..a.len() {

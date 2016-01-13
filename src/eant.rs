@@ -9,6 +9,6 @@ use cmaes::fitness::FitnessFunction;
 pub fn eant_loop<T>(trait_dummy: T, threads: u8)
 	where T: FitnessFunction
 {
-    let networks = vec![Network::new(); 4];
-    cmaes_loop(trait_dummy, &networks, 4, threads);
+    let mut network = Network::new();
+    cmaes_loop(trait_dummy, &mut network, 4, threads);
 }

@@ -2,7 +2,7 @@
 
 name = "eant_rust"
 version = "0.0.1"
-authors = [ "laptop" ]
+authors = [ "me" ]
 
 [[bin]]
 
@@ -10,4 +10,5 @@ name = "eant_rust"
 
 [dependencies]
 
-nalgebra = "0.4.0"
+la = { git = "https://github.com/xasmx/rust-la" }
+rand = "*"

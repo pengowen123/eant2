@@ -1,6 +1,7 @@
 // eant_rust is a library made for easy use of machine learning
 
 extern crate la;
+extern crate rand;
 
 pub use self::cge::network::Network;
 pub use self::cmaes::fitness::FitnessFunction;
