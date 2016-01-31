@@ -2,6 +2,10 @@
 
 // fix this
 
+#![allow(unused_mut)]
+#![allow(unused_variables)]
+#![allow(dead_code)]
+
 use std::collections::HashMap;
 
 use cge::functions::*;

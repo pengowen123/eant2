@@ -16,6 +16,7 @@ use cmaes::mvn::sample_mvn;
 pub fn cmaes_loop<T>(_: T, network: &mut Network, sample_size: u32, threads: u8)
     where T: FitnessFunction
 {
+    // Test if covariance matrix is singular, and make it non-singular if so
     let mut generation = vec![NetworkParameters::new(vec![1.0, 2.0]); sample_size as usize]; 
     let mut covariance_matrix = Matrix::new(2, 2, vec![1.0, 0.0, 0.0, 1.0]);
     let mut mean_vector = vec![0.0, 0.0];

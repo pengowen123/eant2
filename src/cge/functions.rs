@@ -2,6 +2,45 @@
 
 use la::Matrix;
 
+pub fn normalize_eigenvectors(mat: &mut Matrix<f64>) {
+    let mut columns = Vec::new();
+
+    for i in 0..mat.cols() {
+        let mut cells = Vec::new();
+
+        for k in 0..mat.rows() {
+            cells.push(mat[(i, k)]);
+        }
+
+        columns.push(cells);
+    }
+
+    for vec in &mut columns {
+        let mut magnitude = 0.0;
+
+        for n in vec.iter_mut() {
+            magnitude += n.powi(2);
+        }
+
+        if magnitude != 0.0 {
+            magnitude = magnitude.powf(0.5);
+            
+            for n in vec.iter_mut() {
+               *n /= magnitude;
+            }
+        }
+    }
+
+    let mut new = Vec::new();
+
+    for vec in columns {
+        new.extend(vec);
+    }
+
+    *mat = Matrix::new(mat.rows(), mat.cols(), new);
+    
+}
+
 pub fn reverse<T: Clone>(vec: &Vec<T>) -> Vec<T> {
     if vec.len() == 0 {
         return vec.clone();
@@ -42,7 +81,6 @@ pub fn add_vec(a: &Vec<f64>, b: &Vec<f64>) -> Vec<f64> {
 }
 
 pub fn sub_vec(a: &Vec<f64>, b: &Vec<f64>) -> Vec<f64> {
-    let mat = Matrix::new(2, 2, vec![1.0, 0.3, 0.3, 1.0]);
     let mut new = Vec::new();
 
     for i in 0..a.len() {
