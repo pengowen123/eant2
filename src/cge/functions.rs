@@ -106,16 +106,26 @@ pub fn negative_vec(vec: &Vec<f64>) -> Vec<f64> {
 
 pub fn matrix_by_vector(mat: &Matrix<f64>, vec: &Vec<f64>) -> Vec<f64> {
     let mut result = Vec::new();
+    let mut rows = Vec::new();
     let n = vec.len();
     let w = mat.rows();
+    let h = mat.cols();
 
-    for i in 0..w {
+    for y in 0..h {
+        let mut row = Vec::new();
+
+        for x in 0..w {
+            row.push(mat[(x, y)]);
+        }
+
+        rows.push(row);
+    }
+
+    for row in rows {
         let mut sum = 0.0;
-        let index = if i == 0 { 0 } else { i * n - 1 };
-        let row = &mat.get_data()[index..index + n];
 
-        for s in 0..vec.len() {
-            sum += vec[s] * row[s];
+        for i in 0..n {
+            sum += vec[i] * row[i];
         }
 
         result.push(sum);

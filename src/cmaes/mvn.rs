@@ -32,11 +32,7 @@ pub fn sample_mvn(mean_vector: &Vec<f64>, covariance_matrix: &Matrix<f64>) -> Ve
         let v = values[(i, i)].powf(0.5);
         values.set(i, i, v);
     }
-    println!("{:?}, {:?}", values, vectors);
 
     values = values * vectors;
-    //println!("{:?}", values);
-    let x = add_vec(&matrix_by_vector(&values, &random_values), &mean_vector);
-    //println!("{:?}", x);
-    x
+    add_vec(&matrix_by_vector(&values, &random_values), &mean_vector)
 }
