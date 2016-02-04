@@ -2,6 +2,31 @@
 
 use la::Matrix;
 
+pub fn magnitude(vec: &Vec<f64>) -> f64 {
+    let mut magnitude = 0.0;
+
+    for n in vec {
+        magnitude += n.powi(2);
+    }
+
+    if magnitude == 0.0 {
+        0.0
+    } else {
+        magnitude.sqrt()
+    }
+}
+
+pub fn normalize(vec: &Vec<f64>) -> Vec<f64> {
+    let magnitude = magnitude(vec);
+    let mut new = Vec::new();
+
+    for n in vec {
+        new.push(n / magnitude);
+    }
+
+    new
+}
+
 pub fn normalize_eigenvectors(mat: &mut Matrix<f64>) {
     let mut columns = Vec::new();
 
@@ -16,19 +41,7 @@ pub fn normalize_eigenvectors(mat: &mut Matrix<f64>) {
     }
 
     for vec in &mut columns {
-        let mut magnitude = 0.0;
-
-        for n in vec.iter_mut() {
-            magnitude += n.powi(2);
-        }
-
-        if magnitude != 0.0 {
-            magnitude = magnitude.powf(0.5);
-            
-            for n in vec.iter_mut() {
-               *n /= magnitude;
-            }
-        }
+        *vec = normalize(vec);
     }
 
     let mut new = Vec::new();
@@ -39,6 +52,16 @@ pub fn normalize_eigenvectors(mat: &mut Matrix<f64>) {
 
     *mat = Matrix::new(mat.rows(), mat.cols(), new);
     
+}
+
+pub fn concat(vecs: &Vec<Vec<f64>>) -> Vec<f64> {
+    let mut new = Vec::new();
+
+    for v in vecs {
+        new.extend_from_slice(v);
+    }
+
+    new
 }
 
 pub fn reverse<T: Clone>(vec: &Vec<T>) -> Vec<T> {
@@ -55,6 +78,16 @@ pub fn reverse<T: Clone>(vec: &Vec<T>) -> Vec<T> {
             break;
         }
         index -= 1usize;
+    }
+
+    new
+}
+
+pub fn mul_vec(vec: &Vec<f64>, val: f64) -> Vec<f64> {
+    let mut new = Vec::new();
+    
+    for n in vec {
+        new.push(n * val);
     }
 
     new
@@ -100,6 +133,16 @@ pub fn prod_vec(vec: &Vec<f64>) -> f64 {
     total
 }
 
+pub fn div_vec(vec: &Vec<f64>, val: f64) -> Vec<f64> {
+    let mut new = Vec::new();
+
+    for n in vec {
+        new.push(n / val);
+    }
+
+    new
+}
+
 pub fn negative_vec(vec: &Vec<f64>) -> Vec<f64> {
     vec.iter().map(|x| -x).collect::<Vec<f64>>()
 }
@@ -142,4 +185,26 @@ pub fn vector_by_vector(a: &Vec<f64>, b: &Vec<f64>) -> f64 {
     }
 
     sum
+}
+
+pub fn mul_vec_2(a: &Vec<f64>, b: &Vec<f64>) -> Vec<f64> {
+    let mut new = Vec::new();
+
+    for i in 0..a.len() {
+        new.push(a[i] * b[i]);
+    }
+
+    new
+}
+
+pub fn transpose(mat: &Matrix<f64>) -> Matrix<f64> {
+    let mut new = Matrix::zero(mat.cols(), mat.rows());
+
+    for y in 0..mat.rows() {
+        for x in 0..mat.cols() {
+            new.set(x, y, mat.get(y, x));
+        }
+    }
+
+    new
 }

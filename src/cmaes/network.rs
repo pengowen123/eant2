@@ -1,4 +1,4 @@
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct NetworkParameters {
     pub parameters: Vec<f64>,
     pub fitness: f64

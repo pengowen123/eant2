@@ -5,12 +5,10 @@ use rand::random;
 
 use cge::functions::*;
 
-pub fn sample_mvn(mean_vector: &Vec<f64>, covariance_matrix: &Matrix<f64>) -> Vec<f64> {
+pub fn sample_mvn(step_size: f64, mean_vector: &Vec<f64>, covariance_matrix: &Matrix<f64>) -> Vec<f64> {
     let eigen = EigenDecomposition::new(covariance_matrix);
     
     let mut vectors = eigen.get_v().clone();
-    let cols = vectors.cols();
-    let rows = vectors.rows();
 
     normalize_eigenvectors(&mut vectors);
 
@@ -34,5 +32,5 @@ pub fn sample_mvn(mean_vector: &Vec<f64>, covariance_matrix: &Matrix<f64>) -> Ve
     }
 
     values = values * vectors;
-    add_vec(&matrix_by_vector(&values, &random_values), &mean_vector)
+    add_vec(&mul_vec(&matrix_by_vector(&values, &random_values), step_size.powi(2)), &mean_vector)
 }

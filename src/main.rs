@@ -14,27 +14,28 @@
 extern crate eant_rust;
 
 use eant_rust::*;
-use eant_rust::cge::node;
-
-extern crate la;
-use la::Matrix;
+use eant_rust::cge::node::*;
 
 // Example usage
 struct Foo;
 
 impl FitnessFunction for Foo {
     fn get_fitness(network: &mut Network) -> f64 {
-        0.0
+        let coords: Vec<f64> = network.genome.iter().map(|n| {
+            match *n {
+                Node::Neuron(Neuron { ref weight, .. }) => *weight,
+                Node::Input(Input { ref weight, .. }) => *weight,
+                Node::JumperRecurrent(JumperRecurrent { ref weight, .. }) => *weight,
+                Node::JumperForward(JumperForward { ref weight, .. }) => *weight
+            }
+        }).collect();
+
+        let solution = vec![10.0, 10.0];
+
+        ((solution[0] - coords[0]).abs().powi(2) + (solution[1] - coords[1]).abs().powi(2)).sqrt()
     }
 }
 
 fn main() {
-    let mut cov = Matrix::new(2, 2, vec![0.01, 0.0, 0.0, 0.01]);
-    let mean = vec![0.0, 0.0];
-    for _ in 0..100 {
-       println!("{:?}", cmaes::mvn::sample_mvn(&mean, &cov));
-    }
-    let mut network = Network::new();
-    let x = Foo::get_fitness(&mut network);
-    eant_loop(Foo, 4);
+    println!("{:?}", eant_loop(Foo, 4));
 }
