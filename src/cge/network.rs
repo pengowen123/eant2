@@ -130,9 +130,6 @@ impl Network {
                     ref mut input_count,
                     ref mut id_number
                 }) => {
-                	if *id_number == 0 {
-                		println!("{}", *current_value);
-                	}
                     *current_value = sum_vec(&stack.pop(*input_count));
                     stack.push(*current_value * *weight);
                 }

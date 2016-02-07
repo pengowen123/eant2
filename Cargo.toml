@@ -11,4 +11,4 @@ name = "eant_rust"
 [dependencies]
 
 la = { git = "https://github.com/xasmx/rust-la" }
-rand = "*"
+rand = "0.3"

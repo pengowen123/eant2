@@ -6,12 +6,14 @@
 // also add better error handling
 // #[inline] on functions
 // remember to delete these attributes too
-#![allow(dead_code)]
 #![allow(unused_variables)]
 #![allow(unused_mut)]
 #![allow(unused_imports)]
 
 extern crate eant_rust;
+
+extern crate la;
+use la::{Matrix, EigenDecomposition};
 
 use eant_rust::*;
 use eant_rust::cge::node::*;
@@ -30,12 +32,13 @@ impl FitnessFunction for Foo {
             }
         }).collect();
 
-        let solution = vec![10.0, 10.0];
-
-        ((solution[0] - coords[0]).abs().powi(2) + (solution[1] - coords[1]).abs().powi(2)).sqrt()
+        let solution = 1.0;
+        let result = (((0.5 * coords[0]) + (1.5 * coords[1])) - solution).abs();
+        result
     }
 }
 
 fn main() {
-    println!("{:?}", eant_loop(Foo, 4));
+    let solved = eant_loop(Foo, 1);
+    println!("{:?}", solved);
 }
