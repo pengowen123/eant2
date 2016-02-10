@@ -1,3 +1,2 @@
-# eant_rust
-EANT2 made in Rust.
-When I finish this it will hopefully provide an easy way to use neural networks.
+# eant2
+An implementation of the [EANT2](http://www.informatik.uni-kiel.de/inf/Sommer/doc/Publications/nts/SiebelSommer-IJHIS2007.pdf) algorithm. Trains neural networks for complicated tasks.
