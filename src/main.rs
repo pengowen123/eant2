@@ -10,33 +10,26 @@
 #![allow(unused_mut)]
 #![allow(unused_imports)]
 
-extern crate eant_rust;
+extern crate eant2;
 
-extern crate la;
-use la::{Matrix, EigenDecomposition};
-
-use eant_rust::*;
-use eant_rust::cge::node::*;
+use eant2::*;
+use eant2::cge::node::*;
 
 // Example usage
 struct Foo;
 
 impl FitnessFunction for Foo {
     fn get_fitness(network: &mut Network) -> f64 {
-        let coords: Vec<f64> = network.genome.iter().map(|n| {
-            match *n {
-                Node::Neuron(Neuron { ref weight, .. }) => *weight,
-                Node::Input(Input { ref weight, .. }) => *weight,
-                Node::JumperRecurrent(JumperRecurrent { ref weight, .. }) => *weight,
-                Node::JumperForward(JumperForward { ref weight, .. }) => *weight
-            }
-        }).collect();
-
-        let solution = 1.0;
-        let result = (((0.5 * coords[0]) + (1.5 * coords[1])) - solution).abs();
-        result
+        let data = vec![9.5, -4.5];
+        let solution = -2.3;
+        network.step(&data, false);
+        let fitness = (network.step(&vec![0.2, 0.1], false)[0] - solution).abs();
+        fitness
     }
 }
+
+extern crate la;
+use la::{Matrix, EigenDecomposition};
 
 fn main() {
     let solved = eant_loop(Foo, 1);

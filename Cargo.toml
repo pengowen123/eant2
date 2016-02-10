@@ -1,14 +1,14 @@
 [package]
 
-name = "eant_rust"
+name = "eant2"
 version = "0.0.1"
 authors = [ "me" ]
 
 [[bin]]
 
-name = "eant_rust"
+name = "eant2"
 
 [dependencies]
 
-la = { git = "https://github.com/xasmx/rust-la" }
+la = "0.2"
 rand = "0.3"

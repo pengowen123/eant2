@@ -1,4 +1,4 @@
-// A trait with only a fitness function implemented by the user
+// A trait with a fitness function implemented by the user
 
 use cge::network;
 

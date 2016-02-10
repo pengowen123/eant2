@@ -64,9 +64,9 @@ pub fn concat(vecs: &Vec<Vec<f64>>) -> Vec<f64> {
     new
 }
 
-pub fn reverse<T: Clone>(vec: &Vec<T>) -> Vec<T> {
+pub fn reverse<T: Clone>(vec: &[T]) -> Vec<T> {
     if vec.len() == 0 {
-        return vec.clone();
+        return vec.to_vec();
     }
 
     let mut new = Vec::new();

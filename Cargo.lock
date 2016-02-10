@@ -1,8 +1,8 @@
 [root]
-name = "eant_rust"
+name = "eant2"
 version = "0.0.1"
 dependencies = [
- "la 0.2.0 (git+https://github.com/xasmx/rust-la)",
+ "la 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.12 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -18,11 +18,10 @@ dependencies = [
 [[package]]
 name = "la"
 version = "0.2.0"
-source = "git+https://github.com/xasmx/rust-la#13f45fd3f47d4f34cd6178673e0ff48299ca863c"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "num 0.1.29 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.12 (registry+https://github.com/rust-lang/crates.io-index)",
- "simd 0.1.0 (git+https://github.com/huonw/simd)",
 ]
 
 [[package]]
@@ -53,11 +52,6 @@ dependencies = [
 name = "rustc-serialize"
 version = "0.3.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-
-[[package]]
-name = "simd"
-version = "0.1.0"
-source = "git+https://github.com/huonw/simd#03de1cd0a278ab902b4beb402d57505f3797ea56"
 
 [[package]]
 name = "winapi"
