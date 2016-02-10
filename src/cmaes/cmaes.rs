@@ -341,10 +341,6 @@ pub fn cmaes_loop<T>(_: T,
     let fitness = T::get_fitness(&mut *network);
     network.clear_genome();
 
-    network.set_parameters(&generation[0].parameters);
-    network.step(&vec![9.5, -4.5], false);
-    println!("{:?}", network.step(&vec![0.2, 0.1], false)[0]);
-
     if fitness < best {
         mean_vector
     } else {

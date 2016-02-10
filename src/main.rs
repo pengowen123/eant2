@@ -13,7 +13,6 @@
 extern crate eant2;
 
 use eant2::*;
-use eant2::cge::node::*;
 
 // Example usage
 struct Foo;
@@ -27,9 +26,6 @@ impl FitnessFunction for Foo {
         fitness
     }
 }
-
-extern crate la;
-use la::{Matrix, EigenDecomposition};
 
 fn main() {
     let solved = eant_loop(Foo, 1);
