@@ -2,7 +2,7 @@
 
 name = "eant2"
 version = "0.0.1"
-authors = [ "me" ]
+authors = ["pengowen123 <pengowen816@gmail.com>"]
 
 [[bin]]
 
@@ -10,5 +10,5 @@ name = "eant2"
 
 [dependencies]
 
-la = "0.2"
 rand = "0.3"
+cmaes = { git = "https://github.com/pengowen123/cmaes" }

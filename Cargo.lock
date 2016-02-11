@@ -2,7 +2,7 @@
 name = "eant2"
 version = "0.0.1"
 dependencies = [
- "la 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cmaes 0.1.0 (git+https://github.com/pengowen123/cmaes)",
  "rand 0.3.12 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -16,11 +16,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "cmaes"
+version = "0.1.0"
+source = "git+https://github.com/pengowen123/cmaes#2e85ff56b528e01cd060523ee95bf9d80b4d545c"
+dependencies = [
+ "la 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.12 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "la"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "num 0.1.29 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num 0.1.30 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.12 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -31,11 +40,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "num"
-version = "0.1.29"
+version = "0.1.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "rand 0.3.12 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.3.16 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.18 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -50,7 +59,7 @@ dependencies = [
 
 [[package]]
 name = "rustc-serialize"
-version = "0.3.16"
+version = "0.3.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
