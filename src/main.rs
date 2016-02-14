@@ -1,10 +1,4 @@
-// This project should be modular, concurrent, easy to use, customizable, documented, and have
-// tests.
-// When it is finished and useful, publish it
-
-// also add better error handling
-// #[inline] on functions
-// remember to delete allow() attributes too
+// For testing parts of the crate
 
 extern crate eant2;
 
@@ -21,7 +15,17 @@ impl FitnessFunction for Foo {
 }
 
 fn main() {
-    let solved = eant_loop(Foo, 1);
-    println!("solution: {:?}", solved);
-    println!("fitness: {:?}", Foo::get_fitness(&solved));
+    use eant2::cge;
+    use cge::gene::Gene;
+    use cge::gene::GeneExtras::*;
+    use cge::network::Network;
+
+    // Create network from paper and make sure everything works fine
+    // Also add Travis
+    let network = Network {
+        size: 11,
+        genome: vec![
+            Gene {
+        ]
+    };
 }

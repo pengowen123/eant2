@@ -7,9 +7,9 @@ impl Stack {
         Stack { data: Vec::new() }
     }
 
-    pub fn pop(&mut self, count: usize) -> Vec<f64> {
+    pub fn pop(&mut self, count: usize) -> Option<Vec<f64>> {
         if count >= self.data.len() {
-            panic!("Not enough elements to pop");
+            return None;
         }
 
         let mut result = Vec::new();
@@ -18,7 +18,7 @@ impl Stack {
             result.push(self.data.pop().unwrap());
         }
 
-        result
+        Some(result)
     }
 
     pub fn push(&mut self, value: f64) {

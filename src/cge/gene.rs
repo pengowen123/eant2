@@ -1,9 +1,13 @@
+/// An enum for storing additional information for different types of genes
 #[derive(Clone)]
 pub enum GeneExtras {
-    Input(f64),
-    Neuron(f64, usize),
+    /// Input contains a current value and an output count
+    Input(f64, usize),
+    /// Neuron contains a current value, an input count and an output count
+    Neuron(f64, usize, usize),
     Forward,
-    Recurrent
+    Recurrent,
+    Bias
 }
 
 #[derive(Clone)]
@@ -34,7 +38,15 @@ impl Gene {
         Gene {
             weight: weight,
             id: id,
-            variant: GeneExtras::Input(0.0)
+            variant: GeneExtras::Input(0.0, 0)
+        }
+    }
+
+    pub fn bias(weight: f64) -> Gene {
+        Gene {
+            weight: weight,
+            id: 0,
+            variant: GeneExtras::Bias
         }
     }
 
@@ -42,7 +54,31 @@ impl Gene {
         Gene {
             weight: weight,
             id: id,
-            variant: GeneExtras::Neuron(0.0, inputs)
+            variant: GeneExtras::Neuron(0.0, inputs, 0)
+        }
+    }
+
+    pub fn ref_input(&self) -> Option<(f64, usize, f64, usize)> {
+        if let GeneExtras::Input(ref weight, ref outputs) = self.variant {
+            Some((self.weight, self.id, *weight, *outputs))
+        } else {
+            None
+        }
+    }
+
+    pub fn ref_neuron(&self) -> Option<(f64, usize, f64, usize, usize)> {
+        if let GeneExtras::Neuron(ref value, ref inputs, ref outputs) = self.variant {
+            Some((self.weight, self.id, *value, *inputs, *outputs))
+        } else {
+            None
+        }
+    }
+
+    pub fn ref_mut_neuron<'a>(&'a mut self) -> Option<(&'a mut f64, &'a mut usize, &'a mut f64, &'a mut usize, &'a mut usize)> {
+        if let GeneExtras::Neuron(ref mut value, ref mut inputs, ref mut outputs) = self.variant {
+            Some((&mut self.weight, &mut self.id, value, inputs, outputs))
+        } else {
+            None
         }
     }
 }
