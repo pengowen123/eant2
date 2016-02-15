@@ -1,19 +1,22 @@
-//! An implementation of the EANT2 algorithm used for training neural networks.
-//! It is easy to use, and works well on complex tasks.
+//! An implementation of the EANT2 algorithm used for training neural networks. The algorithm
+//! requires very little information about the problem, and creates minimal, high fitness networks.
 //!
 //! # Examples
 //!
 //! Complete this section when the project is finished
 
 extern crate cmaes;
+extern crate cge;
 extern crate rand;
 
 mod utils;
+mod compare;
 mod mutationops;
-mod selection;
-pub mod cge;
+mod select;
+pub mod options;
+pub mod fitness;
 pub mod eant;
 
-pub use self::cge::network::Network;
-pub use self::cmaes::fitness::FitnessFunction;
+pub use self::fitness::NNFitnessFunction;
 pub use self::eant::eant_loop;
+pub use self::cge::Network;
