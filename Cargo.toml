@@ -4,10 +4,6 @@ name = "eant2"
 version = "0.0.1"
 authors = ["pengowen123 <pengowen816@gmail.com>"]
 
-[[bin]]
-
-name = "eant2"
-
 [dependencies]
 
 rand = "0.3"
