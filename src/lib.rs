@@ -18,5 +18,6 @@ pub mod fitness;
 pub mod eant;
 
 pub use self::fitness::NNFitnessFunction;
+pub use self::options::EANT2Options;
 pub use self::eant::eant_loop;
 pub use self::cge::Network;

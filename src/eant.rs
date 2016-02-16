@@ -22,6 +22,7 @@
 
 use cge::Network;
 use cmaes::*;
+use cmaes::options::CMAESEndConditions::*;
 use rand::random;
 
 use utils::{Individual, GeneAge};
@@ -44,14 +45,31 @@ pub fn eant_loop<T>(trait_dummy: T, options: EANT2Options) -> Vec<f64>
     // Ensure user input is valid
     
     // to make new generation, add new individuals to the population by mutating every individual
+    // optimize all individuals with cmaes
     // use the select function to rank and select which individuals go to the next generation
     // refer to the flow chart in the eant2 paper for more info
     // keep this file as abstract as possible
-    // fix cmaes to allow for the todo feature
+    // use max_fitness - fitness to make higher fitnesses lower, to cmaes doesn't get confused
+    // make sure there are no free floating structures
 
     let mut cmaes_options = CMAESOptions::custom(2);
 
-    cmaes_options.end_conditions = vec![options.cmaes_end_condition.clone()];
-    
-    cmaes_loop(CMAESFitnessDummy, cmaes_options)
+    for condition in options.cmaes_end_conditions {
+        match condition {
+            StableGenerations(ref fitness, ref generations) => {
+                cmaes_options = cmaes_options.stable_generations(*fitness, *generations);
+            },
+            FitnessThreshold(ref fitness) => {
+                cmaes_options = cmaes_options.fitness_threshold(*fitness);
+            },
+            MaxGenerations(ref generations) => {
+                cmaes_options = cmaes_options.max_generations(*generations);
+            },
+            MaxEvaluations(ref evaluations) => {
+                cmaes_options = cmaes_options.max_evaluations(*evaluations);
+            }
+        }
+    }
+
+    cmaes_loop(CMAESFitnessDummy, cmaes_options).unwrap()
 }

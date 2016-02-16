@@ -3,6 +3,9 @@ use cge::gene::GeneExtras::*;
 
 use utils::Individual;
 
+// Percentage threshold for determining if fitness is "almost the same"
+const SIMILAR_FITNESS_THRESHOLD: f64 = 0.01;
+
 pub enum Category {
     Duplicate,
     Similar,
@@ -48,6 +51,12 @@ pub fn compare(a: &Individual, b: &Individual) -> Category {
             Category::Okay
         }
     }
+}
+
+pub fn compare_fitness(a: &Individual, b: &Individual) -> bool {
+    let diff = (a.fitness - b.fitness).abs();
+
+    diff / a.fitness < SIMILAR_FITNESS_THRESHOLD
 }
 
 fn variant(gene: &Gene) -> i32 {
