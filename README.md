@@ -38,4 +38,4 @@ See the [documentation](pengowen123.github.io/eant2/eant2/index.html) for comple
 
 If you encounter a bug, please open an issue and i will try to get it fixed. If you have a suggestion, feel free to open an issue or implement it yourself and open a pull request.
 
-[1](https://github.com/pengowen123/cge)
+[1]: https://github.com/pengowen123/cge
