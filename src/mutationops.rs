@@ -17,7 +17,6 @@ impl Mutation for Network {
     // inputs is the number of inputs to the network
     // id is the id of the new neuron
     // output is the index to put the neuron at
-    // inputs is the number of inputs to the network
     fn add_subnetwork(&mut self, id: usize, output: usize, inputs: usize) {
         let mut rng = thread_rng();
         let mut input_count = 0;
@@ -36,10 +35,13 @@ impl Mutation for Network {
 
         self.genome.insert(output, Gene::neuron(1.0, id, input_count));
         
-        let prev_index = self.previous_neuron_index(output).unwrap();
-        let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
+        let prev_index = self.previous_neuron_index(output);
 
-        *inputs += 1;
+        if let Some(i) = prev_index {
+            let (_, _, _, inputs) = self.genome[i].ref_mut_neuron().unwrap();
+
+            *inputs += 1;
+        }
     }
 
     // input is the id of the neuron to take input from
@@ -102,7 +104,12 @@ impl Mutation for Network {
                     }
                 }
             } else {
-                if let GeneExtras::Neuron(_, _) = gene.variant {
+                if let GeneExtras::Forward = gene.variant {
+                    if gene.id == input {
+                        index = i;
+                        break;
+                    }
+                } else if let GeneExtras::Recurrent = gene.variant {
                     if gene.id == input {
                         index = i;
                         break;

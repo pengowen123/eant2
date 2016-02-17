@@ -7,10 +7,11 @@ const DEFAULT_CMAES_CONDITIONS: [CMAESEndConditions; 2] = [
     CMAESEndConditions::MaxGenerations(500)
 ];
 
-const DEFAULT_POPULATION_SIZE: usize = 30;
-const DEFAULT_OFFSPRING_COUNT: usize = 2;
-const DEFAULT_MAX_GENERATIONS: usize = 100;
-const DEFAULT_CMAES_RUNS: usize = 2;
+pub const DEFAULT_POPULATION_SIZE: usize = 30;
+pub const DEFAULT_OFFSPRING_COUNT: usize = 2;
+pub const DEFAULT_MIN_FITNESS: f64 = 10.0;
+pub const DEFAULT_MAX_GENERATIONS: usize = 100;
+pub const DEFAULT_CMAES_RUNS: usize = 2;
 
 /// A container for all parameters and options for the EANT2 algorithm. Using default options is
 /// convenient, but may slightly reduce the quality of the neural networks generated, and can
@@ -18,20 +19,22 @@ const DEFAULT_CMAES_RUNS: usize = 2;
 /// depending on whether it is more important to find a solution quickly or to find a better
 /// solution. Note that increasing population size and CMA-ES runs will only affect the quality a
 /// small amount, so using smaller values will greatly speed up the algorithm, and does not have a
-/// large downside.
+/// large downside. It is important to set the fitness threshold using the fitness_threshold method,
+/// otherwise the algorithm may terminate too soon or take a long time to run.
 ///
 /// # Examples
 ///
 /// ```
 /// use eant2::*;
 ///
-/// // A set of default options, with 2 inputs and 3 outputs to each neural network, and a minimum
-/// // fitness of 10.0
-/// let options = EANT2Options::new(2, 3, 10.0);
+/// // A set of default options, with 2 inputs and 3 outputs to each neural network
+/// let options = EANT2Options::new(2, 3);
 ///
-/// // A set of options with 2 CMA-ES optimizations per individual, and a population size of 50
+/// // A set of options with 4 CMA-ES optimizations per individual, a minimum fitness of 10.0, and
+/// // a population size of 50
 /// let options = EANT2Options::new(2, 3, 10.0)
-///     .cmaes_runs(2)
+///     .fitness_threshold(0.0)
+///     .cmaes_runs(4)
 ///     .population_size(50);
 /// ```
 #[derive(Clone)]
@@ -40,7 +43,7 @@ pub struct EANT2Options {
     pub outputs: usize,
     pub population_size: usize,
     pub offspring_count: usize,
-    pub min_fitness: f64,
+    pub fitness_threshold: f64,
     pub max_generations: usize,
     pub threads: u8,
     pub cmaes_runs: usize,
@@ -49,7 +52,7 @@ pub struct EANT2Options {
 
 impl EANT2Options {
     /// Returns a set of default options.
-    pub fn new(inputs: usize, outputs: usize, min_fitness: f64) -> EANT2Options {
+    pub fn new(inputs: usize, outputs: usize) -> EANT2Options {
         if inputs == 0 || outputs == 0 {
             panic!("Neural network inputs and outputs cannot be zero");
         }
@@ -59,7 +62,7 @@ impl EANT2Options {
             outputs: outputs,
             population_size: DEFAULT_POPULATION_SIZE,
             offspring_count: DEFAULT_OFFSPRING_COUNT,
-            min_fitness: min_fitness,
+            fitness_threshold: DEFAULT_MIN_FITNESS,
             max_generations: DEFAULT_MAX_GENERATIONS,
             threads: 1,
             cmaes_runs: DEFAULT_CMAES_RUNS,
@@ -87,10 +90,10 @@ impl EANT2Options {
         self
     }
 
-    /// Sets the minimum fitness. The algorithm terminates if the best individual has a fitness of at
-    /// least the specified amount.
-    pub fn min_fitness(mut self, fitness: f64) -> EANT2Options {
-        self.min_fitness = fitness;
+    /// Sets the fitness threshold. The algorithm terminates if the best individual has a fitness
+    /// less than or equal to the specified amount.
+    pub fn fitness_threshold(mut self, fitness: f64) -> EANT2Options {
+        self.fitness_threshold = fitness;
         self
     }
 

@@ -2,6 +2,7 @@ use cge::gene::Gene;
 use cge::gene::GeneExtras::*;
 
 use utils::Individual;
+use fitness::NNFitnessFunction;
 
 // Percentage threshold for determining if fitness is "almost the same"
 const SIMILAR_FITNESS_THRESHOLD: f64 = 0.01;
@@ -12,7 +13,7 @@ pub enum Category {
     Okay
 }
 
-pub fn compare(a: &Individual, b: &Individual) -> Category {
+pub fn compare<T: NNFitnessFunction + Clone>(a: &Individual<T>, b: &Individual<T>) -> Category {
     let min = vec![a.network.size, b.network.size].iter().min().unwrap() + 1;
     let mut is_duplicate = true;
 
@@ -53,7 +54,7 @@ pub fn compare(a: &Individual, b: &Individual) -> Category {
     }
 }
 
-pub fn compare_fitness(a: &Individual, b: &Individual) -> bool {
+pub fn compare_fitness<T: NNFitnessFunction + Clone>(a: &Individual<T>, b: &Individual<T>) -> bool {
     let diff = (a.fitness - b.fitness).abs();
 
     diff / a.fitness < SIMILAR_FITNESS_THRESHOLD

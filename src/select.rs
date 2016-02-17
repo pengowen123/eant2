@@ -2,16 +2,22 @@ use std::cmp::Ordering;
 
 use compare::*;
 use utils::*;
+use fitness::NNFitnessFunction;
 
 // For preserving diversity
 const MAX_DUPLICATES: usize = 1;
 const MAX_SIMILAR: usize = 2;
 
-pub fn select(population_size: usize, mut individuals: Vec<Individual>) -> Vec<Individual> {
+pub fn select<T>(population_size: usize, individuals: Vec<Individual<T>>) -> Vec<Individual<T>>
+    where T: NNFitnessFunction + Clone
+{
     let mut pre_generation = Vec::new();
 
     for individual in &individuals {
         let mut new = individual.clone();
+
+        new.duplicates = 0;
+        new.similar = 0;
 
         for individual_2 in &individuals {
             let category = compare(&individual, &individual_2);
@@ -27,6 +33,8 @@ pub fn select(population_size: usize, mut individuals: Vec<Individual>) -> Vec<I
             }
         }
 
+        // There is guaranteed to be one duplicate because it compares each individual to itself
+        // Decrement it to counter this
         new.duplicates -= 1;
 
         pre_generation.push(new);
@@ -36,12 +44,11 @@ pub fn select(population_size: usize, mut individuals: Vec<Individual>) -> Vec<I
     let mut deleted = 0;
 
     for individual in &pre_generation {
-        if !(individual.duplicates > MAX_DUPLICATES || individual.similar > MAX_SIMILAR) {
+        if !(individual.duplicates > MAX_DUPLICATES || individual.similar > MAX_SIMILAR) ||
+            deleted >= pre_generation.len() - population_size {
             generation.push(individual.clone());
-        }
-
-        if deleted >= pre_generation.len() - population_size {
-            break;
+        } else {
+            deleted += 1;
         }
     }
 
