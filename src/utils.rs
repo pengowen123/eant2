@@ -6,27 +6,33 @@ use cmaes::FitnessFunction;
 
 use fitness::NNFitnessFunction;
 
+// Stores additional information about a neural network, useful for mutation operators and
+// selection
 #[derive(Clone)]
 pub struct Individual<T: NNFitnessFunction + Clone> {
     pub network: Network,
-    pub genes: Vec<GeneAge>,
+    // Stores the age of the genes, for setting initial standard deviation of the parameters, to make older
+    // genes have a more local search (older genes tend to become stable after being optimized multiple
+    // times)
+    pub ages: Vec<usize>,
+    pub inputs: usize,
+    pub outputs: usize,
+    pub next_id: usize,
     pub fitness: f64,
     pub object: Arc<T>,
     pub duplicates: usize,
     pub similar: usize
 }
 
-#[derive(Clone)]
-pub struct GeneAge {
-    pub gene: Gene,
-    pub age: usize
-}
-
 impl<T: NNFitnessFunction + Clone> Individual<T> {
-    pub fn new(network: Network, object: Arc<T>) -> Individual<T> {
+    // Convenience constructor
+    pub fn new(inputs: usize, outputs: usize, network: Network, object: Arc<T>) -> Individual<T> {
         Individual {
-            genes: network.genome.iter().map(|g| GeneAge { gene: g.clone(), age: 0 }).collect(),
+            ages: vec![0; network.size + 1],
             network: network,
+            inputs: inputs,
+            outputs: outputs,
+            next_id: outputs,
             fitness: 0.0,
             object: object,
             duplicates: 0,
@@ -35,6 +41,9 @@ impl<T: NNFitnessFunction + Clone> Individual<T> {
     }
 }
 
+// Implements the CMA-ES fitness function for Individual to make the library easier to use
+// Sets the parameters of the neural network, calls the EANT2 fitness function, and resets the
+// internal state
 impl<T: NNFitnessFunction + Clone> FitnessFunction for Individual<T> {
     fn get_fitness(&self, parameters: &[f64]) -> f64 {
         let mut network = Network {
@@ -55,8 +64,11 @@ impl<T: NNFitnessFunction + Clone> FitnessFunction for Individual<T> {
     }
 }
 
+// Everything I do seems to make the compiler complain about the trait not being implemented for a
+// reference to T, so I make it easier by doing what it wants
 impl<'a, T: NNFitnessFunction> NNFitnessFunction for &'a T {
     fn get_fitness(&self, network: &mut Network) -> f64 {
         (*self).get_fitness(network)
     }
 }
+

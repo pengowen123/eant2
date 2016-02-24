@@ -1,5 +1,3 @@
-use std::cmp::Ordering;
-
 use compare::*;
 use utils::*;
 use fitness::NNFitnessFunction;
@@ -8,7 +6,7 @@ use fitness::NNFitnessFunction;
 const MAX_DUPLICATES: usize = 1;
 const MAX_SIMILAR: usize = 2;
 
-pub fn select<T>(population_size: usize, individuals: Vec<Individual<T>>) -> Vec<Individual<T>>
+pub fn select<T>(population_size: usize, individuals: Vec<Individual<T>>, threshold: f64) -> Vec<Individual<T>>
     where T: NNFitnessFunction + Clone
 {
     let mut pre_generation = Vec::new();
@@ -53,22 +51,12 @@ pub fn select<T>(population_size: usize, individuals: Vec<Individual<T>>) -> Vec
     }
 
     generation.sort_by(|a, b| {
-        let by_fitness = match a.fitness.partial_cmp(&b.fitness).unwrap() {
-            Ordering::Less => Ordering::Greater,
-            Ordering::Greater => Ordering::Less,
-            Ordering::Equal => Ordering::Equal
-        };
+        let by_fitness = a.fitness.partial_cmp(&b.fitness).unwrap();
 
-        let similar_fitness = compare_fitness(&a, &b);
+        let similar_fitness = compare_fitness(&a, &b, threshold);
 
         if similar_fitness {
-            if a.network.size < b.network.size {
-                Ordering::Greater
-            } else if b.network.size < a.network.size {
-                Ordering::Less
-            } else {
-                Ordering::Equal
-            }
+            a.network.size.partial_cmp(&b.network.size).unwrap()
         } else {
             by_fitness
         }

@@ -7,20 +7,25 @@ const DEFAULT_CMAES_CONDITIONS: [CMAESEndConditions; 2] = [
     CMAESEndConditions::MaxGenerations(500)
 ];
 
-pub const DEFAULT_POPULATION_SIZE: usize = 30;
+pub const DEFAULT_POPULATION_SIZE: usize = 20;
 pub const DEFAULT_OFFSPRING_COUNT: usize = 2;
-pub const DEFAULT_MIN_FITNESS: f64 = 10.0;
-pub const DEFAULT_MAX_GENERATIONS: usize = 100;
+pub const DEFAULT_SIMILAR_FITNESS: f64 = 0.05;
+pub const DEFAULT_MIN_FITNESS: f64 = 0.0;
+pub const DEFAULT_MAX_GENERATIONS: usize = 30;
 pub const DEFAULT_CMAES_RUNS: usize = 2;
+pub const DEFAULT_PRINT_OPTION: bool = false;
 
-/// A container for all parameters and options for the EANT2 algorithm. Using default options is
-/// convenient, but may slightly reduce the quality of the neural networks generated, and can
-/// increase the time needed to find a solution. It is recommended to adjust the parameters
-/// depending on whether it is more important to find a solution quickly or to find a better
-/// solution. Note that increasing population size and CMA-ES runs will only affect the quality a
-/// small amount, so using smaller values will greatly speed up the algorithm, and does not have a
-/// large downside. It is important to set the fitness threshold using the fitness_threshold method,
-/// otherwise the algorithm may terminate too soon or take a long time to run.
+/// A container for all parameters and options for the EANT2 algorithm. See constants for default
+/// values.
+///
+/// Using default options is convenient, but may slightly reduce the quality of the neural networks
+/// generated, and can increase the time needed to find a solution. It is recommended to adjust the
+/// parameters depending on whether it is more important to find a solution quickly or to find a
+/// better solution. Note that increasing population size and CMA-ES runs will only affect the
+/// quality a small amount, so using smaller values will greatly speed up the algorithm, and does
+/// not have a large downside. It is important to set the fitness threshold using the
+/// `fitness_threshold` method, otherwise the algorithm may terminate too soon or take a long time to
+/// run.
 ///
 /// # Examples
 ///
@@ -32,7 +37,8 @@ pub const DEFAULT_CMAES_RUNS: usize = 2;
 ///
 /// // A set of options with 4 CMA-ES optimizations per individual, a minimum fitness of 10.0, and
 /// // a population size of 50
-/// let options = EANT2Options::new(2, 3, 10.0)
+/// let options = EANT2Options::new(2, 3)
+///     .fitness_threshold(10.0)
 ///     .fitness_threshold(0.0)
 ///     .cmaes_runs(4)
 ///     .population_size(50);
@@ -44,14 +50,16 @@ pub struct EANT2Options {
     pub population_size: usize,
     pub offspring_count: usize,
     pub fitness_threshold: f64,
+    pub similar_fitness: f64,
     pub max_generations: usize,
     pub threads: u8,
     pub cmaes_runs: usize,
-    pub cmaes_end_conditions: Vec<CMAESEndConditions>
+    pub cmaes_end_conditions: Vec<CMAESEndConditions>,
+    pub print_option: bool
 }
 
 impl EANT2Options {
-    /// Returns a set of default options.
+    /// Returns a set of default options (see constants for default values).
     pub fn new(inputs: usize, outputs: usize) -> EANT2Options {
         if inputs == 0 || outputs == 0 {
             panic!("Neural network inputs and outputs cannot be zero");
@@ -63,14 +71,17 @@ impl EANT2Options {
             population_size: DEFAULT_POPULATION_SIZE,
             offspring_count: DEFAULT_OFFSPRING_COUNT,
             fitness_threshold: DEFAULT_MIN_FITNESS,
+            similar_fitness: DEFAULT_SIMILAR_FITNESS,
             max_generations: DEFAULT_MAX_GENERATIONS,
             threads: 1,
             cmaes_runs: DEFAULT_CMAES_RUNS,
-            cmaes_end_conditions: DEFAULT_CMAES_CONDITIONS.to_vec()
+            cmaes_end_conditions: DEFAULT_CMAES_CONDITIONS.to_vec(),
+            print_option: DEFAULT_PRINT_OPTION
         }
     }
     
-    /// Sets the population size
+    /// Sets the population size. Increasing this option may produce higher quality neural
+    /// networks, but will increase the time needed to find a solution.
     pub fn population_size(mut self, size: usize) -> EANT2Options {
         if size == 0 {
             panic!("Population size cannot be zero");
@@ -80,31 +91,45 @@ impl EANT2Options {
         self
     }
 
-    /// Sets the offspring count (how many offspring each individual spawns)
+    /// Sets the offspring count (how many offspring each individual spawns). Increasing this
+    /// option may produce higher quality neural networks, but will increase the time needed to
+    /// find a solution.
     pub fn offspring_count(mut self, count: usize) -> EANT2Options {
-        if count == 0 {
-            panic!("Offspring count cannot be zero");
-        }
-
         self.offspring_count = count;
         self
     }
 
     /// Sets the fitness threshold. The algorithm terminates if the best individual has a fitness
-    /// less than or equal to the specified amount.
+    /// less than or equal to the specified amount. It is recommended to set this option to a value
+    /// specific to each fitness function. The specified fitness may not be reached if the max
+    /// generation is reached first.
     pub fn fitness_threshold(mut self, fitness: f64) -> EANT2Options {
         self.fitness_threshold = fitness;
         self
     }
 
     /// Sets the maximum generations. The algorithm terminates after the specified number of
-    /// generations pass.
+    /// generations pass. Increasing this option will likely produce higher quality networks, but
+    /// will increase the running time of the algorithm. The number of generations specified may
+    /// not be reached if the fitness threshold is reached first.
     pub fn max_generations(mut self, generations: usize) -> EANT2Options {
         self.max_generations = generations;
         self
     }
 
-    /// Sets the number of threads to use in the algorithm.
+    /// Sets the threshold for deciding whether two neural networks have a similar fitness.
+    /// Increasing this option will make the algorithm more aggresively prefer smaller
+    /// neural networks. Decreasing it will do the opposite, allowing larger individuals to stay in
+    /// the population. It is recommended to set this option higher if a small neural network is
+    /// preferred. The downside is it will take slightly longer to find a solution, due to more
+    /// higher fitness neural networks being discarded.
+    pub fn similar_fitness(mut self, threshold: f64) -> EANT2Options {
+        self.similar_fitness = threshold;
+        self
+    }
+
+    /// Sets the number of threads to use in the algorithm. Increasing this option on multi-core
+    /// hardware will greatly decrease the running time of the algorithm.
     pub fn threads(mut self, threads: u8) -> EANT2Options {
         if threads == 0 {
             panic!("Threads cannot be zero");
@@ -132,9 +157,29 @@ impl EANT2Options {
     /// to find a solution. Decreasing these options is a good idea when it is important to find a
     /// solution quickly. DO NOT set the fitness threshold option, or it will take a very long time
     /// to find a solution, even on the simplest problems! It is recommended to leave this option alone, but
-    /// the documentation for it is available [here](http://pengowen123.github.io/cmaes/cmaes/options/enum.CMAESEndConditions.html).
+    /// the documentation for it is available [here][1].
+    ///
+    /// [1]: http://pengowen123.github.io/cmaes/cmaes/options/enum.CMAESEndConditions.html
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use eant2::*;
+    ///
+    /// let cmaes_conditions = vec![CMAESEndConditions::MaxGenerations(250),
+    ///                             CMAESEndConditions::StableGenerations(0.001, 5)];
+    /// 
+    /// let options = EANT2Options::new(2, 2)
+    ///                   .cmaes_end_conditions(cmaes_conditions);
     pub fn cmaes_end_conditions(mut self, conditions: Vec<CMAESEndConditions>) -> EANT2Options {
         self.cmaes_end_conditions = conditions;
+        self
+    }
+
+    /// Sets whether to print info while the algorithm is running. The generation number is
+    /// printed, and info about the solution is printed when the algorithm terminates.
+    pub fn print(mut self, print: bool) -> EANT2Options {
+        self.print_option = print;
         self
     }
 }

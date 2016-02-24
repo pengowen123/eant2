@@ -1,5 +1,4 @@
 use rand::{thread_rng, Rng};
-
 use cge::Network;
 use cge::gene::{GeneExtras, Gene};
 
@@ -9,7 +8,7 @@ pub trait Mutation {
     fn add_recurrent(&mut self, input: usize, output: usize);
     fn add_bias(&mut self, output: usize);
     fn add_input(&mut self, input: usize, output: usize);
-    fn remove_connection(&mut self, input: usize, output: usize, is_input: bool);
+    fn remove_connection(&mut self, index: usize, output: usize);
     fn previous_neuron_index(&self, index: usize) -> Option<usize>;
 }
 
@@ -32,7 +31,7 @@ impl Mutation for Network {
             self.genome.insert(output, Gene::input(1.0, rng.gen_range(0, inputs)));
             input_count = 1;
         }
-
+        
         self.genome.insert(output, Gene::neuron(1.0, id, input_count));
         
         let prev_index = self.previous_neuron_index(output);
@@ -42,12 +41,16 @@ impl Mutation for Network {
 
             *inputs += 1;
         }
+
+        self.size = self.genome.len() - 1;
     }
 
     // input is the id of the neuron to take input from
     // output is the index to put the jumper at
     fn add_forward(&mut self, input: usize, output: usize) {
         self.genome.insert(output, Gene::forward(1.0, input));
+
+        self.size = self.genome.len() - 1;
 
         let prev_index = self.previous_neuron_index(output).unwrap();
         let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
@@ -60,6 +63,8 @@ impl Mutation for Network {
     fn add_recurrent(&mut self, input: usize, output: usize) {
         self.genome.insert(output, Gene::recurrent(1.0, input));
 
+        self.size = self.genome.len() - 1;
+
         let prev_index = self.previous_neuron_index(output).unwrap();
         let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
 
@@ -71,6 +76,8 @@ impl Mutation for Network {
     fn add_input(&mut self, input: usize, output: usize) {
         self.genome.insert(output, Gene::input(1.0, input));
 
+        self.size = self.genome.len() - 1;
+
         let prev_index = self.previous_neuron_index(output).unwrap();
         let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
 
@@ -81,6 +88,8 @@ impl Mutation for Network {
     fn add_bias(&mut self, output: usize) {
         self.genome.insert(output, Gene::bias(1.0));
 
+        self.size = self.genome.len() - 1;
+
         let prev_index = self.previous_neuron_index(output).unwrap();
         let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
 
@@ -88,40 +97,22 @@ impl Mutation for Network {
     }
 
     // output is the id of the neuron to remove the connection from
-    // input is either the id of a neuron or an input, depending on the flag is_input
-    fn remove_connection(&mut self, input: usize, output: usize, is_input: bool) {
-        let subnetwork_range = self.get_subnetwork_index(output).unwrap();
-        let mut index = 0;
-
-        for i in subnetwork_range {
-            let gene = &self.genome[i];
-
-            if is_input {
-                if let GeneExtras::Input(_) = gene.variant {
-                    if gene.id == input {
-                        index = i;
-                        break;
-                    }
-                }
-            } else {
-                if let GeneExtras::Forward = gene.variant {
-                    if gene.id == input {
-                        index = i;
-                        break;
-                    }
-                } else if let GeneExtras::Recurrent = gene.variant {
-                    if gene.id == input {
-                        index = i;
-                        break;
-                    }
-                }
-            }
-        }
-
+    // index is the index of the gene to remove
+    fn remove_connection(&mut self, index: usize, output: usize) {
         self.genome.remove(index);
 
-        let prev_index = self.previous_neuron_index(output).unwrap();
-        let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
+        self.size = self.genome.len() - 1;
+
+        let neuron_index = match self.get_neuron_index(output) {
+            Some(v) => v,
+            None => {
+                println!("{}", output);
+                println!("{:?}", self);
+                panic!();
+            }
+        };
+
+        let (_, _, _, inputs) = self.genome[neuron_index].ref_mut_neuron().expect("bar");
 
         *inputs -= 1;
     }
@@ -138,4 +129,5 @@ impl Mutation for Network {
         None
     }
 }
+
 
