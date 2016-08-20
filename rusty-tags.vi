@@ -1,0 +1,684 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+AVAILABLE	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        static AVAILABLE: AtomicBool = ATOMIC_BOOL_INIT;$/;"	c
+AsciiGenerator	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub struct AsciiGenerator<'a, R:'a> {$/;"	s
+BAD_FITNESS	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\cmaes.rs	/^const BAD_FITNESS: f64 = 10e10;$/;"	c
+BIAS_GENE_VALUE	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^const BIAS_GENE_VALUE: f64 = 1.0;$/;"	c
+BOOL	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    type BOOL = i32;$/;"	T
+BYTE	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    type BYTE = u8;$/;"	T
+CHACHA_ROUNDS	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^const CHACHA_ROUNDS: u32 = 20; \/\/ Cryptographically secure from 8 upwards as of this writing$/;"	c
+CHAR_MASK	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^        const CHAR_MASK: u32 = 0x001f_ffff;$/;"	c
+CHECKER	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        static CHECKER: Once = ONCE_INIT;$/;"	c
+CMAESEndConditions	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^pub enum CMAESEndConditions {$/;"	g
+CMAESOptions	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^impl CMAESOptions {$/;"	i
+CMAESOptions	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^pub struct CMAESOptions {$/;"	s
+CRYPT_SILENT	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    const CRYPT_SILENT: DWORD = 0x00000040;$/;"	c
+CRYPT_VERIFYCONTEXT	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    const CRYPT_VERIFYCONTEXT: DWORD = 0xF0000000;$/;"	c
+Category	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\compare.rs	/^pub enum Category {$/;"	g
+ChaChaRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^impl ChaChaRng {$/;"	i
+ChaChaRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^pub struct ChaChaRng {$/;"	s
+ChiSquared	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl ChiSquared {$/;"	i
+ChiSquared	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^pub struct ChiSquared {$/;"	s
+ChiSquaredRepr	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^enum ChiSquaredRepr {$/;"	g
+Clone for Isaac64Rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl Clone for Isaac64Rng {$/;"	i
+Clone for IsaacRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl Clone for IsaacRng {$/;"	i
+Clone for RandSample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^impl<Sup> Clone for RandSample<Sup> {$/;"	i
+Closed01	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub struct Closed01<F>(pub F);$/;"	s
+ConstRand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    struct ConstRand(usize);$/;"	s
+ConstRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    struct ConstRng { i: u64 }$/;"	s
+ConstantRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    struct ConstantRng(u64);$/;"	s
+Copy for RandSample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^impl<Sup> Copy for RandSample<Sup> {}$/;"	i
+Counter	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    struct Counter {$/;"	s
+CountingRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    struct CountingRng { i: u32 }$/;"	s
+CryptAcquireContextA	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        fn CryptAcquireContextA(phProv: *mut HCRYPTPROV,$/;"	f
+CryptGenRandom	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        fn CryptGenRandom(hProv: HCRYPTPROV,$/;"	f
+CryptReleaseContext	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        fn CryptReleaseContext(hProv: HCRYPTPROV, dwFlags: DWORD) -> BOOL;$/;"	f
+DEFAULT_CMAES_CONDITIONS	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^const DEFAULT_CMAES_CONDITIONS: [CMAESEndConditions; 2] = [$/;"	c
+DEFAULT_CMAES_RUNS	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_CMAES_RUNS: usize = 2;$/;"	c
+DEFAULT_END_CONDITION	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^const DEFAULT_END_CONDITION: CMAESEndConditions = CMAESEndConditions::MaxGenerations(500);$/;"	c
+DEFAULT_GENERATION_THRESHOLD	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^const DEFAULT_GENERATION_THRESHOLD: u64 = 32 * 1024;$/;"	c
+DEFAULT_MAX_GENERATIONS	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_MAX_GENERATIONS: usize = 30;$/;"	c
+DEFAULT_MIN_FITNESS	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_MIN_FITNESS: f64 = 0.0;$/;"	c
+DEFAULT_OFFSPRING_COUNT	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_OFFSPRING_COUNT: usize = 4;$/;"	c
+DEFAULT_POPULATION_SIZE	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_POPULATION_SIZE: usize = 10;$/;"	c
+DEFAULT_PRINT_OPTION	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_PRINT_OPTION: bool = false;$/;"	c
+DEFAULT_SEED	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_SEED: Option<Network> = None;$/;"	c
+DEFAULT_SIMILAR_FITNESS	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_SIMILAR_FITNESS: f64 = 0.15;$/;"	c
+DEFAULT_STANDARD_DEVIATION	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^const DEFAULT_STANDARD_DEVIATION: f64 = 1.0;$/;"	c
+DEFAULT_STEP_SIZE	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^const DEFAULT_STEP_SIZE: f64 = 0.3;$/;"	c
+DEFAULT_THREADS	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^const DEFAULT_THREADS: usize = 0;$/;"	c
+DEFAULT_THREADS	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_THREADS: usize = 0;$/;"	c
+DEFAULT_TRANSFER_FUNCTION	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_TRANSFER_FUNCTION: TransferFunction = TransferFunction::Sigmoid;$/;"	c
+DEFAULT_WEIGHTS	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub const DEFAULT_WEIGHTS: [usize; 4] = [3, 8, 1, 3];$/;"	c
+DWORD	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    type DWORD = u32;$/;"	T
+Default for Counter	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    impl Default for Counter {$/;"	i
+Default for ReseedWithDefault	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^impl Default for ReseedWithDefault {$/;"	i
+Drop for OsRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    impl Drop for OsRng {$/;"	i
+EANT2Options	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^impl EANT2Options {$/;"	i
+EANT2Options	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^pub struct EANT2Options {$/;"	s
+EMPTY	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^static EMPTY: ChaChaRng = ChaChaRng {$/;"	c
+EMPTY	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^static EMPTY: IsaacRng = IsaacRng {$/;"	c
+EMPTY_64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^static EMPTY_64: Isaac64Rng = Isaac64Rng {$/;"	c
+Exp	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^impl Exp {$/;"	i
+Exp	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^pub struct Exp {$/;"	s
+Exp1	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^pub struct Exp1(pub f64);$/;"	s
+FILL_BYTES_V_LEN	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    const FILL_BYTES_V_LEN: usize = 13579;$/;"	c
+FisherF	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl FisherF {$/;"	i
+FisherF	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^pub struct FisherF {$/;"	s
+FitnessFunction	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\fitness.rs	/^pub trait FitnessFunction {$/;"	t
+FitnessFunction for Individual	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\utils.rs	/^impl<T: NNFitnessFunction + Clone> FitnessFunction for Individual<T> {$/;"	i
+GEN_ASCII_STR_CHARSET	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^        const GEN_ASCII_STR_CHARSET: &'static [u8] =$/;"	c
+Gamma	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl Gamma {$/;"	i
+Gamma	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^pub struct Gamma {$/;"	s
+GammaLargeShape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl GammaLargeShape {$/;"	i
+GammaLargeShape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^struct GammaLargeShape {$/;"	s
+GammaRepr	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^enum GammaRepr {$/;"	g
+GammaSmallShape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl GammaSmallShape {$/;"	i
+GammaSmallShape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^struct GammaSmallShape {$/;"	s
+Gene	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^impl Gene {$/;"	i
+Gene	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^pub struct Gene {$/;"	s
+GeneExtras	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^pub enum GeneExtras {$/;"	g
+Generator	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub struct Generator<'a, T, R:'a> {$/;"	s
+HCRYPTPROV	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    type HCRYPTPROV = usize;$/;"	T
+INTERFACE	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    const INTERFACE: &'static [u8] = b"nacl-irt-random-0.1\\0";$/;"	c
+IndependentSample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^pub trait IndependentSample<Support>: Sample<Support> {$/;"	t
+IndependentSample for ChiSquared	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl IndependentSample<f64> for ChiSquared {$/;"	i
+IndependentSample for Exp	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^impl IndependentSample<f64> for Exp {$/;"	i
+IndependentSample for FisherF	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl IndependentSample<f64> for FisherF {$/;"	i
+IndependentSample for Gamma	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl IndependentSample<f64> for Gamma {$/;"	i
+IndependentSample for GammaLargeShape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl IndependentSample<f64> for GammaLargeShape {$/;"	i
+IndependentSample for GammaSmallShape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl IndependentSample<f64> for GammaSmallShape {$/;"	i
+IndependentSample for LogNormal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^impl IndependentSample<f64> for LogNormal {$/;"	i
+IndependentSample for Normal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^impl IndependentSample<f64> for Normal {$/;"	i
+IndependentSample for RandSample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^impl<Sup: Rand> IndependentSample<Sup> for RandSample<Sup> {$/;"	i
+IndependentSample for Range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^impl<Sup: SampleRange> IndependentSample<Sup> for Range<Sup> {$/;"	i
+IndependentSample for StudentT	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl IndependentSample<f64> for StudentT {$/;"	i
+IndependentSample for WeightedChoice	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^impl<'a, T: Clone> IndependentSample<T> for WeightedChoice<'a, T> {$/;"	i
+Individual	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^impl<T: NNFitnessFunction+ Clone> Individual<T> {$/;"	i
+Individual	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\utils.rs	/^impl<T: NNFitnessFunction + Clone> Individual<T> {$/;"	i
+Individual	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\utils.rs	/^pub struct Individual<T: NNFitnessFunction + Clone> {$/;"	s
+Isaac64Rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl Isaac64Rng {$/;"	i
+Isaac64Rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^pub struct Isaac64Rng {$/;"	s
+IsaacRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl IsaacRng {$/;"	i
+IsaacRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^pub struct IsaacRng {$/;"	s
+Item	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    type Item = T;$/;"	T
+Item	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    type Item = char;$/;"	T
+Iterator for AsciiGenerator	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl<'a, R: Rng> Iterator for AsciiGenerator<'a, R> {$/;"	i
+Iterator for Generator	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl<'a, T: Rand, R: Rng> Iterator for Generator<'a, T, R> {$/;"	i
+KEY_WORDS	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^const KEY_WORDS    : usize =  8; \/\/ 8 words for the 256-bit key$/;"	c
+LOWER_MASK	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^        const LOWER_MASK: u32 = 0x7FFFFF;$/;"	c
+LOWER_MASK	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^        const LOWER_MASK: u64 = 0xFFFFFFFFFFFFF;$/;"	c
+LPCSTR	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    type LPCSTR = *const i8;$/;"	T
+LogNormal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^impl LogNormal {$/;"	i
+LogNormal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^pub struct LogNormal {$/;"	s
+MAX_DUPLICATES	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\select.rs	/^const MAX_DUPLICATES: usize = 1;$/;"	c
+MAX_SIMILAR	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\select.rs	/^const MAX_SIMILAR: usize = 2;$/;"	c
+MIDPOINT	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^        const MIDPOINT: usize =  RAND_SIZE_64 \/ 2;$/;"	c
+MIDPOINT	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^        const MIDPOINT: usize = RAND_SIZE_USIZE \/ 2;$/;"	c
+MP_VEC	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^        const MP_VEC: [(usize, usize); 2] = [(0,MIDPOINT), (MIDPOINT, 0)];$/;"	c
+Mutation	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^pub trait Mutation {$/;"	t
+Mutation for Individual	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^impl<T: NNFitnessFunction + Clone> Mutation for Individual<T> {$/;"	i
+Mutation for Network	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^impl Mutation for Network {$/;"	i
+MyRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    pub struct MyRng<R> { inner: R }$/;"	s
+MyRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    type MyRng = ReseedingRng<Counter, ReseedWithDefault>;$/;"	T
+NNFitnessFunction	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\fitness.rs	/^pub trait NNFitnessFunction {$/;"	t
+NNFitnessFunction	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\utils.rs	/^impl<'a, T: NNFitnessFunction> NNFitnessFunction for &'a T {$/;"	i
+NR_GETRANDOM	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        const NR_GETRANDOM: libc::c_long = 278;$/;"	c
+NR_GETRANDOM	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        const NR_GETRANDOM: libc::c_long = 318;$/;"	c
+NR_GETRANDOM	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        const NR_GETRANDOM: libc::c_long = 355;$/;"	c
+NR_GETRANDOM	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        const NR_GETRANDOM: libc::c_long = 384;$/;"	c
+NaClIRTRandom	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    struct NaClIRTRandom {$/;"	s
+Network	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^impl Network {$/;"	i
+Network	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^pub struct Network {$/;"	s
+Normal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^impl Normal {$/;"	i
+Normal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^pub struct Normal {$/;"	s
+Open01	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub struct Open01<F>(pub F);$/;"	s
+OsRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    impl OsRng {$/;"	i
+OsRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    pub struct OsRng {$/;"	s
+OsRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    pub struct OsRng(extern fn(dest: *mut libc::c_void,$/;"	s
+OsRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    pub struct OsRng;$/;"	s
+OsRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^impl OsRng {$/;"	i
+OsRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^pub struct OsRng(imp::OsRng);$/;"	s
+OsRngInner	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    enum OsRngInner {$/;"	g
+PROV_RSA_FULL	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    const PROV_RSA_FULL: DWORD = 1;$/;"	c
+Parameters	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\utils.rs	/^impl Parameters {$/;"	i
+Parameters	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\utils.rs	/^pub struct Parameters {$/;"	s
+RAND_BENCH_N	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\bench.rs	/^const RAND_BENCH_N: u64 = 1000;$/;"	c
+RAND_SIZE	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^const RAND_SIZE: u32 = 1 << RAND_SIZE_LEN;$/;"	c
+RAND_SIZE_64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^const RAND_SIZE_64: usize = 1 << RAND_SIZE_64_LEN;$/;"	c
+RAND_SIZE_64_LEN	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^const RAND_SIZE_64_LEN: usize = 8;$/;"	c
+RAND_SIZE_LEN	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^const RAND_SIZE_LEN: usize = 8;$/;"	c
+RAND_SIZE_USIZE	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^const RAND_SIZE_USIZE: usize = 1 << RAND_SIZE_LEN;$/;"	c
+Rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub trait Rand : Sized {$/;"	t
+Rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^            impl Rand for $ty {$/;"	i
+Rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^        impl<T> Rand for [T; $n] where T: Rand {$/;"	i
+Rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^        impl<T> Rand for [T; $n] {$/;"	i
+Rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for () {$/;"	i
+Rand for ChaChaRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^impl Rand for ChaChaRng {$/;"	i
+Rand for Closed01	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^            impl Rand for Closed01<$ty> {$/;"	i
+Rand for ConstRand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    impl Rand for ConstRand {$/;"	i
+Rand for Exp1	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^impl Rand for Exp1 {$/;"	i
+Rand for Isaac64Rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl Rand for Isaac64Rng {$/;"	i
+Rand for IsaacRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl Rand for IsaacRng {$/;"	i
+Rand for Open01	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^            impl Rand for Open01<$ty> {$/;"	i
+Rand for Option	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl<T:Rand> Rand for Option<T> {$/;"	i
+Rand for StandardNormal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^impl Rand for StandardNormal {$/;"	i
+Rand for XorShiftRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl Rand for XorShiftRng {$/;"	i
+Rand for bool	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for bool {$/;"	i
+Rand for char	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for char {$/;"	i
+Rand for i16	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for i16 {$/;"	i
+Rand for i32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for i32 {$/;"	i
+Rand for i64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for i64 {$/;"	i
+Rand for i8	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for i8 {$/;"	i
+Rand for isize	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for isize {$/;"	i
+Rand for u16	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for u16 {$/;"	i
+Rand for u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for u32 {$/;"	i
+Rand for u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for u64 {$/;"	i
+Rand for u8	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for u8 {$/;"	i
+Rand for usize	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^impl Rand for usize {$/;"	i
+RandSample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^impl<Sup> RandSample<Sup> {$/;"	i
+RandSample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^pub struct RandSample<Sup> {$/;"	s
+Range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^impl<X: SampleRange + PartialOrd> Range<X> {$/;"	i
+Range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^pub struct Range<X> {$/;"	s
+ReadRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^impl<R: Read> ReadRng<R> {$/;"	i
+ReadRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^pub struct ReadRng<R> {$/;"	s
+ReseedWithDefault	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^pub struct ReseedWithDefault;$/;"	s
+Reseeder	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^pub trait Reseeder<R> {$/;"	t
+Reseeder for ReseedWithDefault	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^impl<R: Rng + Default> Reseeder<R> for ReseedWithDefault {$/;"	i
+ReseedingRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^pub struct ReseedingRng<R, Rsdr> {$/;"	s
+Rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl<'a, R: ?Sized> Rng for &'a mut R where R: Rng {$/;"	i
+Rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub trait Rng {$/;"	t
+Rng for Box	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl<R: ?Sized> Rng for Box<R> where R: Rng {$/;"	i
+Rng for ChaChaRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^impl Rng for ChaChaRng {$/;"	i
+Rng for ConstRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    impl Rng for ConstRng {$/;"	i
+Rng for ConstantRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    impl Rng for ConstantRng {$/;"	i
+Rng for Counter	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    impl Rng for Counter {$/;"	i
+Rng for CountingRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    impl Rng for CountingRng {$/;"	i
+Rng for Isaac64Rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl Rng for Isaac64Rng {$/;"	i
+Rng for IsaacRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl Rng for IsaacRng {$/;"	i
+Rng for MyRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    impl<R: Rng> Rng for MyRng<R> {$/;"	i
+Rng for OsRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    impl Rng for OsRng {$/;"	i
+Rng for OsRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^impl Rng for OsRng {$/;"	i
+Rng for ReadRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^impl<R: Read> Rng for ReadRng<R> {$/;"	i
+Rng for StdRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl Rng for StdRng {$/;"	i
+Rng for ThreadRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl Rng for ThreadRng {$/;"	i
+Rng for XorShiftRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl Rng for XorShiftRng {$/;"	i
+SCALE	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    const SCALE: f64 = (1u64 << 53) as f64;$/;"	c
+SCALE	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^            const SCALE: $ty = (1u64 << $mantissa_bits) as $ty;$/;"	c
+STATE_WORDS	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^const STATE_WORDS  : usize = 16;$/;"	c
+Sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^pub trait Sample<Support> {$/;"	t
+Sample for ChiSquared	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl Sample<f64> for ChiSquared {$/;"	i
+Sample for Exp	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^impl Sample<f64> for Exp {$/;"	i
+Sample for FisherF	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl Sample<f64> for FisherF {$/;"	i
+Sample for Gamma	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl Sample<f64> for Gamma {$/;"	i
+Sample for GammaLargeShape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl Sample<f64> for GammaLargeShape {$/;"	i
+Sample for GammaSmallShape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl Sample<f64> for GammaSmallShape {$/;"	i
+Sample for LogNormal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^impl Sample<f64> for LogNormal {$/;"	i
+Sample for Normal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^impl Sample<f64> for Normal {$/;"	i
+Sample for RandSample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^impl<Sup: Rand> Sample<Sup> for RandSample<Sup> {$/;"	i
+Sample for Range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^impl<Sup: SampleRange> Sample<Sup> for Range<Sup> {$/;"	i
+Sample for StudentT	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl Sample<f64> for StudentT {$/;"	i
+Sample for WeightedChoice	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^impl<'a, T: Clone> Sample<T> for WeightedChoice<'a, T> {$/;"	i
+SampleRange	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^        impl SampleRange for $ty {$/;"	i
+SampleRange	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^pub trait SampleRange : Sized {$/;"	t
+SecRandom	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    enum SecRandom {}$/;"	g
+SecRandomCopyBytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        fn SecRandomCopyBytes(rnd: *const SecRandom,$/;"	f
+SeedableRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub trait SeedableRng<Seed>: Rng {$/;"	t
+SeedableRng for ChaChaRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^impl<'a> SeedableRng<&'a [u32]> for ChaChaRng {$/;"	i
+SeedableRng for Counter	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    impl SeedableRng<u32> for Counter {$/;"	i
+SeedableRng for Isaac64Rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl<'a> SeedableRng<&'a [u64]> for Isaac64Rng {$/;"	i
+SeedableRng for IsaacRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^impl<'a> SeedableRng<&'a [u32]> for IsaacRng {$/;"	i
+SeedableRng for StdRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl<'a> SeedableRng<&'a [usize]> for StdRng {$/;"	i
+SeedableRng for XorShiftRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl SeedableRng<[u32; 4]> for XorShiftRng {$/;"	i
+Stack	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\utils.rs	/^impl Stack {$/;"	i
+Stack	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\utils.rs	/^pub struct Stack {$/;"	s
+StandardNormal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^pub struct StandardNormal(pub f64);$/;"	s
+StdRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl StdRng {$/;"	i
+StdRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub struct StdRng {$/;"	s
+StudentT	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^impl StudentT {$/;"	i
+StudentT	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^pub struct StudentT {$/;"	s
+TEST_GENOME	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\tests\tests.rs	/^const TEST_GENOME: [Gene; 12] = [$/;"	c
+THREAD_RNG_RESEED_THRESHOLD	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^const THREAD_RNG_RESEED_THRESHOLD: u64 = 32_768;$/;"	c
+ThreadRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub struct ThreadRng {$/;"	s
+ThreadRngInner	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^type ThreadRngInner = reseeding::ReseedingRng<StdRng, ThreadRngReseeder>;$/;"	T
+ThreadRngReseeder	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^struct ThreadRngReseeder;$/;"	s
+TransferFunction	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\transfer.rs	/^pub enum TransferFunction {$/;"	g
+UPPER_MASK	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^        const UPPER_MASK: u32 = 0x3F800000;$/;"	c
+UPPER_MASK	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^        const UPPER_MASK: u64 = 0x3FF0000000000000;$/;"	c
+Weighted	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^pub struct Weighted<T> {$/;"	s
+WeightedChoice	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^impl<'a, T: Clone> WeightedChoice<'a, T> {$/;"	i
+WeightedChoice	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^pub struct WeightedChoice<'a, T:'a> {$/;"	s
+XorShiftRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl XorShiftRng {$/;"	i
+XorShiftRng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub struct XorShiftRng {$/;"	s
+ZIG_EXP_F	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\ziggurat_tables.rs	/^pub static ZIG_EXP_F: [f64; 257] =$/;"	c
+ZIG_EXP_R	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\ziggurat_tables.rs	/^pub const ZIG_EXP_R: f64 = 7.697117470131050077;$/;"	c
+ZIG_EXP_X	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\ziggurat_tables.rs	/^pub static ZIG_EXP_X: [f64; 257] =$/;"	c
+ZIG_NORM_F	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\ziggurat_tables.rs	/^pub static ZIG_NORM_F: [f64; 257] =$/;"	c
+ZIG_NORM_R	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\ziggurat_tables.rs	/^pub const ZIG_NORM_R: f64 = 3.654152885361008796;$/;"	c
+ZIG_NORM_X	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\ziggurat_tables.rs	/^pub static ZIG_NORM_X: [f64; 257] =$/;"	c
+ZigTable	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\ziggurat_tables.rs	/^pub type ZigTable = &'static [f64; 257];$/;"	T
+add_bias	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_bias(&mut self, output: usize) {$/;"	f
+add_bias	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_bias(&mut self, output: usize);$/;"	f
+add_bias	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    fn add_bias(&mut self, output: usize) {$/;"	f
+add_condition	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    fn add_condition(&mut self, condition: CMAESEndConditions) {$/;"	f
+add_connection	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation.rs	/^fn add_connection<T>(individual: &mut Individual<T>, index: usize, id_: Option<usize>)$/;"	f
+add_forward	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_forward(&mut self, input: usize, output: usize) {$/;"	f
+add_forward	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_forward(&mut self, input: usize, output: usize);$/;"	f
+add_forward	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    fn add_forward(&mut self, input: usize, output: usize) {$/;"	f
+add_input	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_input(&mut self, input: usize, output: usize) {$/;"	f
+add_input	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_input(&mut self, input: usize, output: usize);$/;"	f
+add_input	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    fn add_input(&mut self, input: usize, output: usize) {$/;"	f
+add_recurrent	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_recurrent(&mut self, input: usize, output: usize) {$/;"	f
+add_recurrent	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_recurrent(&mut self, input: usize, output: usize);$/;"	f
+add_recurrent	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    fn add_recurrent(&mut self, input: usize, output: usize) {$/;"	f
+add_subnetwork	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_subnetwork(&mut self, id: usize, output: usize, inputs: usize) {$/;"	f
+add_subnetwork	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn add_subnetwork(&mut self, input: usize, output: usize, inputs: usize);$/;"	f
+add_subnetwork	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    fn add_subnetwork(&mut self, _: usize, output: usize, _: usize) {$/;"	f
+add_vec	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn add_vec(a: &[f64], b: &[f64]) -> Vec<f64> {$/;"	f
+array_impl	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^macro_rules! array_impl {$/;"	d
+bench_gamma_large_shape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\distributions\gamma.rs	/^fn bench_gamma_large_shape(b: &mut Bencher) {$/;"	f
+bench_gamma_small_shape	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\distributions\gamma.rs	/^fn bench_gamma_small_shape(b: &mut Bencher) {$/;"	f
+bias	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^    pub fn bias(weight: f64) -> Gene {$/;"	f
+cge_utils	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^mod cge_utils;$/;"	m
+chacha	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub mod chacha;$/;"	m
+choose	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn choose<'a, T>(&mut self, values: &'a [T]) -> Option<&'a T> where Self: Sized {$/;"	f
+clear_state	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    pub fn clear_state(&mut self) {$/;"	f
+clone	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn clone(&self) -> Self { *self }$/;"	f
+clone	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn clone(&self) -> Isaac64Rng {$/;"	f
+clone	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn clone(&self) -> IsaacRng {$/;"	f
+cmaes	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\lib.rs	/^pub mod cmaes;$/;"	m
+cmaes_end_conditions	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn cmaes_end_conditions(mut self, conditions: Vec<CMAESEndConditions>) -> EANT2Options {$/;"	f
+cmaes_loop	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\cmaes.rs	/^pub fn cmaes_loop<T>(object: &T, options: CMAESOptions) -> Option<(Vec<f64>, f64)>$/;"	f
+cmaes_runs	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn cmaes_runs(mut self, runs: usize) -> EANT2Options {$/;"	f
+cmaes_utils	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^mod cmaes_utils;$/;"	m
+compare	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\compare.rs	/^pub fn compare<T: NNFitnessFunction + Clone>(a: &Individual<T>, b: &Individual<T>) -> Category {$/;"	f
+compare	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^mod compare;$/;"	m
+compare_fitness	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\compare.rs	/^pub fn compare_fitness<T>(a: &Individual<T>, b: &Individual<T>, threshold: f64) -> bool$/;"	f
+concat	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn concat(vecs: Vec<Vec<f64>>) -> Vec<f64> {$/;"	f
+construct_range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^            fn construct_range(low: $ty, high: $ty) -> Range<$ty> {$/;"	f
+construct_range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^    fn construct_range(low: Self, high: Self) -> Range<Self>;$/;"	f
+core	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^fn core(output: &mut [w32; STATE_WORDS], input: &[w32; STATE_WORDS]) {$/;"	f
+custom	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn custom(dimension: usize) -> CMAESOptions {$/;"	f
+debug_eval	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    pub fn debug_eval(&mut self, inputs: &[f64]) -> Vec<f64> {$/;"	f
+default	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn default(dimension: usize) -> CMAESOptions {$/;"	f
+default	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^        fn default() -> Counter {$/;"	f
+default	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn default() -> ReseedWithDefault { ReseedWithDefault }$/;"	f
+distributions	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\bench.rs	/^mod distributions;$/;"	m
+distributions	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub mod distributions;$/;"	m
+div_vec	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn div_vec(vec: &[f64], val: f64) -> Vec<f64> {$/;"	f
+double_round	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^macro_rules! double_round{$/;"	d
+drop	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        fn drop(&mut self) {$/;"	f
+eant	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^pub mod eant;$/;"	m
+eant_loop	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\eant.rs	/^pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)$/;"	f
+equal	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\tests\tests.rs	/^fn equal(a: Vec<Gene>, b: Vec<Gene>) -> bool {$/;"	f
+evaluate	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    pub fn evaluate(&mut self, inputs: &[f64]) -> Vec<f64> {$/;"	f
+evaluate_slice	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    fn evaluate_slice(&mut self, range: Range<usize>, neuron_update: bool, debug: bool) -> Vec<f64> {$/;"	f
+exponential	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\distributions\mod.rs	/^mod exponential;$/;"	m
+exponential	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^pub mod exponential;$/;"	m
+file	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\lib.rs	/^mod file;$/;"	m
+fill	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^fn fill(r: &mut Read, mut buf: &mut [u8]) -> io::Result<()> {$/;"	f
+fill_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn fill_bytes(&mut self, bytes: &mut [u8]) {$/;"	f
+fill_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn fill_bytes(&mut self, dest: &mut [u8]) {$/;"	f
+fill_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        fn fill_bytes(&mut self, v: &mut [u8]) {$/;"	f
+fill_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn fill_bytes(&mut self, v: &mut [u8]) { self.0.fill_bytes(v) }$/;"	f
+fill_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^    fn fill_bytes(&mut self, v: &mut [u8]) {$/;"	f
+fill_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn fill_bytes(&mut self, dest: &mut [u8]) {$/;"	f
+fitness	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\lib.rs	/^pub mod fitness;$/;"	m
+fitness	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^pub mod fitness;$/;"	m
+fitness_threshold	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn fitness_threshold(mut self, fitness: f64) -> CMAESOptions {$/;"	f
+fitness_threshold	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn fitness_threshold(mut self, fitness: f64) -> EANT2Options {$/;"	f
+float_impl	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^macro_rules! float_impl {$/;"	d
+float_impls	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^macro_rules! float_impls {$/;"	d
+floating_point_edge_cases	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn floating_point_edge_cases() {$/;"	f
+foo	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^pub fn foo<T: NNFitnessFunction + Send + Sync + Clone + 'static>(object: T) {$/;"	f
+forward	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^    pub fn forward(weight: f64, id: usize) -> Gene {$/;"	f
+from_seed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn from_seed(seed: &'a [u32]) -> ChaChaRng {$/;"	f
+from_seed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn from_seed(seed: &'a [u32]) -> IsaacRng {$/;"	f
+from_seed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn from_seed(seed: &'a [u64]) -> Isaac64Rng {$/;"	f
+from_seed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn from_seed(seed: &'a [usize]) -> StdRng {$/;"	f
+from_seed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn from_seed(seed: Seed) -> Self;$/;"	f
+from_seed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn from_seed(seed: [u32; 4]) -> XorShiftRng {$/;"	f
+from_seed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^        fn from_seed(seed: u32) -> Counter {$/;"	f
+from_seed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn from_seed((rsdr, seed): (Rsdr, S)) -> ReseedingRng<R, Rsdr> {$/;"	f
+from_str	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\file.rs	/^pub fn from_str(string: &str) -> Option<Network> {$/;"	f
+from_str	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    pub fn from_str(string: &str) -> Option<Network> {$/;"	f
+gamma	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\distributions\mod.rs	/^mod gamma;$/;"	m
+gamma	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^pub mod gamma;$/;"	m
+gen	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn gen<T: Rand>(&mut self) -> T where Self: Sized {$/;"	f
+gen_ascii_chars	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn gen_ascii_chars<'a>(&'a mut self) -> AsciiGenerator<'a, Self> where Self: Sized {$/;"	f
+gen_iter	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn gen_iter<'a, T: Rand>(&'a mut self) -> Generator<'a, T, Self> where Self: Sized {$/;"	f
+gen_range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn gen_range<T: PartialOrd + SampleRange>(&mut self, low: T, high: T) -> T where Self: Sized {$/;"	f
+gen_weighted_bool	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn gen_weighted_bool(&mut self, n: u32) -> bool where Self: Sized {$/;"	f
+gene	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\lib.rs	/^pub mod gene;$/;"	m
+generation	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^mod generation;$/;"	m
+get_cmaes_options	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cmaes_utils.rs	/^pub fn get_cmaes_options(conditions: Vec<CMAESEndConditions>) -> CMAESOptions {$/;"	f
+get_depths	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    pub fn get_depths(&self, include_connections: bool) -> Vec<usize> {$/;"	f
+get_fitness	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\fitness.rs	/^    fn get_fitness(&self, parameters: &[f64]) -> f64;$/;"	f
+get_fitness	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\fitness.rs	/^    fn get_fitness(&self, network: &mut Network) -> f64;$/;"	f
+get_fitness	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\utils.rs	/^    fn get_fitness(&self, network: &mut Network) -> f64 {$/;"	f
+get_fitness	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\utils.rs	/^    fn get_fitness(&self, parameters: &[f64]) -> f64 {$/;"	f
+get_input_copies	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    pub fn get_input_copies(&self, id: usize) -> usize {$/;"	f
+get_neuron_index	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    pub fn get_neuron_index(&self, id: usize) -> Option<usize> {$/;"	f
+get_subnetwork_index	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    pub fn get_subnetwork_index(&self, id: usize) -> Option<Range<usize>> {$/;"	f
+getrandom	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn getrandom(_buf: &mut [u8]) -> libc::c_long { -1 }$/;"	f
+getrandom	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn getrandom(buf: &mut [u8]) -> libc::c_long {$/;"	f
+getrandom_fill_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn getrandom_fill_bytes(v: &mut [u8]) {$/;"	f
+getrandom_next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn getrandom_next_u32() -> u32 {$/;"	f
+getrandom_next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn getrandom_next_u64() -> u64 {$/;"	f
+imp	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^mod imp {$/;"	m
+ind	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^        macro_rules! ind {$/;"	d
+ind_sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^    fn ind_sample<R: Rng>(&self, rng: &mut R) -> f64 {$/;"	f
+ind_sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn ind_sample<R: Rng>(&self, rng: &mut R) -> f64 {$/;"	f
+ind_sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn ind_sample<R: Rng>(&self, &mut R) -> Support;$/;"	f
+ind_sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn ind_sample<R: Rng>(&self, rng: &mut R) -> Sup {$/;"	f
+ind_sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn ind_sample<R: Rng>(&self, rng: &mut R) -> T {$/;"	f
+ind_sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^    fn ind_sample<R: Rng>(&self, rng: &mut R) -> f64 {$/;"	f
+ind_sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^    fn ind_sample<R: Rng>(&self, rng: &mut R) -> Sup {$/;"	f
+init	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn init(&mut self, key: &[u32; KEY_WORDS]) {$/;"	f
+init	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^        macro_rules! init {$/;"	d
+init	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn init(&mut self, use_rsl: bool) {$/;"	f
+initial_mean	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn initial_mean(mut self, mean: Vec<f64>) -> CMAESOptions {$/;"	f
+initial_standard_deviations	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn initial_standard_deviations(mut self, deviations: Vec<f64>) -> CMAESOptions {$/;"	f
+initial_step_size	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn initial_step_size(mut self, step_size: f64) -> CMAESOptions {$/;"	f
+initialize_generation	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\generation.rs	/^pub fn initialize_generation<T>(population_size: usize,$/;"	f
+input	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^    pub fn input(weight: f64, id: usize) -> Gene {$/;"	f
+integer_impl	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^macro_rules! integer_impl {$/;"	d
+is_getrandom_available	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn is_getrandom_available() -> bool { false }$/;"	f
+is_getrandom_available	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn is_getrandom_available() -> bool {$/;"	f
+isaac	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn isaac(&mut self) {$/;"	f
+isaac	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub mod isaac;$/;"	m
+isaac64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn isaac64(&mut self) {$/;"	f
+iter_eq	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    pub fn iter_eq<I, J>(i: I, j: J) -> bool$/;"	f
+kSecRandomDefault	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    const kSecRandomDefault: *const SecRandom = 0 as *const SecRandom;$/;"	c
+load_from_file	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    pub fn load_from_file(path: &str) -> io::Result<Network> {$/;"	f
+magnitude	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn magnitude(vec: &[f64]) -> f64 {$/;"	f
+matrix_by_vector	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn matrix_by_vector(mat: &Matrix<f64>, vec: &[f64]) -> Vec<f64> {$/;"	f
+max_evaluations	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn max_evaluations(mut self, evaluations: usize) -> CMAESOptions {$/;"	f
+max_generations	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn max_generations(mut self, generations: usize) -> CMAESOptions {$/;"	f
+max_generations	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn max_generations(mut self, generations: usize) -> EANT2Options {$/;"	f
+memloop	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^            macro_rules! memloop {$/;"	d
+mix	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^        macro_rules! mix {$/;"	d
+mul_vec	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn mul_vec(vec: &[f64], val: f64) -> Vec<f64> {$/;"	f
+mul_vec_2	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn mul_vec_2(a: &[f64], b: &[f64]) -> Vec<f64> {$/;"	f
+mutate	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation.rs	/^pub fn mutate<T>(individual: &mut Individual<T>, weights: &[usize; 4])$/;"	f
+mutation	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^mod mutation;$/;"	m
+mutation_utils	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^mod mutation_utils;$/;"	m
+mutation_weights	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn mutation_weights(mut self, weights: [usize; 4]) -> EANT2Options {$/;"	f
+nacl_interface_query	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        fn nacl_interface_query(name: *const libc::c_char,$/;"	f
+network	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\lib.rs	/^pub mod network;$/;"	m
+neuron	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^    pub fn neuron(weight: f64, id: usize, inputs: usize) -> Gene {$/;"	f
+new	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\utils.rs	/^    pub fn new() -> Stack {$/;"	f
+new	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\utils.rs	/^    pub fn new(params: &[f64]) -> Parameters {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^    pub fn new(lambda: f64) -> Exp {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    pub fn new(k: f64) -> ChiSquared {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    pub fn new(m: f64, n: f64) -> FisherF {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    pub fn new(n: f64) -> StudentT {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    pub fn new(shape: f64, scale: f64) -> Gamma {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    pub fn new() -> RandSample<Sup> {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    pub fn new(items: &'a mut [Weighted<T>]) -> WeightedChoice<'a, T> {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^    pub fn new(mean: f64, std_dev: f64) -> LogNormal {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^    pub fn new(mean: f64, std_dev: f64) -> Normal {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^    pub fn new(low: X, high: X) -> Range<X> {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    pub fn new() -> io::Result<StdRng> {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        pub fn new() -> io::Result<OsRng> {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    pub fn new() -> io::Result<OsRng> {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^    pub fn new(r: R) -> ReadRng<R> {$/;"	f
+new	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    pub fn new(rng: R, generation_threshold: u64, reseeder: Rsdr) -> ReseedingRng<R,Rsdr> {$/;"	f
+new	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn new(inputs: usize, outputs: usize) -> EANT2Options {$/;"	f
+new	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\utils.rs	/^    pub fn new(inputs: usize, outputs: usize, network: Network, object: Arc<T>) -> Individual<T> {$/;"	f
+new_raw	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn new_raw(shape: f64, scale: f64) -> GammaLargeShape {$/;"	f
+new_raw	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn new_raw(shape: f64, scale: f64) -> GammaSmallShape {$/;"	f
+new_unseeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    pub fn new_unseeded() -> ChaChaRng {$/;"	f
+new_unseeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    pub fn new_unseeded() -> Isaac64Rng {$/;"	f
+new_unseeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    pub fn new_unseeded() -> IsaacRng {$/;"	f
+new_unseeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    pub fn new_unseeded() -> XorShiftRng {$/;"	f
+next	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^            fn next<T: Rng>(t: &mut T) -> u32 {$/;"	f
+next	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn next(&mut self) -> Option<T> {$/;"	f
+next	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn next(&mut self) -> Option<char> {$/;"	f
+next_f32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn next_f32(&mut self) -> f32 {$/;"	f
+next_f64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn next_f64(&mut self) -> f64 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn next_u32(&mut self) -> u32 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^        fn next_u32(&mut self) -> u32 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn next_u32(&mut self) -> u32 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^        fn next_u32(&mut self) -> u32 { self.i as u32 }$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^        fn next_u32(&mut self) -> u32 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn next_u32(&mut self) -> u32 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn next_u32(&mut self) -> u32;$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        fn next_u32(&mut self) -> u32 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn next_u32(&mut self) -> u32 { self.0.next_u32() }$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^        fn next_u32(&mut self) -> u32 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^    fn next_u32(&mut self) -> u32 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^        fn next_u32(&mut self) -> u32 {$/;"	f
+next_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn next_u32(&mut self) -> u32 {$/;"	f
+next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^        fn next_u64(&mut self) -> u64 {$/;"	f
+next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn next_u64(&mut self) -> u64 {$/;"	f
+next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^        fn next_u64(&mut self) -> u64 { self.i }$/;"	f
+next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn next_u64(&mut self) -> u64 {$/;"	f
+next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^        fn next_u64(&mut self) -> u64 {$/;"	f
+next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn next_u64(&mut self) -> u64 { self.0.next_u64() }$/;"	f
+next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^        fn next_u64(&mut self) -> u64 {$/;"	f
+next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^    fn next_u64(&mut self) -> u64 {$/;"	f
+next_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn next_u64(&mut self) -> u64 {$/;"	f
+normal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\distributions\mod.rs	/^mod normal;$/;"	m
+normal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^pub mod normal;$/;"	m
+offspring_count	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn offspring_count(mut self, count: usize) -> EANT2Options {$/;"	f
+optimize_network	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cmaes_utils.rs	/^pub fn optimize_network<T>(individual: &mut Individual<T>,$/;"	f
+options	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\lib.rs	/^pub mod options;$/;"	m
+options	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^pub mod options;$/;"	m
+os	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub mod os;$/;"	m
+pdf	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^        fn pdf(x: f64) -> f64 {$/;"	f
+pdf	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^        fn pdf(x: f64) -> f64 {$/;"	f
+pop	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\utils.rs	/^    pub fn pop(&mut self, count: usize) -> Option<Vec<f64>> {$/;"	f
+population_size	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn population_size(mut self, size: usize) -> EANT2Options {$/;"	f
+previous_neuron_index	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn previous_neuron_index(&self, index: usize) -> Option<usize> {$/;"	f
+previous_neuron_index	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn previous_neuron_index(&self, index: usize) -> Option<usize>;$/;"	f
+previous_neuron_index	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    fn previous_neuron_index(&self, _: usize) -> Option<usize> {$/;"	f
+print	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn print(mut self, print: bool) -> EANT2Options {$/;"	f
+push	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\utils.rs	/^    pub fn push(&mut self, value: f64) {$/;"	f
+quarter_round	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^macro_rules! quarter_round{$/;"	d
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn rand<R: Rng>(other: &mut R) -> ChaChaRng {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^    fn rand<R:Rng>(rng: &mut R) -> Exp1 {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^        fn rand<R: Rng>(_: &mut R) -> ConstRand {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^    fn rand<R:Rng>(rng: &mut R) -> StandardNormal {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn rand<R: Rng>(other: &mut R) -> Isaac64Rng {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn rand<R: Rng>(other: &mut R) -> IsaacRng {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn rand<R: Rng>(rng: &mut R) -> Self;$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn rand<R: Rng>(rng: &mut R) -> XorShiftRng {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^                fn rand<R: Rng>(rng: &mut R) -> $ty {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^                fn rand<R: Rng>(rng: &mut R) -> Closed01<$ty> {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^                fn rand<R: Rng>(rng: &mut R) -> Open01<$ty> {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^            fn rand<R: Rng>(_rng: &mut R) -> ( $( $tyvar ),* , ) {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^            fn rand<R: Rng>(_rng: &mut R) -> [T; $n] { [] }$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^            fn rand<R: Rng>(_rng: &mut R) -> [T; $n] {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(_: &mut R) -> () { () }$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> Option<T> {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> bool {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> char {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> i16 {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> i32 {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> i64 {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> i8 {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> isize {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> u16 {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> u32 {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> u64 {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> u8 {$/;"	f
+rand	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand<R: Rng>(rng: &mut R) -> usize {$/;"	f
+rand_closed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand_closed() {$/;"	f
+rand_exp	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\distributions\exponential.rs	/^fn rand_exp(b: &mut Bencher) {$/;"	f
+rand_f32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\bench.rs	/^fn rand_f32(b: &mut Bencher) {$/;"	f
+rand_f64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\bench.rs	/^fn rand_f64(b: &mut Bencher) {$/;"	f
+rand_impls	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^mod rand_impls;$/;"	m
+rand_isaac	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\bench.rs	/^fn rand_isaac(b: &mut Bencher) {$/;"	f
+rand_isaac64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\bench.rs	/^fn rand_isaac64(b: &mut Bencher) {$/;"	f
+rand_normal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\distributions\normal.rs	/^fn rand_normal(b: &mut Bencher) {$/;"	f
+rand_open	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^    fn rand_open() {$/;"	f
+rand_shuffle_100	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\bench.rs	/^fn rand_shuffle_100(b: &mut Bencher) {$/;"	f
+rand_std	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\bench.rs	/^fn rand_std(b: &mut Bencher) {$/;"	f
+rand_xorshift	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\benches\bench.rs	/^fn rand_xorshift(b: &mut Bencher) {$/;"	f
+random	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub fn random<T: Rand>() -> T {$/;"	f
+random_index	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    pub fn random_index(&self) -> usize {$/;"	f
+range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^pub mod range;$/;"	m
+read	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub mod read;$/;"	m
+read_network	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\file.rs	/^pub fn read_network(path: &str) -> io::Result<Network> {$/;"	f
+recurrent	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^    pub fn recurrent(weight: f64, id: usize) -> Gene {$/;"	f
+ref_input	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^    pub fn ref_input(&self) -> Option<(f64, usize, f64)> {$/;"	f
+ref_mut_neuron	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^    pub fn ref_mut_neuron<'a>(&'a mut self) -> Option<(&'a mut f64, &'a mut usize, &'a mut f64, &'a mut usize)> {$/;"	f
+ref_neuron	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\gene.rs	/^    pub fn ref_neuron(&self) -> Option<(f64, usize, f64, usize)> {$/;"	f
+remove_connection	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn remove_connection(&mut self, index: usize, output: usize) {$/;"	f
+remove_connection	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\cge_utils.rs	/^    fn remove_connection(&mut self, index: usize, output: usize);$/;"	f
+remove_connection	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    fn remove_connection(&mut self, index: usize, output: usize) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn reseed(&mut self, seed: &'a [u32]) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn reseed(&mut self, seed: &'a [u32]) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn reseed(&mut self, seed: &'a [u64]) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn reseed(&mut self, Seed);$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn reseed(&mut self, rng: &mut StdRng) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn reseed(&mut self, seed: &'a [usize]) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn reseed(&mut self, seed: [u32; 4]) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^        fn reseed(&mut self, seed: u32) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn reseed(&mut self, (rsdr, seed): (Rsdr, S)) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn reseed(&mut self, rng: &mut R) {$/;"	f
+reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn reseed(&mut self, rng: &mut R);$/;"	f
+reseed_if_necessary	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    pub fn reseed_if_necessary(&mut self) {$/;"	f
+reseeding	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub mod reseeding;$/;"	m
+reseeding::Reseeder for ThreadRngReseeder	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^impl reseeding::Reseeder<StdRng> for ThreadRngReseeder {$/;"	i
+reverse	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn reverse<'a, T: Clone>(vec: &[T]) -> Vec<T> {$/;"	f
+rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    pub fn rng() -> MyRng<::ThreadRng> {$/;"	f
+rngstepn	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^                macro_rules! rngstepn {$/;"	d
+rngstepn	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^            macro_rules! rngstepn {$/;"	d
+rngstepp	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^                macro_rules! rngstepp {$/;"	d
+rngstepp	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^            macro_rules! rngstepp {$/;"	d
+sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^    fn sample<R: Rng>(&mut self, rng: &mut R) -> f64 { self.ind_sample(rng) }$/;"	f
+sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn sample<R: Rng>(&mut self, rng: &mut R) -> f64 { self.ind_sample(rng) }$/;"	f
+sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn sample<R: Rng>(&mut self, rng: &mut R) -> Sup { self.ind_sample(rng) }$/;"	f
+sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn sample<R: Rng>(&mut self, rng: &mut R) -> Support;$/;"	f
+sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn sample<R: Rng>(&mut self, rng: &mut R) -> T { self.ind_sample(rng) }$/;"	f
+sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^    fn sample<R: Rng>(&mut self, rng: &mut R) -> f64 { self.ind_sample(rng) }$/;"	f
+sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^    fn sample<R: Rng>(&mut self, rng: &mut R) -> Sup { self.ind_sample(rng) }$/;"	f
+sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub fn sample<T, I, R>(rng: &mut R, iterable: I, amount: usize) -> Vec<T>$/;"	f
+sample_range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^            fn sample_range<R: Rng>(r: &Range<$ty>, rng: &mut R) -> $ty {$/;"	f
+sample_range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^    fn sample_range<R: Rng>(r: &Range<Self>, rng: &mut R) -> Self;$/;"	f
+save_to_file	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    pub fn save_to_file(&self, path: &str) -> io::Result<()> {$/;"	f
+seed	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn seed(mut self, network: Network) -> EANT2Options {$/;"	f
+select	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^mod select;$/;"	m
+select	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\select.rs	/^pub fn select<T>(population_size: usize, individuals: Vec<Individual<T>>, threshold: f64) -> Vec<Individual<T>>$/;"	f
+set_counter	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    pub fn set_counter(&mut self, counter_low: u64, counter_high: u64) {$/;"	f
+set_inputs	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    fn set_inputs(&mut self, inputs: &[f64]) {$/;"	f
+shuffle	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn shuffle<T>(&mut self, values: &mut [T]) where Self: Sized {$/;"	f
+sigmoid	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\transfer.rs	/^pub fn sigmoid(x: f64) -> f64 {$/;"	f
+sign	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\transfer.rs	/^pub fn sign(x: f64) -> f64 {$/;"	f
+similar_fitness	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn similar_fitness(mut self, threshold: f64) -> EANT2Options {$/;"	f
+stable_generations	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn stable_generations(mut self, fitness: f64, generations: usize) -> CMAESOptions {$/;"	f
+sub_vec	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn sub_vec(a: &[f64], b: &[f64]) -> Vec<f64> {$/;"	f
+subnetwork_index	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\mutation_utils.rs	/^    pub fn subnetwork_index(&self, index: usize) -> ops::Range<usize> {$/;"	f
+sum_vec	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn sum_vec(vec: &[f64]) -> f64 {$/;"	f
+syscall	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^            fn syscall(number: libc::c_long, ...) -> libc::c_long;$/;"	f
+t	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^        macro_rules! t {$/;"	d
+t	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^        macro_rules! t {$/;"	d
+test	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^mod test {$/;"	m
+test	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^mod test {$/;"	m
+test	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^mod test {$/;"	m
+test	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^mod test {$/;"	m
+test	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^mod test {$/;"	m
+test	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^mod test {$/;"	m
+test	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^mod test {$/;"	m
+test	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^mod test {$/;"	m
+test_chi_squared_invalid_dof	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn test_chi_squared_invalid_dof() {$/;"	f
+test_chi_squared_large	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn test_chi_squared_large() {$/;"	f
+test_chi_squared_one	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn test_chi_squared_one() {$/;"	f
+test_chi_squared_small	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn test_chi_squared_small() {$/;"	f
+test_choose	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_choose() {$/;"	f
+test_exp	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^    fn test_exp() {$/;"	f
+test_exp_invalid_lambda_neg	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^    fn test_exp_invalid_lambda_neg() {$/;"	f
+test_exp_invalid_lambda_zero	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^    fn test_exp_invalid_lambda_zero() {$/;"	f
+test_f	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn test_f() {$/;"	f
+test_fill_bytes_default	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_fill_bytes_default() {$/;"	f
+test_floats	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^    fn test_floats() {$/;"	f
+test_gen_ascii_str	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_gen_ascii_str() {$/;"	f
+test_gen_f64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_gen_f64() {$/;"	f
+test_gen_range	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_gen_range() {$/;"	f
+test_gen_range_panic_int	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_gen_range_panic_int() {$/;"	f
+test_gen_range_panic_usize	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_gen_range_panic_usize() {$/;"	f
+test_gen_vec	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_gen_vec() {$/;"	f
+test_gen_weighted_bool	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_gen_weighted_bool() {$/;"	f
+test_integers	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^    fn test_integers() {$/;"	f
+test_log_normal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^    fn test_log_normal() {$/;"	f
+test_log_normal_invalid_sd	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^    fn test_log_normal_invalid_sd() {$/;"	f
+test_network_eval	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\tests\tests.rs	/^fn test_network_eval() {$/;"	f
+test_normal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^    fn test_normal() {$/;"	f
+test_normal_invalid_sd	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^    fn test_normal_invalid_sd() {$/;"	f
+test_os_rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn test_os_rng() {$/;"	f
+test_os_rng_tasks	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\os.rs	/^    fn test_os_rng_tasks() {$/;"	f
+test_rand_sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn test_rand_sample() {$/;"	f
+test_random	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_random() {$/;"	f
+test_range_bad_limits_equal	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^    fn test_range_bad_limits_equal() {$/;"	f
+test_range_bad_limits_flipped	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^    fn test_range_bad_limits_flipped() {$/;"	f
+test_read_file	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\tests\tests.rs	/^fn test_read_file() {$/;"	f
+test_reader_rng_fill_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^    fn test_reader_rng_fill_bytes() {$/;"	f
+test_reader_rng_insufficient_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^    fn test_reader_rng_insufficient_bytes() {$/;"	f
+test_reader_rng_u32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^    fn test_reader_rng_u32() {$/;"	f
+test_reader_rng_u64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\read.rs	/^    fn test_reader_rng_u64() {$/;"	f
+test_reseeding	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn test_reseeding() {$/;"	f
+test_rng_32_rand_seeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn test_rng_32_rand_seeded() {$/;"	f
+test_rng_32_reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn test_rng_32_reseed() {$/;"	f
+test_rng_32_seeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn test_rng_32_seeded() {$/;"	f
+test_rng_32_true_values	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn test_rng_32_true_values() {$/;"	f
+test_rng_64_rand_seeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn test_rng_64_rand_seeded() {$/;"	f
+test_rng_64_reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn test_rng_64_reseed() {$/;"	f
+test_rng_64_seeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn test_rng_64_seeded() {$/;"	f
+test_rng_64_true_values	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn test_rng_64_true_values() {$/;"	f
+test_rng_clone	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn test_rng_clone() {$/;"	f
+test_rng_clone	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\isaac.rs	/^    fn test_rng_clone() {$/;"	f
+test_rng_fill_bytes	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn test_rng_fill_bytes() {$/;"	f
+test_rng_rand_seeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn test_rng_rand_seeded() {$/;"	f
+test_rng_reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn test_rng_reseed() {$/;"	f
+test_rng_reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn test_rng_reseed() {$/;"	f
+test_rng_seeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn test_rng_seeded() {$/;"	f
+test_rng_seeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\reseeding.rs	/^    fn test_rng_seeded() {$/;"	f
+test_rng_trait_object	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_rng_trait_object() {$/;"	f
+test_rng_true_values	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn test_rng_true_values() {$/;"	f
+test_sample	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_sample() {$/;"	f
+test_shuffle	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_shuffle() {$/;"	f
+test_std_rng_reseed	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_std_rng_reseed() {$/;"	f
+test_std_rng_seeded	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_std_rng_seeded() {$/;"	f
+test_t	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\gamma.rs	/^    fn test_t() {$/;"	f
+test_thread_rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^    fn test_thread_rng() {$/;"	f
+test_weighted_choice	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn test_weighted_choice() {$/;"	f
+test_weighted_choice_no_items	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn test_weighted_choice_no_items() {$/;"	f
+test_weighted_choice_weight_overflows	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn test_weighted_choice_weight_overflows() {$/;"	f
+test_weighted_choice_zero_weight	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn test_weighted_choice_zero_weight() {$/;"	f
+test_weighted_clone_change_item	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn test_weighted_clone_change_item() {$/;"	f
+test_weighted_clone_change_weight	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn test_weighted_clone_change_weight() {$/;"	f
+test_weighted_clone_initialization	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^    fn test_weighted_clone_initialization() {$/;"	f
+test_write_file	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\tests\tests.rs	/^fn test_write_file() {$/;"	f
+tests	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^mod tests {$/;"	m
+tests	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^mod tests {$/;"	m
+tests	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\range.rs	/^mod tests {$/;"	m
+tests	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^mod tests {$/;"	m
+thread_rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub fn thread_rng() -> ThreadRng {$/;"	f
+threads	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\options.rs	/^    pub fn threads(mut self, threads: usize) -> CMAESOptions {$/;"	f
+threads	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^mod threads;$/;"	m
+threads	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn threads(mut self, threads: usize) -> EANT2Options {$/;"	f
+threshold	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\transfer.rs	/^pub fn threshold(x: f64) -> f64 {$/;"	f
+to_str	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\file.rs	/^pub fn to_str(network: &Network) -> String {$/;"	f
+to_str	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\network.rs	/^    pub fn to_str(&self) -> String {$/;"	f
+transfer	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\lib.rs	/^pub mod transfer;$/;"	m
+transfer_function	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\options.rs	/^    pub fn transfer_function(mut self, function: TransferFunction) -> EANT2Options {$/;"	f
+transpose	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\vector.rs	/^pub fn transpose(mat: &Matrix<f64>) -> Matrix<f64> {$/;"	f
+tuple_impl	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\rand_impls.rs	/^macro_rules! tuple_impl {$/;"	d
+update	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\chacha.rs	/^    fn update(&mut self) {$/;"	f
+update_generation	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\threads.rs	/^pub fn update_generation<T>(generation: &mut Vec<Individual<T>>,$/;"	f
+utils	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\lib.rs	/^mod utils;$/;"	m
+utils	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\lib.rs	/^mod utils;$/;"	m
+utils	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\lib.rs	/^mod utils;$/;"	m
+variant	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\compare.rs	/^fn variant(gene: &Gene) -> i32 {$/;"	f
+vector	C:\Users\laptop\.cargo\git\checkouts\cmaes-643fbb9203c99025\master\src\lib.rs	/^mod vector;$/;"	m
+w32	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^type w32 = w<u32>;$/;"	T
+w64	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^type w64 = w<u64>;$/;"	T
+weak_rng	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\lib.rs	/^pub fn weak_rng() -> XorShiftRng {$/;"	f
+weighted_choice	C:\Users\laptop\Desktop\Coding Things\Rust\good code\eant2\src\utils.rs	/^pub fn weighted_choice(weights: &[usize; 4]) -> usize {$/;"	f
+write_network	C:\Users\laptop\.cargo\git\checkouts\cge-b2d356e765e86db7\master\src\file.rs	/^pub fn write_network(network: &Network, path: &str) -> io::Result<()> {$/;"	f
+zero_case	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\exponential.rs	/^        fn zero_case<R:Rng>(rng: &mut R, _u: f64) -> f64 {$/;"	f
+zero_case	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\normal.rs	/^        fn zero_case<R:Rng>(rng: &mut R, u: f64) -> f64 {$/;"	f
+ziggurat	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^fn ziggurat<R: Rng, P, Z>($/;"	f
+ziggurat_tables	C:\Users\laptop\.cargo\registry\src\github.com-1ecc6299db9ec823\rand-0.3.14\src\distributions\mod.rs	/^mod ziggurat_tables;$/;"	m
