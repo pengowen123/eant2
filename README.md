@@ -15,7 +15,7 @@ Add this to your Cargo.toml:
 ```
 [dependencies]
 
-eant2 = { git = https://github.com/pengowen123/eant2 }
+eant2 = { git = "https://github.com/pengowen123/eant2" }
 ```
 
 And this to your crate root:
