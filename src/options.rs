@@ -67,7 +67,7 @@ pub struct EANT2Options {
     pub print_option: bool,
     pub weights: [usize; 4],
     pub seed: Option<Network>,
-    pub transfer_function: TransferFunction
+    pub transfer_function: TransferFunction,
 }
 
 impl EANT2Options {
@@ -100,7 +100,7 @@ impl EANT2Options {
         self.seed = Some(network);
         self
     }
-    
+
     /// Sets the population size. Increasing this option may produce higher quality neural
     /// networks, but will increase the time needed to find a solution.
     pub fn population_size(mut self, size: usize) -> EANT2Options {
@@ -189,7 +189,7 @@ impl EANT2Options {
     ///
     /// let cmaes_conditions = vec![CMAESEndConditions::MaxGenerations(250),
     ///                             CMAESEndConditions::StableGenerations(0.001, 5)];
-    /// 
+    ///
     /// let options = EANT2Options::new(2, 2)
     ///                   .cmaes_end_conditions(cmaes_conditions);
     pub fn cmaes_end_conditions(mut self, conditions: Vec<CMAESEndConditions>) -> EANT2Options {

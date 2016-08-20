@@ -56,7 +56,7 @@ impl<T: NNFitnessFunction + Clone> FitnessFunction for Individual<T> {
                     .. gene.clone()
                 }
             }).collect(),
-            function: self.network.function.clone()
+            function: self.network.function.clone(),
         };
 
         network.clear_state();

@@ -13,7 +13,7 @@ pub fn initialize_generation<T>(population_size: usize,
                              offspring_count: usize,
                              inputs: usize,
                              outputs: usize,
-                             function: TransferFunction,
+                             transfer_function: TransferFunction,
                              object: Arc<T>) -> Vec<Individual<T>>
     where T: NNFitnessFunction + Clone
 {
@@ -26,7 +26,7 @@ pub fn initialize_generation<T>(population_size: usize,
         let mut network = Network {
             size: 0,
             genome: Vec::new(),
-            function: function.clone()
+            function: transfer_function.clone(),
         };
 
         for i in (0..outputs).rev() {
