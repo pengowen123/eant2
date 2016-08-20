@@ -56,7 +56,7 @@ pub fn compare_fitness<T>(a: &Individual<T>, b: &Individual<T>, threshold: f64) 
 {
     let diff = (a.fitness - b.fitness).abs();
 
-    diff / a.fitness < threshold
+    diff / b.fitness < threshold
 }
 
 fn variant(gene: &Gene) -> i32 {

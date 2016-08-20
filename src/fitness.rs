@@ -1,4 +1,5 @@
 //! The fitness function.
+
 use cge::Network;
 
 /// The fitness function used by the EANT2 algorithm. A lower fitness represents a better

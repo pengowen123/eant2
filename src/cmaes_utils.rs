@@ -22,7 +22,7 @@ pub fn optimize_network<T>(individual: &mut Individual<T>,
         initial_step_size: 0.3,
         initial_standard_deviations: gene_deviations,
         initial_mean: individual.network.genome.iter().map(|g| g.weight).collect(),
-        threads: 1
+        threads: 0
     };
 
     for _ in 0..cmaes_runs {

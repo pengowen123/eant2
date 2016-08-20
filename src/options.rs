@@ -1,19 +1,24 @@
 //! Option types for the EANT2 algorithm.
 
 use cmaes::options::CMAESEndConditions;
+use cge::{Network, TransferFunction};
 
 const DEFAULT_CMAES_CONDITIONS: [CMAESEndConditions; 2] = [
     CMAESEndConditions::StableGenerations(0.0001, 5),
     CMAESEndConditions::MaxGenerations(500)
 ];
 
-pub const DEFAULT_POPULATION_SIZE: usize = 20;
-pub const DEFAULT_OFFSPRING_COUNT: usize = 2;
-pub const DEFAULT_SIMILAR_FITNESS: f64 = 0.05;
+pub const DEFAULT_POPULATION_SIZE: usize = 10;
+pub const DEFAULT_OFFSPRING_COUNT: usize = 4;
+pub const DEFAULT_SIMILAR_FITNESS: f64 = 0.15;
 pub const DEFAULT_MIN_FITNESS: f64 = 0.0;
 pub const DEFAULT_MAX_GENERATIONS: usize = 30;
+pub const DEFAULT_THREADS: usize = 0;
 pub const DEFAULT_CMAES_RUNS: usize = 2;
 pub const DEFAULT_PRINT_OPTION: bool = false;
+pub const DEFAULT_WEIGHTS: [usize; 4] = [3, 8, 1, 3];
+pub const DEFAULT_SEED: Option<Network> = None;
+pub const DEFAULT_TRANSFER_FUNCTION: TransferFunction = TransferFunction::Sigmoid;
 
 /// A container for all parameters and options for the EANT2 algorithm. See constants for default
 /// values.
@@ -25,7 +30,11 @@ pub const DEFAULT_PRINT_OPTION: bool = false;
 /// quality a small amount, so using smaller values will greatly speed up the algorithm, and does
 /// not have a large downside. It is important to set the fitness threshold using the
 /// `fitness_threshold` method, otherwise the algorithm may terminate too soon or take a long time to
-/// run.
+/// run. Here are some general tips for setting the options (more in the documentation):
+/// 
+/// If a minimal neural network is preferred, increase `similar_fitness` and increase the weight for
+/// connection removal. For complex problems, decrease population size and the weights for adding
+/// connections and neurons.
 ///
 /// # Examples
 ///
@@ -52,10 +61,13 @@ pub struct EANT2Options {
     pub fitness_threshold: f64,
     pub similar_fitness: f64,
     pub max_generations: usize,
-    pub threads: u8,
+    pub threads: usize,
     pub cmaes_runs: usize,
     pub cmaes_end_conditions: Vec<CMAESEndConditions>,
-    pub print_option: bool
+    pub print_option: bool,
+    pub weights: [usize; 4],
+    pub seed: Option<Network>,
+    pub transfer_function: TransferFunction
 }
 
 impl EANT2Options {
@@ -73,11 +85,20 @@ impl EANT2Options {
             fitness_threshold: DEFAULT_MIN_FITNESS,
             similar_fitness: DEFAULT_SIMILAR_FITNESS,
             max_generations: DEFAULT_MAX_GENERATIONS,
-            threads: 1,
+            threads: DEFAULT_THREADS,
             cmaes_runs: DEFAULT_CMAES_RUNS,
             cmaes_end_conditions: DEFAULT_CMAES_CONDITIONS.to_vec(),
-            print_option: DEFAULT_PRINT_OPTION
+            print_option: DEFAULT_PRINT_OPTION,
+            weights: DEFAULT_WEIGHTS,
+            seed: DEFAULT_SEED,
+            transfer_function: DEFAULT_TRANSFER_FUNCTION
         }
+    }
+
+    /// Add docs here
+    pub fn seed(mut self, network: Network) -> EANT2Options {
+        self.seed = Some(network);
+        self
     }
     
     /// Sets the population size. Increasing this option may produce higher quality neural
@@ -130,7 +151,7 @@ impl EANT2Options {
 
     /// Sets the number of threads to use in the algorithm. Increasing this option on multi-core
     /// hardware will greatly decrease the running time of the algorithm.
-    pub fn threads(mut self, threads: u8) -> EANT2Options {
+    pub fn threads(mut self, threads: usize) -> EANT2Options {
         if threads == 0 {
             panic!("Threads cannot be zero");
         }
@@ -180,6 +201,28 @@ impl EANT2Options {
     /// printed, and info about the solution is printed when the algorithm terminates.
     pub fn print(mut self, print: bool) -> EANT2Options {
         self.print_option = print;
+        self
+    }
+
+    /// Sets the weight for choosing each mutation. The first element should be the weight for
+    /// adding a connection, the second for removing a connection, the third for adding a
+    /// neuron, and the fourth for adding a bias input. The weights are relative, so with the
+    /// weights `[1, 2, 4, 8]`, each mutation has twice the chance of the previous. In general,
+    /// the chance for connection mutations should be higher than the chance for a neuron mutation.
+    /// If a minimal network is desired, set the bias, neuron and connection addition weights low,
+    /// and the connection removal rate high. For complex problems where network size isn't an
+    /// issue, high connection addition rate is a good idea.
+    pub fn mutation_weights(mut self, weights: [usize; 4]) -> EANT2Options {
+        self.weights = weights;
+        self
+    }
+
+    /// Sets the transfer function to use for the trained neural networks. See the documentation
+    /// [here][1] for information.
+    ///
+    /// [1]: http://pengowen123.github.io/cge/cge/transfer/enum.TransferFunction.html
+    pub fn transfer_function(mut self, function: TransferFunction) -> EANT2Options {
+        self.transfer_function = function;
         self
     }
 }

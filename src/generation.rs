@@ -1,6 +1,6 @@
 use std::sync::Arc;
 
-use cge::Network;
+use cge::{Network, TransferFunction};
 use rand::thread_rng;
 use rand::distributions::{IndependentSample, Range};
 
@@ -8,11 +8,12 @@ use utils::Individual;
 use cge_utils::Mutation;
 use fitness::NNFitnessFunction;
 
-// Creates a random, minimal generation of neural networks
+// Creates a generation of random, minimal neural networks
 pub fn initialize_generation<T>(population_size: usize,
                              offspring_count: usize,
                              inputs: usize,
                              outputs: usize,
+                             function: TransferFunction,
                              object: Arc<T>) -> Vec<Individual<T>>
     where T: NNFitnessFunction + Clone
 {
@@ -24,7 +25,8 @@ pub fn initialize_generation<T>(population_size: usize,
     for _ in 0..population_size * (offspring_count + 1) {
         let mut network = Network {
             size: 0,
-            genome: Vec::new()
+            genome: Vec::new(),
+            function: function.clone()
         };
 
         for i in (0..outputs).rev() {

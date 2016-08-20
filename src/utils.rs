@@ -3,6 +3,8 @@ use std::sync::Arc;
 use cge::Network;
 use cge::gene::Gene;
 use cmaes::FitnessFunction;
+use rand::thread_rng;
+use rand::distributions::{IndependentSample, Range};
 
 use fitness::NNFitnessFunction;
 
@@ -53,14 +55,15 @@ impl<T: NNFitnessFunction + Clone> FitnessFunction for Individual<T> {
                     weight: parameters[i],
                     .. gene.clone()
                 }
-            }).collect()
+            }).collect(),
+            function: self.network.function.clone()
         };
 
         network.clear_state();
 
         let object = self.object.clone();
 
-        (*object).get_fitness((&mut network))
+        object.get_fitness((&mut network))
     }
 }
 
@@ -72,3 +75,18 @@ impl<'a, T: NNFitnessFunction> NNFitnessFunction for &'a T {
     }
 }
 
+pub fn weighted_choice(weights: &[usize; 4]) -> usize {
+    let total = weights.iter().fold(0, |acc, i| acc + i);
+    let n = Range::new(0, total).ind_sample(&mut thread_rng());
+    let mut sum = 0;
+
+    for (i, x) in weights.iter().enumerate() {
+        if n >= sum && n < sum + x {
+            return i;
+        }
+
+        sum += *x;
+    }
+
+    panic!("invalid weights");
+}

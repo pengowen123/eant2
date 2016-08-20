@@ -1,13 +1,12 @@
 use cge::gene::GeneExtras;
 use rand::{Rng, thread_rng};
-use rand::distributions::{IndependentSample, Range};
 
-use utils::Individual;
+use utils::{Individual, weighted_choice};
 use cge_utils::Mutation;
 use fitness::NNFitnessFunction;
 
 // Selects a random valid mutation and applies it to a neural network
-pub fn mutate<T>(individual: &mut Individual<T>)
+pub fn mutate<T>(individual: &mut Individual<T>, weights: &[usize; 4])
     where T: NNFitnessFunction + Clone
 {
     let mut rng = thread_rng();
@@ -17,7 +16,7 @@ pub fn mutate<T>(individual: &mut Individual<T>)
 
     let depths = individual.get_depths(true);
     let neuron_depth = depths[index - 1];
-    let mutation = Range::new(0, 4).ind_sample(&mut rng);
+    let mutation = weighted_choice(weights);
 
     match mutation {
         0 => {
@@ -75,20 +74,6 @@ pub fn mutate<T>(individual: &mut Individual<T>)
             // Add subnetwork (add neuron and connections)
 
             individual.add_subnetwork(0, index, 0);
-
-            for i in 0..individual.next_id - 1 {
-                if rng.gen() {
-                    let i = individual.network.get_neuron_index(i).unwrap();
-                    let id = individual.next_id - 1;
-                    add_connection(individual, i + 1, Some(id));
-                }
-            }
-
-            for i in 0..individual.next_id - 1 {
-                if rng.gen() {
-                    //add_connection(individual, index + 1, Some(i));
-                }
-            }
         },
         3 => {
             // Add bias
