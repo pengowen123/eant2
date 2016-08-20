@@ -53,7 +53,8 @@ impl<T: NNFitnessFunction + Clone> FitnessFunction for Individual<T> {
                     weight: parameters[i],
                     .. gene.clone()
                 }
-            }).collect()
+            }).collect(),
+            function: self.network.function.clone(),
         };
 
         network.clear_state();
@@ -71,4 +72,3 @@ impl<'a, T: NNFitnessFunction> NNFitnessFunction for &'a T {
         (*self).get_fitness(network)
     }
 }
-

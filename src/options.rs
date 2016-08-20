@@ -1,6 +1,7 @@
 //! Option types for the EANT2 algorithm.
 
 use cmaes::options::CMAESEndConditions;
+use cge::transfer::TransferFunction;
 
 const DEFAULT_CMAES_CONDITIONS: [CMAESEndConditions; 2] = [
     CMAESEndConditions::StableGenerations(0.0001, 5),
@@ -14,6 +15,7 @@ pub const DEFAULT_MIN_FITNESS: f64 = 0.0;
 pub const DEFAULT_MAX_GENERATIONS: usize = 30;
 pub const DEFAULT_CMAES_RUNS: usize = 2;
 pub const DEFAULT_PRINT_OPTION: bool = false;
+pub const DEFAULT_TRANSFER_FUNCTION_OPTION: TransferFunction = TransferFunction::Sigmoid;
 
 /// A container for all parameters and options for the EANT2 algorithm. See constants for default
 /// values.
@@ -55,7 +57,8 @@ pub struct EANT2Options {
     pub threads: u8,
     pub cmaes_runs: usize,
     pub cmaes_end_conditions: Vec<CMAESEndConditions>,
-    pub print_option: bool
+    pub print_option: bool,
+    pub transfer_function: TransferFunction,
 }
 
 impl EANT2Options {
@@ -76,10 +79,11 @@ impl EANT2Options {
             threads: 1,
             cmaes_runs: DEFAULT_CMAES_RUNS,
             cmaes_end_conditions: DEFAULT_CMAES_CONDITIONS.to_vec(),
-            print_option: DEFAULT_PRINT_OPTION
+            print_option: DEFAULT_PRINT_OPTION,
+            transfer_function: DEFAULT_TRANSFER_FUNCTION_OPTION,
         }
     }
-    
+
     /// Sets the population size. Increasing this option may produce higher quality neural
     /// networks, but will increase the time needed to find a solution.
     pub fn population_size(mut self, size: usize) -> EANT2Options {
@@ -168,7 +172,7 @@ impl EANT2Options {
     ///
     /// let cmaes_conditions = vec![CMAESEndConditions::MaxGenerations(250),
     ///                             CMAESEndConditions::StableGenerations(0.001, 5)];
-    /// 
+    ///
     /// let options = EANT2Options::new(2, 2)
     ///                   .cmaes_end_conditions(cmaes_conditions);
     pub fn cmaes_end_conditions(mut self, conditions: Vec<CMAESEndConditions>) -> EANT2Options {
@@ -180,6 +184,12 @@ impl EANT2Options {
     /// printed, and info about the solution is printed when the algorithm terminates.
     pub fn print(mut self, print: bool) -> EANT2Options {
         self.print_option = print;
+        self
+    }
+
+    /// Sets the transfer function of the network.
+    pub fn transfer_function(mut self, transfer_function: TransferFunction) -> EANT2Options {
+        self.transfer_function = transfer_function;
         self
     }
 }

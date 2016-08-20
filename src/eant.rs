@@ -15,7 +15,7 @@ pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
 	where T: 'static + NNFitnessFunction + Clone + Send + Sync
 {
     // Allow user to pass a neural network as an argument to generate the initial population
-    
+
     // Extract end conditions from the options, using the CMAESOptions methods to take advantage of
     // the checks they make
     // TODO: After CMA-ES todo is complete set thread count to 0
@@ -33,6 +33,7 @@ pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
     let population_size = options.population_size;
     let offspring_count = options.offspring_count;
     let print = options.print_option;
+    let transfer_function = options.transfer_function;
 
     // Wrap object in an Arc for sharing across threads
     let object = Arc::new(object.clone());
@@ -43,11 +44,12 @@ pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
     // Initialize generation
     // One neuron per output, each connected to approximately 50% of inputs (exact number is
     // random)
-    
+
     let mut generation = initialize_generation(population_size,
                                                offspring_count,
                                                inputs,
                                                outputs,
+											   transfer_function,
                                                object);
 
     // Everything from here on is part of a loop
@@ -76,7 +78,7 @@ pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
         // Select individuals to go on to the next generation
         // This is necessary because there will be too many individuals in the population after
         // generating new ones
-        
+
         generation = select(population_size, generation, threshold);
         generation.sort_by(|a, b| a.fitness.partial_cmp(&b.fitness).expect("12"));
 
@@ -85,7 +87,7 @@ pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
         println!("{:?}", true);
         let best = generation[0].fitness;
         println!("{:?}", false);
-    
+
         if best <= fitness_threshold || g + 1 >= max_generations {
             let solution = generation[0].clone();
 
@@ -98,9 +100,9 @@ pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
         }
 
         // Add new individuals to the population by mutating the existing ones
-        
+
         let mut new_individuals = Vec::new();
-        
+
         for individual in &generation {
             for _ in 0..offspring_count {
                 let mut new = individual.clone();
@@ -110,7 +112,7 @@ pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
                 new_individuals.push(new);
             }
         }
-        
+
         //use this for testing
         //individuals should stay at a small size as long as population size and offspring count
         //are reasonable
@@ -125,7 +127,7 @@ pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
         generation.extend_from_slice(&new_individuals);
 
         // Increment gene ages
-        
+
         for i in &mut generation {
             for age in &mut i.ages {
                 *age += 1;
