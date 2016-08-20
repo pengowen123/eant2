@@ -1,6 +1,7 @@
 use std::sync::Arc;
 
 use cge::Network;
+use cge::transfer::TransferFunction;
 use rand::thread_rng;
 use rand::distributions::{IndependentSample, Range};
 
@@ -13,6 +14,7 @@ pub fn initialize_generation<T>(population_size: usize,
                              offspring_count: usize,
                              inputs: usize,
                              outputs: usize,
+                             transfer_function: TransferFunction,
                              object: Arc<T>) -> Vec<Individual<T>>
     where T: NNFitnessFunction + Clone
 {
@@ -24,7 +26,8 @@ pub fn initialize_generation<T>(population_size: usize,
     for _ in 0..population_size * (offspring_count + 1) {
         let mut network = Network {
             size: 0,
-            genome: Vec::new()
+            genome: Vec::new(),
+            function: transfer_function.clone(),
         };
 
         for i in (0..outputs).rev() {
