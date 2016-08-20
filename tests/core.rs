@@ -66,15 +66,15 @@
 //}
 
 //fn main() {
-    let options = EANT2Options::new(2, 1)
-        .print(true)
-        .fitness_threshold(0.01)
-        .transfer_function(TransferFunction::Threshold);
+    //let options = EANT2Options::new(2, 1)
+        //.print(true)
+        //.fitness_threshold(0.01)
+        //.transfer_function(TransferFunction::Threshold);
 
-    let mut solution = eant_loop(&Foo, options).0;
+    //let mut solution = eant_loop(&Foo, options).0;
     
-    println!("{}", Foo.get_fitness(&mut solution));
-    foo(Foo);
+    //println!("{}", Foo.get_fitness(&mut solution));
+    //foo(Foo);
 
     //let test = Network::from_str("1:
                                  //n 0 0 2,
