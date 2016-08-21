@@ -10,7 +10,7 @@ use options::EANT2Options;
 use select::select;
 use fitness::NNFitnessFunction;
 
-/// Returns a neural network with as high a fitness as possible, along with the network's fitness.
+/// Returns a neural network with as small a fitness as possible, along with the network's fitness.
 /// See the library level documentation for examples.
 pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
 	where T: 'static + NNFitnessFunction + Clone + Send + Sync
