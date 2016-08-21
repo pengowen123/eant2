@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `CMAESOptions` struct in crate `cmaes`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, CMAESOptions">
+
+    <title>cmaes::options::CMAESOptions - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>cmaes</a>::<wbr><a href='index.html'>options</a></p><script>window.sidebarCurrent = {name: 'CMAESOptions', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>cmaes</a>::<wbr><a href='index.html'>options</a>::<wbr><a class='struct' href=''>CMAESOptions</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-267' class='srclink' href='../../src/cmaes/options.rs.html#48-55' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct CMAESOptions {
+    pub end_conditions: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../../cmaes/options/enum.CMAESEndConditions.html' title='cmaes::options::CMAESEndConditions'>CMAESEndConditions</a>&gt;,
+    pub dimension: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub initial_step_size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>,
+    pub initial_standard_deviations: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt;,
+    pub initial_mean: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt;,
+    pub threads: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+}</pre><div class='docblock'><p>A container for end conditions, problem dimension, and thread count.</p>
+
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>cmaes</span>::<span class='ident'>CMAESOptions</span>;
+
+<span class='comment'>// A set of options with 2 variables to optimize, and a default of</span>
+<span class='comment'>// 1 thread and 500 max generations.</span>
+<span class='kw'>let</span> <span class='ident'>default</span> <span class='op'>=</span> <span class='ident'>CMAESOptions</span>::<span class='ident'>default</span>(<span class='number'>2</span>);
+
+<span class='comment'>// A set of options with 2 variables to optimize, 2000 max evaluations,</span>
+<span class='comment'>// 1 thread, and 10 stable generations with 0.01 change in fitness.</span>
+<span class='kw'>let</span> <span class='ident'>custom</span> <span class='op'>=</span> <span class='ident'>CMAESOptions</span>::<span class='ident'>custom</span>(<span class='number'>2</span>)
+    .<span class='ident'>max_evaluations</span>(<span class='number'>2000</span>)
+    .<span class='ident'>stable_generations</span>(<span class='number'>0.01</span>, <span class='number'>10</span>);</pre>
+</div><h2 class='fields'>Fields</h2><span id='structfield.end_conditions' class='structfield'><code>end_conditions: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../../cmaes/options/enum.CMAESEndConditions.html' title='cmaes::options::CMAESEndConditions'>CMAESEndConditions</a>&gt;</code>
+                           </span><span class='stab '></span><span id='structfield.dimension' class='structfield'><code>dimension: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
+                           </span><span class='stab '></span><span id='structfield.initial_step_size' class='structfield'><code>initial_step_size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code>
+                           </span><span class='stab '></span><span id='structfield.initial_standard_deviations' class='structfield'><code>initial_standard_deviations: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt;</code>
+                           </span><span class='stab '></span><span id='structfield.initial_mean' class='structfield'><code>initial_mean: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt;</code>
+                           </span><span class='stab '></span><span id='structfield.threads' class='structfield'><code>threads: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
+                           </span><span class='stab '></span><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-274' class='srclink' href='../../src/cmaes/options.rs.html#57-180' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class='method'><code>fn <a href='#method.default' class='fnname'>default</a>(dimension: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Returns a set of default options with the specified dimension (number of variables to
+optimize).</p>
+</div><h4 id='method.custom' class='method'><code>fn <a href='#method.custom' class='fnname'>custom</a>(dimension: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Returns a set of options with no end conditions.</p>
+</div><h4 id='method.threads' class='method'><code>fn <a href='#method.threads' class='fnname'>threads</a>(self, threads: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Sets the number of threads to use in the algorithm.</p>
+</div><h4 id='method.initial_step_size' class='method'><code>fn <a href='#method.initial_step_size' class='fnname'>initial_step_size</a>(self, step_size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Sets the initial step size (search radius). This is only a starting point and is adapted by
+the algorithm.</p>
+</div><h4 id='method.initial_standard_deviations' class='method'><code>fn <a href='#method.initial_standard_deviations' class='fnname'>initial_standard_deviations</a>(self, deviations: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt;) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Sets the initial standard deviations of each variable (individual search radii). These are
+only used as starting points and are adapted by the algorithm.</p>
+</div><h4 id='method.initial_mean' class='method'><code>fn <a href='#method.initial_mean' class='fnname'>initial_mean</a>(self, mean: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt;) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Sets where to start searching for solutions. This is only a starting point and is adapted
+by the algorithm.</p>
+</div><h4 id='method.stable_generations' class='method'><code>fn <a href='#method.stable_generations' class='fnname'>stable_generations</a>(self, fitness: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, generations: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Sets the stable generation count. The algorithm terminates if the specified number of
+generations pass where the change in best fitness is under the specified amount.</p>
+</div><h4 id='method.fitness_threshold' class='method'><code>fn <a href='#method.fitness_threshold' class='fnname'>fitness_threshold</a>(self, fitness: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Sets the minimum fitness. The algorithm terminates if the best fitness is under the
+threshold.</p>
+</div><h4 id='method.max_generations' class='method'><code>fn <a href='#method.max_generations' class='fnname'>max_generations</a>(self, generations: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Sets the maximum generation count. The algorithm terminates after the specified number of
+generations.</p>
+</div><h4 id='method.max_evaluations' class='method'><code>fn <a href='#method.max_evaluations' class='fnname'>max_evaluations</a>(self, evaluations: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Sets the maximum evaluation count. The algorithm terminates after the specified number of
+fitness function calls.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-258' class='srclink' href='../../src/cmaes/options.rs.html#31' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../cmaes/options/struct.CMAESOptions.html' title='cmaes::options::CMAESOptions'>CMAESOptions</a></code></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "cmaes";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

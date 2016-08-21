@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["eant_loop","Returns a neural network with as small a fitness as possible, along with the network's fitness. See the library level documentation for examples."]]});

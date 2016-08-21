@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["NNFitnessFunction","The fitness function used by the EANT2 algorithm. A lower fitness represents a better individual. Implement it for a type, and pass the type to the eant_loop function. Use the self argument to access fields of a struct, to factor other things into the fitness calculation."]]});

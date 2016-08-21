@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["FitnessFunction","The cmaes_loop function requires a type that implements this trait. Use the self argument to get additional data to factor into the fitness calculation from other struct fields. Implementing it for a dummy type also works."]]});

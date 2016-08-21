@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `EANT2Options` struct in crate `eant2`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, EANT2Options">
+
+    <title>eant2::options::EANT2Options - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>eant2</a>::<wbr><a href='index.html'>options</a></p><script>window.sidebarCurrent = {name: 'EANT2Options', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>eant2</a>::<wbr><a href='index.html'>options</a>::<wbr><a class='struct' href=''>EANT2Options</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-467' class='srclink' href='../../src/eant2/src/options.rs.html#56-71' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct EANT2Options {
+    pub inputs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub outputs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub population_size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub offspring_count: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub fitness_threshold: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>,
+    pub similar_fitness: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>,
+    pub max_generations: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub threads: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub cmaes_runs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub cmaes_end_conditions: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../../eant2/enum.CMAESEndConditions.html' title='eant2::CMAESEndConditions'>CMAESEndConditions</a>&gt;,
+    pub print_option: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>,
+    pub weights: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 4]</a>,
+    pub seed: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../eant2/struct.Network.html' title='eant2::Network'>Network</a>&gt;,
+    pub transfer_function: <a class='enum' href='../../eant2/enum.TransferFunction.html' title='eant2::TransferFunction'>TransferFunction</a>,
+}</pre><div class='docblock'><p>A container for all parameters and options for the EANT2 algorithm. See constants for default
+values.</p>
+
+<p>Using default options is convenient, but may slightly reduce the quality of the neural networks
+generated, and can increase the time needed to find a solution. It is recommended to adjust the
+parameters depending on whether it is more important to find a solution quickly or to find a
+better solution. Note that increasing population size and CMA-ES runs will only affect the
+quality a small amount, so using smaller values will greatly speed up the algorithm, and does
+not have a large downside. It is important to set the fitness threshold using the
+<code>fitness_threshold</code> method, otherwise the algorithm may terminate too soon or take a long time to
+run. Here are some general tips for setting the options (more in the documentation):</p>
+
+<p>If a minimal neural network is preferred, increase <code>similar_fitness</code> and increase the weight for
+connection removal. For complex problems, decrease population size and the weights for adding
+connections and neurons.</p>
+
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>eant2</span>::<span class='op'>*</span>;
+
+<span class='comment'>// A set of default options, with 2 inputs and 3 outputs to each neural network</span>
+<span class='kw'>let</span> <span class='ident'>options</span> <span class='op'>=</span> <span class='ident'>EANT2Options</span>::<span class='ident'>new</span>(<span class='number'>2</span>, <span class='number'>3</span>);
+
+<span class='comment'>// A set of options with 4 CMA-ES optimizations per individual, a minimum fitness of 10.0, and</span>
+<span class='comment'>// a population size of 50</span>
+<span class='kw'>let</span> <span class='ident'>options</span> <span class='op'>=</span> <span class='ident'>EANT2Options</span>::<span class='ident'>new</span>(<span class='number'>2</span>, <span class='number'>3</span>)
+    .<span class='ident'>fitness_threshold</span>(<span class='number'>10.0</span>)
+    .<span class='ident'>fitness_threshold</span>(<span class='number'>0.0</span>)
+    .<span class='ident'>cmaes_runs</span>(<span class='number'>4</span>)
+    .<span class='ident'>population_size</span>(<span class='number'>50</span>);</pre>
+</div><h2 class='fields'>Fields</h2><span id='structfield.inputs' class='structfield'><code>inputs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
+                           </span><span class='stab '></span><span id='structfield.outputs' class='structfield'><code>outputs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
+                           </span><span class='stab '></span><span id='structfield.population_size' class='structfield'><code>population_size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
+                           </span><span class='stab '></span><span id='structfield.offspring_count' class='structfield'><code>offspring_count: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
+                           </span><span class='stab '></span><span id='structfield.fitness_threshold' class='structfield'><code>fitness_threshold: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code>
+                           </span><span class='stab '></span><span id='structfield.similar_fitness' class='structfield'><code>similar_fitness: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code>
+                           </span><span class='stab '></span><span id='structfield.max_generations' class='structfield'><code>max_generations: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
+                           </span><span class='stab '></span><span id='structfield.threads' class='structfield'><code>threads: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
+                           </span><span class='stab '></span><span id='structfield.cmaes_runs' class='structfield'><code>cmaes_runs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
+                           </span><span class='stab '></span><span id='structfield.cmaes_end_conditions' class='structfield'><code>cmaes_end_conditions: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../../eant2/enum.CMAESEndConditions.html' title='eant2::CMAESEndConditions'>CMAESEndConditions</a>&gt;</code>
+                           </span><span class='stab '></span><span id='structfield.print_option' class='structfield'><code>print_option: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code>
+                           </span><span class='stab '></span><span id='structfield.weights' class='structfield'><code>weights: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 4]</a></code>
+                           </span><span class='stab '></span><span id='structfield.seed' class='structfield'><code>seed: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../eant2/struct.Network.html' title='eant2::Network'>Network</a>&gt;</code>
+                           </span><span class='stab '></span><span id='structfield.transfer_function' class='structfield'><code>transfer_function: <a class='enum' href='../../eant2/enum.TransferFunction.html' title='eant2::TransferFunction'>TransferFunction</a></code>
+                           </span><span class='stab '></span><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-483' class='srclink' href='../../src/eant2/src/options.rs.html#73-228' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(inputs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, outputs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Returns a set of default options (see constants for default values).</p>
+</div><h4 id='method.seed' class='method'><code>fn <a href='#method.seed' class='fnname'>seed</a>(self, network: <a class='struct' href='../../eant2/struct.Network.html' title='eant2::Network'>Network</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Add docs here</p>
+</div><h4 id='method.population_size' class='method'><code>fn <a href='#method.population_size' class='fnname'>population_size</a>(self, size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the population size. Increasing this option may produce higher quality neural
+networks, but will increase the time needed to find a solution.</p>
+</div><h4 id='method.offspring_count' class='method'><code>fn <a href='#method.offspring_count' class='fnname'>offspring_count</a>(self, count: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the offspring count (how many offspring each individual spawns). Increasing this
+option may produce higher quality neural networks, but will increase the time needed to
+find a solution.</p>
+</div><h4 id='method.fitness_threshold' class='method'><code>fn <a href='#method.fitness_threshold' class='fnname'>fitness_threshold</a>(self, fitness: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the fitness threshold. The algorithm terminates if the best individual has a fitness
+less than or equal to the specified amount. It is recommended to set this option to a value
+specific to each fitness function. The specified fitness may not be reached if the max
+generation is reached first.</p>
+</div><h4 id='method.max_generations' class='method'><code>fn <a href='#method.max_generations' class='fnname'>max_generations</a>(self, generations: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the maximum generations. The algorithm terminates after the specified number of
+generations pass. Increasing this option will likely produce higher quality networks, but
+will increase the running time of the algorithm. The number of generations specified may
+not be reached if the fitness threshold is reached first.</p>
+</div><h4 id='method.similar_fitness' class='method'><code>fn <a href='#method.similar_fitness' class='fnname'>similar_fitness</a>(self, threshold: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the threshold for deciding whether two neural networks have a similar fitness.
+Increasing this option will make the algorithm more aggresively prefer smaller
+neural networks. Decreasing it will do the opposite, allowing larger individuals to stay in
+the population. It is recommended to set this option higher if a small neural network is
+preferred. The downside is it will take slightly longer to find a solution, due to more
+higher fitness neural networks being discarded.</p>
+</div><h4 id='method.threads' class='method'><code>fn <a href='#method.threads' class='fnname'>threads</a>(self, threads: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the number of threads to use in the algorithm. Increasing this option on multi-core
+hardware will greatly decrease the running time of the algorithm.</p>
+</div><h4 id='method.cmaes_runs' class='method'><code>fn <a href='#method.cmaes_runs' class='fnname'>cmaes_runs</a>(self, runs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the number of times CMA-ES should be run on each individual. More runs will produce
+higher quality neural networks faster at the cost of a higher number of fitness function calls.
+Increase the number of runs if the fitness function is cheap to run, or if time taken to
+find a solution is not important.</p>
+</div><h4 id='method.cmaes_end_conditions' class='method'><code>fn <a href='#method.cmaes_end_conditions' class='fnname'>cmaes_end_conditions</a>(self, conditions: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../../eant2/enum.CMAESEndConditions.html' title='eant2::CMAESEndConditions'>CMAESEndConditions</a>&gt;) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the end conditions of CMA-ES. Setting higher stable generations or max generations or
+evaluations can produce higher quality neural networks at the cost of a longer time taken
+to find a solution. Decreasing these options is a good idea when it is important to find a
+solution quickly. DO NOT set the fitness threshold option, or it will take a very long time
+to find a solution, even on the simplest problems! It is recommended to leave this option alone, but
+the documentation for it is available <a href="http://pengowen123.github.io/cmaes/cmaes/options/enum.CMAESEndConditions.html">here</a>.</p>
+
+<h1 id='examples-1' class='section-header'><a href='#examples-1'>Examples</a></h1>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>eant2</span>::<span class='op'>*</span>;
+
+<span class='kw'>let</span> <span class='ident'>cmaes_conditions</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='ident'>CMAESEndConditions</span>::<span class='ident'>MaxGenerations</span>(<span class='number'>250</span>),
+                            <span class='ident'>CMAESEndConditions</span>::<span class='ident'>StableGenerations</span>(<span class='number'>0.001</span>, <span class='number'>5</span>)];
+
+<span class='kw'>let</span> <span class='ident'>options</span> <span class='op'>=</span> <span class='ident'>EANT2Options</span>::<span class='ident'>new</span>(<span class='number'>2</span>, <span class='number'>2</span>)
+                  .<span class='ident'>cmaes_end_conditions</span>(<span class='ident'>cmaes_conditions</span>);</pre>
+</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>(self, print: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets whether to print info while the algorithm is running. The generation number is
+printed, and info about the solution is printed when the algorithm terminates.</p>
+</div><h4 id='method.mutation_weights' class='method'><code>fn <a href='#method.mutation_weights' class='fnname'>mutation_weights</a>(self, weights: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 4]</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the weight for choosing each mutation. The first element should be the weight for
+adding a connection, the second for removing a connection, the third for adding a
+neuron, and the fourth for adding a bias input. The weights are relative, so with the
+weights <code>[1, 2, 4, 8]</code>, each mutation has twice the chance of the previous. In general,
+the chance for connection mutations should be higher than the chance for a neuron mutation.
+If a minimal network is desired, set the bias, neuron and connection addition weights low,
+and the connection removal rate high. For complex problems where network size isn&#39;t an
+issue, high connection addition rate is a good idea.</p>
+</div><h4 id='method.transfer_function' class='method'><code>fn <a href='#method.transfer_function' class='fnname'>transfer_function</a>(self, function: <a class='enum' href='../../eant2/enum.TransferFunction.html' title='eant2::TransferFunction'>TransferFunction</a>) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Sets the transfer function to use for the trained neural networks. See the documentation
+<a href="http://pengowen123.github.io/cge/cge/transfer/enum.TransferFunction.html">here</a> for information.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-450' class='srclink' href='../../src/eant2/src/options.rs.html#55' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../eant2/options/struct.EANT2Options.html' title='eant2::options::EANT2Options'>EANT2Options</a></code></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "eant2";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["TransferFunction","Represents which transfer function to use for evaluating neural networks."]],"fn":[["sigmoid",""],["sign",""],["threshold",""]]});
