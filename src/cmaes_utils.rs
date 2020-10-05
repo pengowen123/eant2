@@ -3,8 +3,8 @@ use cmaes::options::CMAESEndConditions;
 use cmaes::options::CMAESEndConditions::*;
 use cge::gene::Gene;
 
-use utils::Individual;
-use fitness::NNFitnessFunction;
+use crate::utils::Individual;
+use crate::NNFitnessFunction;
 
 pub fn optimize_network<T>(individual: &mut Individual<T>,
                            cmaes_options: &[CMAESEndConditions],

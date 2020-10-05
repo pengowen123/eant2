@@ -1,20 +1,20 @@
 use std::sync::Arc;
 
-use cge::{Network, TransferFunction};
+use cge::{Network, Activation};
 use rand::thread_rng;
 use rand::distributions::{IndependentSample, Range};
 
-use utils::Individual;
-use cge_utils::Mutation;
-use fitness::NNFitnessFunction;
+use crate::utils::Individual;
+use crate::cge_utils::Mutation;
+use crate::NNFitnessFunction;
 
 // Creates a generation of random, minimal neural networks
 pub fn initialize_generation<T>(population_size: usize,
-                             offspring_count: usize,
-                             inputs: usize,
-                             outputs: usize,
-                             transfer_function: TransferFunction,
-                             object: Arc<T>) -> Vec<Individual<T>>
+                                offspring_count: usize,
+                                inputs: usize,
+                                outputs: usize,
+                                activation: Activation,
+                                object: Arc<T>) -> Vec<Individual<T>>
     where T: NNFitnessFunction + Clone
 {
 
@@ -26,7 +26,7 @@ pub fn initialize_generation<T>(population_size: usize,
         let mut network = Network {
             size: 0,
             genome: Vec::new(),
-            function: transfer_function.clone(),
+            function: activation.clone(),
         };
 
         for i in (0..outputs).rev() {
