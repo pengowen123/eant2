@@ -1,7 +1,7 @@
 //! Option types for the EANT2 algorithm.
 
 use cmaes::options::CMAESEndConditions;
-use cge::{Network, TransferFunction};
+use cge::{Network, Activation};
 
 const DEFAULT_CMAES_CONDITIONS: [CMAESEndConditions; 2] = [
     CMAESEndConditions::StableGenerations(0.0001, 5),
@@ -18,7 +18,7 @@ pub const DEFAULT_CMAES_RUNS: usize = 2;
 pub const DEFAULT_PRINT_OPTION: bool = false;
 pub const DEFAULT_WEIGHTS: [usize; 4] = [3, 8, 1, 3];
 pub const DEFAULT_SEED: Option<Network> = None;
-pub const DEFAULT_TRANSFER_FUNCTION: TransferFunction = TransferFunction::Sigmoid;
+pub const DEFAULT_TRANSFER_FUNCTION: Activation = Activation::Sigmoid;
 
 /// A container for all parameters and options for the EANT2 algorithm. See constants for default
 /// values.
@@ -67,7 +67,7 @@ pub struct EANT2Options {
     pub print_option: bool,
     pub weights: [usize; 4],
     pub seed: Option<Network>,
-    pub transfer_function: TransferFunction,
+    pub transfer_function: Activation,
 }
 
 impl EANT2Options {
@@ -221,7 +221,7 @@ impl EANT2Options {
     /// [here][1] for information.
     ///
     /// [1]: http://pengowen123.github.io/cge/cge/transfer/enum.TransferFunction.html
-    pub fn transfer_function(mut self, function: TransferFunction) -> EANT2Options {
+    pub fn transfer_function(mut self, function: Activation) -> EANT2Options {
         self.transfer_function = function;
         self
     }

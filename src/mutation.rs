@@ -1,9 +1,9 @@
 use cge::gene::GeneExtras;
 use rand::{Rng, thread_rng};
 
-use utils::{Individual, weighted_choice};
-use cge_utils::Mutation;
-use fitness::NNFitnessFunction;
+use crate::utils::{Individual, weighted_choice};
+use crate::cge_utils::Mutation;
+use crate::NNFitnessFunction;
 
 // Selects a random valid mutation and applies it to a neural network
 pub fn mutate<T>(individual: &mut Individual<T>, weights: &[usize; 4])

@@ -3,9 +3,9 @@ use std::thread;
 
 use cmaes::options::CMAESEndConditions;
 
-use utils::Individual;
-use cmaes_utils::optimize_network;
-use fitness::NNFitnessFunction;
+use crate::utils::Individual;
+use crate::cmaes_utils::optimize_network;
+use crate::NNFitnessFunction;
 
 pub fn update_generation<T>(generation: &mut Vec<Individual<T>>,
                             cmaes_options: &Vec<CMAESEndConditions>,

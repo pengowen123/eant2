@@ -6,7 +6,7 @@ use cmaes::FitnessFunction;
 use rand::thread_rng;
 use rand::distributions::{IndependentSample, Range};
 
-use fitness::NNFitnessFunction;
+use crate::NNFitnessFunction;
 
 // Stores additional information about a neural network, useful for mutation operators and
 // selection
@@ -63,7 +63,7 @@ impl<T: NNFitnessFunction + Clone> FitnessFunction for Individual<T> {
 
         let object = self.object.clone();
 
-        object.get_fitness((&mut network))
+        object.get_fitness(&mut network)
     }
 }
 

@@ -56,7 +56,7 @@ pub mod fitness;
 pub mod eant;
 
 pub use self::cmaes::options::CMAESEndConditions;
-pub use self::cge::{Network, TransferFunction};
+pub use self::cge::{Network, Activation};
 
 pub use self::fitness::NNFitnessFunction;
 pub use self::options::EANT2Options;

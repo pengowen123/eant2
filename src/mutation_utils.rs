@@ -3,9 +3,9 @@ use std::ops;
 use cge::gene::GeneExtras;
 use rand::{Rng, thread_rng};
 
-use utils::Individual;
-use cge_utils::Mutation;
-use fitness::NNFitnessFunction;
+use crate::utils::Individual;
+use crate::cge_utils::Mutation;
+use crate::NNFitnessFunction;
 
 // A few convenience methods for helping with determining which mutation operators are valid
 impl<T: NNFitnessFunction+ Clone> Individual<T> {

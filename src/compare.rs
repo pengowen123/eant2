@@ -1,8 +1,8 @@
 use cge::gene::Gene;
 use cge::gene::GeneExtras::*;
 
-use utils::Individual;
-use fitness::NNFitnessFunction;
+use crate::utils::Individual;
+use crate::NNFitnessFunction;
 
 pub enum Category {
     Duplicate,

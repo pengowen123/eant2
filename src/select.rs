@@ -1,6 +1,6 @@
-use compare::*;
-use utils::*;
-use fitness::NNFitnessFunction;
+use crate::compare::*;
+use crate::utils::*;
+use crate::NNFitnessFunction;
 
 // For preserving diversity
 const MAX_DUPLICATES: usize = 1;

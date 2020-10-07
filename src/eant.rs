@@ -2,13 +2,12 @@ use std::sync::Arc;
 
 use cge::Network;
 
-use cmaes_utils::*;
-use threads::update_generation;
-use generation::initialize_generation;
-use mutation::mutate;
-use options::EANT2Options;
-use select::select;
-use fitness::NNFitnessFunction;
+use crate::cmaes_utils::*;
+use crate::threads::update_generation;
+use crate::generation::initialize_generation;
+use crate::mutation::mutate;
+use crate::{EANT2Options, NNFitnessFunction};
+use crate::select::select;
 
 /// Returns a neural network with as small a fitness as possible, along with the network's fitness.
 /// See the library level documentation for examples.
