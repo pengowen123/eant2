@@ -67,14 +67,3 @@ pub fn optimize_network<T>(individual: &mut Individual<T>, options: &EANT2)
   // update the fitness of the network (with its new parameters)
   individual.fitness = best.value;
 }
-
-fn build_cmaes_options(
-  initial_mean: Vec<f64>, 
-  initial_step_size: f64, 
-  options: &EANT2
-) -> CMAESOptions {
-  CMAESOptions::new(initial_mean, initial_step_size)
-    .fun_target(options.terminate.exploitation.fitness)
-    .max_generations(options.terminate.exploitation.generations)
-    .mode(Mode::Minimize)
-}
