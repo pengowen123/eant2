@@ -50,7 +50,6 @@ mod generation;
 mod compare;
 mod cge_utils;
 mod select;
-mod pools;
 pub mod fitness;
 pub mod eant2;
 pub mod mutation_probabilities;
