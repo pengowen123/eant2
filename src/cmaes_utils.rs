@@ -28,7 +28,7 @@ pub fn optimize_network<T>(individual: &mut Individual<T>, options: &EANT2)
   let best = {
     // TODO: amortize allocation
     let initial_mean = DVector::from(individual.network.genome.iter().map(|g| g.weight).collect::<Vec<f64>>());
-    let initial_step_size = 0.3;
+    let _initial_step_size = 0.3;
 
     // TODO: avoid these clones if possible.
     let parameter_count = individual.network.genome.len();

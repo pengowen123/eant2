@@ -68,7 +68,7 @@ impl MutationProbabilities {
     let n = Range::new(0, sum).ind_sample(rng);
     
     let mut sum = 0;
-    if n >= sum && n < sum + b { return MutationType::AddNode; }          sum += a;
+    if n >= sum && n < sum + b { return MutationType::AddConnection; }    sum += a;
     if n >= sum && n < sum + c { return MutationType::RemoveConnection; } sum += b;
     if n >= sum && n < sum + d { return MutationType::AddNode; }
     else {                       return MutationType::AddBias; }

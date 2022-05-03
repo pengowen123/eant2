@@ -1,7 +1,7 @@
 // NOTE: Modify this code to complete the todo in lib.rs
 
-use cmaes::restart::{Restarter, RestartOptions};
-use crate::{*, eant2::{EANT2, Termination, TerminationCriteria}};
+
+use crate::{*};
 
 use crate::FitnessFunction;
 
