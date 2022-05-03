@@ -1,10 +1,7 @@
-
 use std::sync::Arc;
 use cge::Network;
 use cge::gene::Gene;
 use cmaes::{ObjectiveFunction, DVector};
-
-
 use crate::FitnessFunction;
 
 // Stores additional information about a neural network, useful for mutation operators and

@@ -42,19 +42,16 @@ extern crate cmaes;
 extern crate cge;
 extern crate rand;
 
+mod tests;
 mod utils;
 mod cmaes_utils;
 mod mutation_utils;
 mod mutation;
 mod generation;
-mod compare;
 mod cge_utils;
 mod select;
 pub mod fitness;
 pub mod eant2;
 pub mod mutation_probabilities;
-
-pub use self::cge::{Network, Activation};
-pub use self::fitness::FitnessFunction;
-
-mod tests;
+pub use cge::{Network, Activation};
+pub use fitness::FitnessFunction;

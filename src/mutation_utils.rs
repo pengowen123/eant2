@@ -1,8 +1,6 @@
 use std::ops;
-
 use cge::gene::GeneExtras;
 use rand::{Rng, thread_rng};
-
 use crate::utils::Individual;
 use crate::cge_utils::Mutation;
 use crate::FitnessFunction;

@@ -1,9 +1,7 @@
 use std::sync::Arc;
-
 use cge::{Network, Activation};
 use cmaes::{restart::{RestartStrategy}};
 use typed_builder::TypedBuilder;
-
 use crate::{FitnessFunction, generation::Generation, select, mutation::mutate, mutation_probabilities::MutationProbabilities};
 
 const DEFAULT_SEED:                     Option<Network>       = None;
