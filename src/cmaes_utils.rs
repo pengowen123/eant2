@@ -1,64 +1,80 @@
 use cmaes::*;
-use cmaes::options::CMAESEndConditions;
-use cmaes::options::CMAESEndConditions::*;
-use cge::gene::Gene;
-
+use cmaes::objective_function::Scale;
+use cmaes::restart::{Restarter, RestartOptions};
+use crate::eant2::EANT2;
 use crate::utils::Individual;
-use crate::NNFitnessFunction;
+use crate::FitnessFunction;
 
-pub fn optimize_network<T>(individual: &mut Individual<T>,
-                           cmaes_options: &[CMAESEndConditions],
-                           cmaes_runs: usize)
-    where T: 'static + NNFitnessFunction + Clone + Send + Sync
-{
+/// The structural __exploitation__ phase of the algorithm,
+/// where the parameters of each neural topology (created in the structural __exploration__ phase) are optimized.
+// TODO: amortize allocations!
+// TODO: Nice API design to specify termination conditions + restart strategies
+pub fn optimize_network<T>(individual: &mut Individual<T>, options: &EANT2)
+  where T: 'static + FitnessFunction + Clone + Send + Sync {
+  
+  // g' = 1 / (1 + (g^2))
+  // used to restrict the search space weights as the gene ages (this is supposed to encourage better convergence)
+  let gene_deviations: Vec<f64> = 
+    individual
+      .ages
+      .iter()
+      .map(|&g| g * g) // integer math more performant
+      .map(|g| 1 + g) // integer math more performant
+      .map(|g| 1.0 / g as f64) // now we cannot use integer math, use the floating point instructions
+      .collect();
+      
+  // TODO: find an ergonomic way to optionally specify termination conditions, restarter, etc. while also capturing (statically in the type system!)
+  //       that there is a minimum amount of information that must be provided to prevent infinite looping.
+  let best = {
+    // TODO: amortize allocation
+    let initial_mean = DVector::from(individual.network.genome.iter().map(|g| g.weight).collect::<Vec<f64>>());
+    let initial_step_size = 0.3;
 
-    let gene_deviations: Vec<f64> = individual.ages.iter().map(|g| {
-        1.0 / (1.0 + (*g as f64).powi(2))
-    }).collect();
+    // TODO: avoid these clones if possible.
+    let parameter_count = individual.network.genome.len();
+    let scaled = Scale::new(|x: &DVector<f64>| individual.evaluate(&(x + &initial_mean)), gene_deviations.clone());
 
-    let mut individual_options = CMAESOptions {
-        end_conditions: cmaes_options.to_vec(),
-        dimension: individual.network.size + 1,
-        initial_step_size: 0.3,
-        initial_standard_deviations: gene_deviations,
-        initial_mean: individual.network.genome.iter().map(|g| g.weight).collect(),
-        threads: 0
-    };
+    // run the CMA-ES optimization pass
+    let restarter = 
+      Restarter::new(
+        RestartOptions::new(
+          parameter_count, 
+          -1.0..=1.0,
+          options.restart.clone()
+        )
+        .mode(Mode::Minimize)
+        .enable_printing(options.print)
+        .fun_target(options.terminate.exploitation.fitness)
+        .max_generations_per_run(options.terminate.exploitation.generations)
+      )
+      .unwrap();
 
-    for _ in 0..cmaes_runs {
-        let results = cmaes_loop(individual, individual_options.clone()).unwrap();
+    restarter.clone().run_with_reuse(scaled).best.unwrap()
+  };
+  
+  // extract the best parameters
+  let best_parameters = &best.point;
 
-        individual.network.genome = individual.network.genome.iter().enumerate().map(|(i, g)| {
-            Gene {
-                weight: results.0[i],
-                .. g.clone()
-            }
-        }).collect();
+  // commit to the new network parameters (the returned value does not have parameter scaling applied, so we do that here!)
+  individual
+    .network
+    .genome
+    .iter_mut()
+    .zip(best_parameters.iter())
+    .zip(gene_deviations.iter())
+    .for_each(|((gene, &new_weight), &scale)| gene.weight = new_weight * scale);
 
-        individual.fitness = results.1;
-        individual_options.initial_mean = individual.network.genome.iter().map(|g| g.weight).collect();
-    }
+  // update the fitness of the network (with its new parameters)
+  individual.fitness = best.value;
 }
 
-pub fn get_cmaes_options(conditions: Vec<CMAESEndConditions>) -> CMAESOptions {
-    let mut cmaes_options = CMAESOptions::custom(1);
-
-    for condition in conditions {
-        match condition {
-            StableGenerations(ref fitness, ref generations) => {
-                cmaes_options = cmaes_options.stable_generations(*fitness, *generations);
-            },
-            FitnessThreshold(ref fitness) => {
-                cmaes_options = cmaes_options.fitness_threshold(*fitness);
-            },
-            MaxGenerations(ref generations) => {
-                cmaes_options = cmaes_options.max_generations(*generations);
-            },
-            MaxEvaluations(ref evaluations) => {
-                cmaes_options = cmaes_options.max_evaluations(*evaluations);
-            }
-        }
-    }
-
-    cmaes_options
+fn build_cmaes_options(
+  initial_mean: Vec<f64>, 
+  initial_step_size: f64, 
+  options: &EANT2
+) -> CMAESOptions {
+  CMAESOptions::new(initial_mean, initial_step_size)
+    .fun_target(options.terminate.exploitation.fitness)
+    .max_generations(options.terminate.exploitation.generations)
+    .mode(Mode::Minimize)
 }

@@ -1,18 +1,16 @@
 use std::sync::Arc;
-
 use cge::Network;
-
 use crate::cmaes_utils::*;
 use crate::threads::update_generation;
 use crate::generation::initialize_generation;
 use crate::mutation::mutate;
-use crate::{EANT2Options, NNFitnessFunction};
+use crate::{EANT2Options, FitnessFunction};
 use crate::select::select;
 
 /// Returns a neural network with as small a fitness as possible, along with the network's fitness.
 /// See the library level documentation for examples.
 pub fn eant_loop<T>(object: &T, options: EANT2Options) -> (Network, f64)
-	where T: 'static + NNFitnessFunction + Clone + Send + Sync
+	where T: 'static + FitnessFunction + Clone + Send + Sync
 {
     // TODO: Allow user to pass a neural network as an argument to generate the initial population
     

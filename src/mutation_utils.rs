@@ -5,10 +5,10 @@ use rand::{Rng, thread_rng};
 
 use crate::utils::Individual;
 use crate::cge_utils::Mutation;
-use crate::NNFitnessFunction;
+use crate::FitnessFunction;
 
 // A few convenience methods for helping with determining which mutation operators are valid
-impl<T: NNFitnessFunction+ Clone> Individual<T> {
+impl<T: FitnessFunction+ Clone> Individual<T> {
     // Returns the amount of connections from an input with the given id
     pub fn get_input_copies(&self, id: usize) -> usize {
         self.network.genome.iter().fold(0, |acc, g| {
@@ -78,7 +78,7 @@ impl<T: NNFitnessFunction+ Clone> Individual<T> {
 }
 
 // Wrap the Network implementation, to adjust the gene_ages field as well as the genome
-impl<T: NNFitnessFunction + Clone> Mutation for Individual<T> {
+impl<T: FitnessFunction + Clone> Mutation for Individual<T> {
     // Inputs and outputs aren't used; read from field instead
     fn add_subnetwork(&mut self, _: usize, output: usize, _: usize) {
         self.network.add_subnetwork(self.next_id, output, self.inputs);

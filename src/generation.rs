@@ -1,56 +1,75 @@
 use std::sync::Arc;
-
-use cge::{Network, Activation};
+use cge::Network;
 use rand::thread_rng;
 use rand::distributions::{IndependentSample, Range};
-
+use crate::cmaes_utils::optimize_network;
+use crate::eant2::EANT2;
 use crate::utils::Individual;
 use crate::cge_utils::Mutation;
-use crate::NNFitnessFunction;
+use crate::FitnessFunction;
+use rayon::prelude::*;
 
-// Creates a generation of random, minimal neural networks
-pub fn initialize_generation<T>(population_size: usize,
-                                offspring_count: usize,
-                                inputs: usize,
-                                outputs: usize,
-                                activation: Activation,
-                                object: Arc<T>) -> Vec<Individual<T>>
-    where T: NNFitnessFunction + Clone
-{
+pub struct Generation<T: FitnessFunction + Clone> {
+  /// The individuals in the generation.
+  // TODO: reuse buffer, guess at capacity on fallback to new alloc.
+  // TODO: this will require something nice and clever to handle the fact that `T` is unknown.
+  pub(crate) individuals: Vec<Individual<T>>
+}
 
+impl<T: FitnessFunction + Clone> Generation<T> {
+  /// Creates a generation of random, minimal neural networks.
+  pub fn initialize(options: &EANT2, object: Arc<T>) -> Generation<T> {
+    let individual_count = options.population * (options.offspring + 1);
+
+    // preallocate the exact amount of memory we know we will need (using an object pool in an ergonomic way is hard here because `T` is unknown).
+    let mut individuals = Vec::with_capacity(individual_count);
     let mut rng = thread_rng();
 
-    let mut generation = Vec::new();
-
-    for _ in 0..population_size * (offspring_count + 1) {
+    (0..individual_count)
+      .for_each(|_| {
+        // initialize empty network with the specified activation function
         let mut network = Network {
-            size: 0,
-            genome: Vec::new(),
-            function: activation.clone(),
+          size:     0,
+          genome:   vec![],  // TODO: reuse buffer, guess at capacity on fallback to new alloc.
+          function: options.activation.clone(),
         };
 
-        for i in (0..outputs).rev() {
-            network.add_subnetwork(i, 0, inputs)
-        }
-
+        // add subnetworks
+        for i in (0..options.outputs).rev() { network.add_subnetwork(i, 0, options.inputs); }
         network.size = network.genome.len() - 1;
 
-        generation.push(Individual::new(inputs, outputs, network, object.clone()));
-    }
+        // push individual into the generation
+        individuals.push(
+          Individual::new(
+            options.inputs, options.outputs, 
+            network, object.clone()
+          )
+        );
+      });
 
-    // Make sure all inputs are connected
-    for individual in &mut generation {
-        let range = Range::new(0, outputs);
+    // ensure all inputs are connected
+    individuals
+      .iter_mut()
+      .for_each(|individual| {
+        let range = Range::new(0, options.outputs);
 
-        for i in 0..inputs {
-            if individual.get_input_copies(i) == 0 {
-                let id = range.ind_sample(&mut rng);
-                let index = individual.network.get_neuron_index(id).unwrap() + 1;
-
-                individual.add_input(i, index);
-            }
+        for i in 0..options.inputs {
+          if individual.get_input_copies(i) == 0 {
+            let id = range.ind_sample(&mut rng);
+            let index = individual.network.get_neuron_index(id).unwrap() + 1;
+            individual.add_input(i, index);
+          }
         }
-    }
+      });
 
-    generation
+    Generation { individuals }
+  }
+
+  /// Use `CMA-ES` to optimize all the individuals in the generation in parallel, exploiting their existing structure.
+  pub fn update_generation(&mut self, options: &EANT2) where T: 'static + FitnessFunction + Clone + Send + Sync {
+    self
+      .individuals
+      .par_iter_mut()
+      .for_each(|individual| optimize_network(individual, &options));
+  }
 }

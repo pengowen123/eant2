@@ -11,6 +11,11 @@ cmaes = { git = "https://github.com/pengowen123/cmaes" }
 cge = { git = "https://github.com/pengowen123/cge" }
 
 gym-rs = { git = "https://github.com/MathisWellmann/gym-rs", optional = true }
+typed-builder = "0.10.0"
+num_cpus = "1.13.1"
+object-pool = "0.5.4"
+static_init = "1.0.2"
+rayon = "1.5.2"
 
 [[example]]
 name = "gym_cart_pole"

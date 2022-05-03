@@ -4,7 +4,7 @@ extern crate cge;
 
 use gym_rs::{CartPoleEnv, GymEnv, ActionType, Viewer};
 use cge::{Activation};
-use eant2::{EANT2Options, eant_loop, Network, NNFitnessFunction};
+use eant2::{EANT2Options, eant_loop, Network, FitnessFunction};
 
 #[derive(Clone)]
 pub struct MyEnv{}
@@ -38,7 +38,7 @@ impl MyEnv {
     }
 }
 
-impl NNFitnessFunction for MyEnv {
+impl FitnessFunction for MyEnv {
     fn get_fitness(&self, net: &mut Network) -> f64 {
         // Get the avg score of 10 sample runs
         (0..10).collect::<Vec<usize>>().iter().map(|_| self.fitness(net)).sum::<f64>() / 10.0

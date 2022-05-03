@@ -50,48 +50,12 @@ mod generation;
 mod compare;
 mod cge_utils;
 mod select;
-mod threads;
-pub mod options;
+mod pools;
 pub mod fitness;
-pub mod eant;
+pub mod eant2;
+pub mod mutation_probabilities;
 
-pub use self::cmaes::options::CMAESEndConditions;
 pub use self::cge::{Network, Activation};
+pub use self::fitness::FitnessFunction;
 
-pub use self::fitness::NNFitnessFunction;
-pub use self::options::EANT2Options;
-pub use self::eant::eant_loop;
-
-use self::cmaes::CMAESOptions;
-use self::utils::Individual;
-use self::cmaes_utils::optimize_network;
-use std::sync::Arc;
-
-pub fn foo<T: NNFitnessFunction + Send + Sync + Clone + 'static>(object: T) {
-    // CMA-ES is seriously broken here
-    // none of these work, they all get fitness of 2 or some really big number
-    let test = Network::from_str("1:
-                                 n 0 0 2,
-                                    
-                                    n 0 2 3,
-                                        i 0 0,
-                                        i 0 1,
-                                        b 0,
-                                    
-                                    n 0 3 2,
-                                        i 0 0,
-                                        i 0 1
-                                ").expect("test");
-
-    let options = CMAESOptions::default(3).end_conditions;
-    let object = Arc::new(object);
-
-    let mut individual = Individual::new(2, 1, test, object.clone());
-
-    for i in 0.. {
-        println!("thing {}:", i);
-        optimize_network(&mut individual, &options, 250);
-
-        println!("first: {:?}", individual.fitness);
-    }
-}
+mod tests;
