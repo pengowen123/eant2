@@ -60,7 +60,7 @@ impl<T: FitnessFunction + Clone> Individual<T> {
       self
         .object
         .clone()
-        .get_fitness(&mut network)
+        .fitness(&mut network)
     }
 }
 

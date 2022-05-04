@@ -1,18 +1,16 @@
 [package]
-
 name = "eant2"
 version = "0.1.0"
 authors = ["pengowen123 <pengowen816@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
-rand = "0.3"
-cmaes = { git = "https://github.com/pengowen123/cmaes" }
-cge = { git = "https://github.com/pengowen123/cge" }
-
-gym-rs = { git = "https://github.com/MathisWellmann/gym-rs", optional = true }
+rand = "0.8.5"
 typed-builder = "0.10.0"
 rayon = "1.5.2"
+cmaes = { git = "https://github.com/pengowen123/cmaes" }
+cge = { git = "https://github.com/pengowen123/cge" }
+gym-rs = { git = "https://github.com/MathisWellmann/gym-rs", optional = true }
 
 [[example]]
 name = "gym_cart_pole"

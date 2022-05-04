@@ -175,7 +175,6 @@ impl EANT2 {
           
           // increment the gene ages here. We don't want to revisit memory later when we could do the job now (cpu cache).
           new.ages.iter_mut().for_each(|a| *a += 1);
-
           new_individuals.push(new);
         }
       }
@@ -188,7 +187,7 @@ impl EANT2 {
 
 #[cfg(test)]
 mod test {
-    // use super::EANT2;
+  // use super::EANT2;
 
   #[test]
   fn test_builder() {
