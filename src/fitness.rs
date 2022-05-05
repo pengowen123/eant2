@@ -6,5 +6,5 @@ use cge::Network;
 /// the self argument to access fields of a struct, to factor other things into the
 /// fitness calculation.
 pub trait FitnessFunction {
-  fn fitness(&self, network: &mut Network) -> f64;
+    fn fitness(&self, network: &mut Network) -> f64;
 }

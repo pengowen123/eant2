@@ -133,7 +133,8 @@ dependencies = [
 [[package]]
 name = "cmaes"
 version = "0.2.0"
-source = "git+https://github.com/pengowen123/cmaes#058a01e36a1921cac2273ed98e510ae217516d49"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "87302e17c0045281032c0922f38162b74da07243afcc88abf372b01933869bc9"
 dependencies = [
  "nalgebra 0.30.1",
  "nalgebra-lapack",

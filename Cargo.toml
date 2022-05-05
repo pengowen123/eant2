@@ -8,7 +8,7 @@ edition = "2021"
 rand = "0.8.5"
 typed-builder = "0.10.0"
 rayon = "1.5.2"
-cmaes = { git = "https://github.com/pengowen123/cmaes" }
+cmaes = "0.2.0"
 cge = { git = "https://github.com/pengowen123/cge" }
 gym-rs = { git = "https://github.com/MathisWellmann/gym-rs", optional = true }
 

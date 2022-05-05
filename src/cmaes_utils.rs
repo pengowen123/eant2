@@ -11,11 +11,11 @@ use cmaes::*;
 // TODO: Nice API design to specify termination conditions + restart strategies
 pub fn optimize_network<T>(individual: &mut Individual<T>, options: &EANT2)
 where
-  T: 'static + FitnessFunction + Clone + Send + Sync,
+    T: 'static + FitnessFunction + Clone + Send + Sync,
 {
-  // g' = 1 / (1 + (g^2))
-  // used to restrict the search space weights as the gene ages (this is supposed to encourage better convergence)
-  let gene_deviations: Vec<f64> = individual
+    // g' = 1 / (1 + (g^2))
+    // used to restrict the search space weights as the gene ages (this is supposed to encourage better convergence)
+    let gene_deviations: Vec<f64> = individual
     .ages
     .iter()
     .map(|&g| g * g) // integer math more performant
@@ -23,52 +23,53 @@ where
     .map(|g| 1.0 / g as f64) // now we cannot use integer math, use the floating point instructions
     .collect();
 
-  // TODO: find an ergonomic way to optionally specify termination conditions, restarter, etc. while also capturing (statically in the type system!)
-  //       that there is a minimum amount of information that must be provided to prevent infinite looping.
-  let best = {
     // TODO: amortize allocation
     let initial_mean = DVector::from(
-      individual
+        individual
+            .network
+            .genome
+            .iter()
+            .map(|g| g.weight)
+            .collect::<Vec<f64>>(),
+    );
+
+    // TODO: find an ergonomic way to optionally specify termination conditions, restarter, etc. while also capturing (statically in the type system!)
+    //       that there is a minimum amount of information that must be provided to prevent infinite looping.
+    let best = {
+        // TODO: avoid these clones if possible.
+        let parameter_count = individual.network.genome.len();
+        let scaled = Scale::new(
+            |x: &DVector<f64>| individual.evaluate(&(x + &initial_mean)),
+            gene_deviations.clone(),
+        );
+
+        // run the CMA-ES optimization pass
+        let restarter = Restarter::new(
+            RestartOptions::new(parameter_count, -1.0..=1.0, options.restart.clone())
+                .mode(Mode::Minimize)
+                .fun_target(options.terminate.exploitation.fitness)
+                .max_generations_per_run(options.terminate.exploitation.generations),
+        )
+        .unwrap();
+
+        restarter.clone().run_with_reuse(scaled).best.expect("CMA-ES optimization failed, this is likely the result of FitnessFunction returning f64::NAN")
+    };
+
+    // extract the best parameters
+    let best_parameters = &best.point;
+
+    // commit to the new network parameters (the returned value does not have parameter scaling applied, so we do that here!)
+    individual
         .network
         .genome
-        .iter()
-        .map(|g| g.weight)
-        .collect::<Vec<f64>>(),
-    );
-    let _initial_step_size = 0.3;
+        .iter_mut()
+        .zip(best_parameters.iter())
+        .zip(initial_mean.iter())
+        .zip(gene_deviations.iter())
+        .for_each(|(((gene, initial), &new_weight), &scale)| {
+            gene.weight = initial + (new_weight * scale)
+        });
 
-    // TODO: avoid these clones if possible.
-    let parameter_count = individual.network.genome.len();
-    let scaled = Scale::new(
-      |x: &DVector<f64>| individual.evaluate(&(x + &initial_mean)),
-      gene_deviations.clone(),
-    );
-
-    // run the CMA-ES optimization pass
-    let restarter = Restarter::new(
-      RestartOptions::new(parameter_count, -1.0..=1.0, options.restart.clone())
-        .mode(Mode::Minimize)
-        .enable_printing(options.print)
-        .fun_target(options.terminate.exploitation.fitness)
-        .max_generations_per_run(options.terminate.exploitation.generations),
-    )
-    .unwrap();
-
-    restarter.clone().run_with_reuse(scaled).best.unwrap()
-  };
-
-  // extract the best parameters
-  let best_parameters = &best.point;
-
-  // commit to the new network parameters (the returned value does not have parameter scaling applied, so we do that here!)
-  individual
-    .network
-    .genome
-    .iter_mut()
-    .zip(best_parameters.iter())
-    .zip(gene_deviations.iter())
-    .for_each(|((gene, &new_weight), &scale)| gene.weight = new_weight * scale);
-
-  // update the fitness of the network (with its new parameters)
-  individual.fitness = best.value;
+    // update the fitness of the network (with its new parameters)
+    individual.fitness = best.value;
 }
