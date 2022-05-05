@@ -18,7 +18,8 @@ impl MutationSampler {
         MutationType::AddBias,
     ];
 
-    fn assemble(probabilities: (u16, u16, u16, u16)) -> Result<Self, WeightedError> {
+    /// Create a new `MutationSampler` with given relative probabilities as u16 values.
+    fn new(probabilities: (u16, u16, u16, u16)) -> Result<Self, WeightedError> {
         let sampler = WeightedAliasIndex::new(vec![
             probabilities.0,
             probabilities.1,
@@ -29,6 +30,7 @@ impl MutationSampler {
         Ok(MutationSampler(sampler))
     }
 
+    /// Sample a mutation type (using relative probabilities declared on creation).
     pub fn sample<R: Rng>(&self, rng: &mut R) -> MutationType {
         let index = self.0.sample(rng);
 
@@ -42,7 +44,7 @@ impl MutationSampler {
 impl Default for MutationSampler {
     fn default() -> Self {
         // safe unwrap. infallible because of default parameter choice.
-        MutationSampler::assemble((3, 8, 1, 3)).unwrap()
+        MutationSampler::new((3, 8, 1, 3)).unwrap()
     }
 }
 
@@ -63,7 +65,7 @@ impl TryFrom<MutationProbabilities> for MutationSampler {
             (u16::MAX as f64) / sum
         };
 
-        MutationSampler::assemble((
+        MutationSampler::new((
             (a * scaling) as u16,
             (b * scaling) as u16,
             (c * scaling) as u16,
