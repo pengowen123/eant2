@@ -5,7 +5,15 @@ use std::convert::TryFrom;
 
 /// Generates different structural mutations. Uses configurable relative probabilites.
 ///
-/// - Use `MutationProbabilities` to create a `MutationSampler`.
+/// - Use `MutationProbabilities` to create a `MutationSampler`:
+/// ```rust
+/// MutationProbabilities::zeros()
+///   .add_connection(2.)     // 1/3rd chance = 2 / (2 + 2 + 1 + 1)
+///   .remove_connection(2.)  // 1/3rd chance
+///   .add_neuron(1.)         // 1/6th chance
+///   .add_bias(1.)           // 1/6th chance
+///   .build()?               // build the sampler
+/// ```
 #[derive(Clone)]
 pub struct MutationSampler(WeightedAliasIndex<u16>);
 
@@ -48,8 +56,21 @@ impl Default for MutationSampler {
     }
 }
 
-/// Easier to use mutation probabilities.
+/// Relative mutation probabilities.
 /// - Probabilities automatically normalized upon conversion to `MutationSampler`.
+/// - In general, the chance for connection mutations should be higher than the chance for a neuron mutation.
+/// - If a minimal network is desired, set the bias, neuron and connection addition probabilities low,
+///   and the connection removal probability high.
+/// - For complex problems where network size isn't an issue, high connection addition probability is a good idea.
+/// 
+/// ```rust
+/// MutationProbabilities::zeros()
+///   .add_connection(2.)     // 1/3rd chance = 2 / (2 + 2 + 1 + 1)
+///   .remove_connection(2.)  // 1/3rd chance
+///   .add_neuron(1.)         // 1/6th chance
+///   .add_bias(1.)           // 1/6th chance
+///   .build()?               // build the sampler
+/// ```
 #[derive(Copy, Clone)]
 pub struct MutationProbabilities((f64, f64, f64, f64));
 

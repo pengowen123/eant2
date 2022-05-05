@@ -118,11 +118,7 @@ pub struct EANT2 {
 
   #[builder(
     default_code = "MutationSampler::default()", 
-    setter(doc = "Sets the weight for choosing each mutation. In general,
-                  the chance for connection mutations should be higher than the chance for a neuron mutation.
-                  If a minimal network is desired, set the bias, neuron and connection addition probabilities low,
-                  and the connection removal probability high. For complex problems where network size isn't an
-                  issue, high connection addition probability is a good idea."))]
+    setter(doc = "Sets the sampler which chooses each mutation.  Build a `MutationSampler` with `MutationProbabilities`."))]
   pub mutation_probabilities: MutationSampler,
 
   #[builder(default = DEFAULT_SEED, setter(strip_option))]
