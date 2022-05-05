@@ -44,16 +44,20 @@ where
         );
 
         let fitness_target = options.exploitation.terminate.fitness.unwrap_or(options.exploration.terminate.fitness);
+        let mut restart_options = RestartOptions::new(parameter_count, -1.0..=1.0, options.exploitation.restart.clone())
+          .mode(Mode::Minimize)
+          .fun_target(fitness_target);
+
+        if let Some(max_gens) = options.exploitation.terminate.generations {
+          restart_options = restart_options.max_generations_per_run(max_gens);
+        }
 
         // run the CMA-ES optimization pass
-        let restarter = Restarter::new(
-            RestartOptions::new(parameter_count, -1.0..=1.0, options.exploitation.restart.clone())
-                .mode(Mode::Minimize)
-                .fun_target(fitness_target),
-        )
-        .unwrap();
-
-        restarter.clone().run_with_reuse(scaled).best.expect("CMA-ES optimization failed, this is likely the result of FitnessFunction returning f64::NAN")
+        Restarter::new(restart_options)
+          .unwrap()
+          .run_with_reuse(scaled)
+          .best
+          .expect("CMA-ES optimization failed, this is likely the result of FitnessFunction returning f64::NAN")
     };
 
     // extract the best parameters

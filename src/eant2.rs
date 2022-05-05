@@ -249,10 +249,8 @@ impl EANT2 {
 mod test {
   // use super::EANT2;
 
-use super::{Exploitation, CMAESTermination};
-
   #[test]
- fn test_builder() {
+  fn test_builder() {
     // let x = EANT2::builder()
     //   .inputs(10)
     //   .outputs(3)
