@@ -18,7 +18,7 @@ pub struct Generation<T: FitnessFunction + Clone> {
 impl<T: FitnessFunction + Clone> Generation<T> {
     /// Creates a generation of random, minimal neural networks.
     pub fn initialize(options: &EANT2, object: Arc<T>) -> Generation<T> {
-        let individual_count = options.population * (1 + options.offspring);
+        let individual_count = options.exploration.population * (1 + options.exploration.offspring);
 
         // preallocate the exact amount of memory we know we will need (using an object pool in an ergonomic way is hard here because `T` is unknown).
         let mut individuals = Vec::with_capacity(individual_count);

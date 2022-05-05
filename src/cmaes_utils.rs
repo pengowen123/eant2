@@ -43,12 +43,13 @@ where
             gene_deviations.clone(),
         );
 
+        let fitness_target = options.exploitation.terminate.fitness.unwrap_or(options.exploration.terminate.fitness);
+
         // run the CMA-ES optimization pass
         let restarter = Restarter::new(
-            RestartOptions::new(parameter_count, -1.0..=1.0, options.restart.clone())
+            RestartOptions::new(parameter_count, -1.0..=1.0, options.exploitation.restart.clone())
                 .mode(Mode::Minimize)
-                .fun_target(options.terminate.exploitation.fitness)
-                .max_generations_per_run(options.terminate.exploitation.generations),
+                .fun_target(fitness_target),
         )
         .unwrap();
 

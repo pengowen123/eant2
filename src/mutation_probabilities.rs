@@ -18,6 +18,9 @@ use std::convert::TryFrom;
 pub struct MutationSampler(WeightedAliasIndex<u16>);
 
 impl MutationSampler {
+    /// Reasonable default that works for most problems.
+    pub const REASONABLE_DEFAULT: (u16, u16, u16, u16) = (3, 8, 1, 3);
+
     /// Table of `::sample()` output values.
     const OUTPUTS: [MutationType; 4] = [
         MutationType::AddConnection,
@@ -40,19 +43,15 @@ impl MutationSampler {
 
     /// Sample a mutation type (using relative probabilities declared on creation).
     pub fn sample<R: Rng>(&self, rng: &mut R) -> MutationType {
-        let index = self.0.sample(rng);
-
-        // soundness proof:
-        //   the probability list is only 4 elements long, see `::assemble`.
-        //   the returned index is guaranteed to fall in [0, 3].
-        unsafe { *Self::OUTPUTS.get_unchecked(index) }
+        let j = self.0.sample(rng);
+        Self::OUTPUTS[j]
     }
 }
 
 impl Default for MutationSampler {
     fn default() -> Self {
         // safe unwrap. infallible because of default parameter choice.
-        MutationSampler::new((3, 8, 1, 3)).unwrap()
+        MutationSampler::new(Self::REASONABLE_DEFAULT).unwrap()
     }
 }
 
@@ -62,7 +61,7 @@ impl Default for MutationSampler {
 /// - If a minimal network is desired, set the bias, neuron and connection addition probabilities low,
 ///   and the connection removal probability high.
 /// - For complex problems where network size isn't an issue, high connection addition probability is a good idea.
-/// 
+/// - The reasonable default (when not specified) is `(3, 8, 1, 3)`.
 /// ```rust
 /// MutationProbabilities::zeros()
 ///   .add_connection(2.)     // 1/3rd chance = 2 / (2 + 2 + 1 + 1)
