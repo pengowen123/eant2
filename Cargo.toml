@@ -11,6 +11,7 @@ rayon = "1.5.2"
 cmaes = "0.2.0"
 cge = { git = "https://github.com/pengowen123/cge" }
 gym-rs = { git = "https://github.com/MathisWellmann/gym-rs", optional = true }
+rand_distr = "0.4.3"
 
 [[example]]
 name = "gym_cart_pole"

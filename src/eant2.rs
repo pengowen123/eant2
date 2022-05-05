@@ -2,7 +2,7 @@ use std::sync::Arc;
 use cge::{Network, Activation};
 use cmaes::{restart::{RestartStrategy}};
 use typed_builder::TypedBuilder;
-use crate::{FitnessFunction, generation::Generation, select, mutation::mutate, mutation_probabilities::MutationProbabilities};
+use crate::{FitnessFunction, generation::Generation, select, mutation::mutate, mutation_probabilities::MutationSampler};
 
 const DEFAULT_SEED:                     Option<Network>       = None;
 const DEFAULT_ACTIVATION:               Activation            = Activation::Sigmoid;
@@ -11,7 +11,6 @@ const DEFAULT_OFFSPRING_COUNT:          usize                 = 4;
 const DEFAULT_SIMILAR_FITNESS:          f64                   = 0.15;
 const DEFAULT_MAX_GENERATIONS:          usize                 = 30;
 const DEFAULT_TERMINATING_FITNESS:      f64                   = 0.0;
-const DEFAULT_MUTATION_PROBABILITIES:   MutationProbabilities = MutationProbabilities::assemble((3, 8, 1, 3));
 
 // TODO: examine these defaults, idk! This is all tied up in exactly how you optionally specify termination conditions
 //       and restarting technique.
@@ -118,13 +117,13 @@ pub struct EANT2 {
   pub print: bool,
 
   #[builder(
-    default = DEFAULT_MUTATION_PROBABILITIES, 
+    default_code = "MutationSampler::default()", 
     setter(doc = "Sets the weight for choosing each mutation. In general,
                   the chance for connection mutations should be higher than the chance for a neuron mutation.
                   If a minimal network is desired, set the bias, neuron and connection addition probabilities low,
                   and the connection removal probability high. For complex problems where network size isn't an
                   issue, high connection addition probability is a good idea."))]
-  pub mutation_probabilities: MutationProbabilities,
+  pub mutation_probabilities: MutationSampler,
 
   #[builder(default = DEFAULT_SEED, setter(strip_option))]
   pub seed: Option<Network>,
@@ -171,7 +170,7 @@ impl EANT2 {
       for individual in generation.individuals.iter() {
         for _ in 0..self.offspring {
           let mut new = individual.clone();
-          mutate(&mut new, self.mutation_probabilities);
+          mutate(&mut new, &self.mutation_probabilities);
           
           // increment the gene ages here. We don't want to revisit memory later when we could do the job now (cpu cache).
           new.ages.iter_mut().for_each(|a| *a += 1);

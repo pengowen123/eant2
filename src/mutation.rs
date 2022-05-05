@@ -1,11 +1,12 @@
 use crate::cge_utils::Mutation;
-use crate::mutation_probabilities::MutationProbabilities;
+use crate::mutation_probabilities::MutationSampler;
 use crate::utils::Individual;
 use crate::FitnessFunction;
 use cge::gene::GeneExtras;
 use rand::{thread_rng, Rng};
 
 /// The type of mutation to perform.
+#[derive(Copy, Clone)]
 pub enum MutationType {
     AddConnection,
     RemoveConnection,
@@ -16,7 +17,7 @@ pub enum MutationType {
 /// Selects a random valid mutation and applies it to a neural network
 pub fn mutate<T: FitnessFunction + Clone>(
     individual: &mut Individual<T>,
-    probabilities: MutationProbabilities,
+    probabilities: &MutationSampler,
 ) {
     let mut rng = thread_rng();
 
@@ -25,7 +26,7 @@ pub fn mutate<T: FitnessFunction + Clone>(
     let depths = individual.get_depths(true);
     let neuron_depth = depths[index - 1];
 
-    match probabilities.generate(&mut rng) {
+    match probabilities.sample(&mut rng) {
         MutationType::AddConnection => add_connection(individual, index, None),
         MutationType::AddNode => individual.add_subnetwork(0, index, 0),
         MutationType::AddBias => individual.add_bias(index),

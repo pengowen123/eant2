@@ -127,7 +127,7 @@ pub fn is_duplicate(a: &[Gene], b: &[Gene]) -> bool {
         }
     }
 
-    false
+    true
 }
 
 pub fn compare_fitness<T>(a: &Individual<T>, b: &Individual<T>, threshold: f64) -> bool
