@@ -1,51 +1,59 @@
-use cge::gene::GeneExtras;
-use rand::{Rng, thread_rng};
-
-use crate::utils::{Individual, weighted_choice};
 use crate::cge_utils::Mutation;
-use crate::NNFitnessFunction;
+use crate::mutation_probabilities::MutationSampler;
+use crate::utils::Individual;
+use crate::FitnessFunction;
+use cge::gene::GeneExtras;
+use rand::{thread_rng, Rng};
 
-// Selects a random valid mutation and applies it to a neural network
-pub fn mutate<T>(individual: &mut Individual<T>, weights: &[usize; 4])
-    where T: NNFitnessFunction + Clone
-{
+/// The type of mutation to perform.
+#[derive(Copy, Clone)]
+pub enum MutationType {
+    AddConnection,
+    RemoveConnection,
+    AddNode,
+    AddBias,
+}
+
+/// Selects a random valid mutation and applies it to a neural network
+pub fn mutate<T: FitnessFunction + Clone>(
+    individual: &mut Individual<T>,
+    probabilities: &MutationSampler,
+) {
     let mut rng = thread_rng();
 
-    // Index of the neuron to make the new mutation's output lead to
-    let index = individual.random_index() + 1;
-
+    // index of the neuron to make the new mutation's output lead to
+    let index = 1 + individual.random_index(&mut rng);
     let depths = individual.get_depths(true);
     let neuron_depth = depths[index - 1];
-    let mutation = weighted_choice(weights);
 
-    match mutation {
-        0 => {
-            add_connection(individual, index, None);
-        },
-        1 => {
-            // Remove connection
-
-            let valid_neurons = individual.network.genome.iter().filter(|g| {
-                if let GeneExtras::Neuron(_, ref inputs) = g.variant {
-                    *inputs > 1
-                } else {
-                    false
-                }
-            }).map(|n| {
-                n.id
-            }).collect::<Vec<usize>>();
+    match probabilities.sample(&mut rng) {
+        MutationType::AddConnection => add_connection(individual, index, None),
+        MutationType::AddNode => individual.add_subnetwork(0, index, 0),
+        MutationType::AddBias => individual.add_bias(index),
+        MutationType::RemoveConnection => {
+            let valid_neurons = individual
+                .network
+                .genome
+                .iter()
+                .filter(|g| {
+                    if let GeneExtras::Neuron(_, ref inputs) = g.variant {
+                        *inputs > 1
+                    } else {
+                        false
+                    }
+                })
+                .map(|n| n.id)
+                .collect::<Vec<usize>>();
 
             if !valid_neurons.is_empty() {
-                let id = rng.choose(&valid_neurons).expect("40");
+                let id = valid_neurons[rng.gen_range(0..valid_neurons.len())];
                 let depths = individual.get_depths(true);
-                let range = individual.subnetwork_index(*id);
+                let range = individual.subnetwork_index(id);
                 let mut valid_indices = Vec::new();
 
                 for i in range {
                     let mut is_valid = true;
-
                     let gene = &individual.network.genome[i];
-
                     if depths[i] != neuron_depth + 1 {
                         continue;
                     }
@@ -53,42 +61,28 @@ pub fn mutate<T>(individual: &mut Individual<T>, weights: &[usize; 4])
                     if let GeneExtras::Neuron(_, _) = gene.variant {
                         continue;
                     }
-
                     if let GeneExtras::Input(_) = gene.variant {
                         is_valid = individual.get_input_copies(gene.id) > 1
                     }
-
                     if is_valid {
                         valid_indices.push(i);
                     }
                 }
 
                 if !valid_indices.is_empty() {
-                    let index = rng.choose(&valid_indices).expect("420");
-
-                    individual.remove_connection(*index, *id);
+                    let index = valid_indices[rng.gen_range(0..valid_indices.len())];
+                    individual.remove_connection(index, id);
                 }
             }
-        },
-        2 => {
-            // Add subnetwork (add neuron and connections)
-
-            individual.add_subnetwork(0, index, 0);
-        },
-        3 => {
-            // Add bias
-
-            individual.add_bias(index);
-        },
-        _ => {
-            unreachable!();
         }
     }
 }
 
-fn add_connection<T>(individual: &mut Individual<T>, index: usize, id_: Option<usize>)
-    where T: NNFitnessFunction + Clone
-{
+fn add_connection<T: FitnessFunction + Clone>(
+    individual: &mut Individual<T>,
+    index: usize,
+    id_: Option<usize>,
+) {
     let mut rng = thread_rng();
     let range = individual.subnetwork_index(index);
     let neuron_depth = individual.get_depths(true)[index];
@@ -114,7 +108,7 @@ fn add_connection<T>(individual: &mut Individual<T>, index: usize, id_: Option<u
     let depths_neurons = individual.get_depths(false);
     let id = match id_ {
         Some(i) => i,
-        None => individual.network.genome[index - 1].id
+        None => individual.network.genome[index - 1].id,
     };
 
     let mut valid_forward = Vec::new();
@@ -161,14 +155,14 @@ fn add_connection<T>(individual: &mut Individual<T>, index: usize, id_: Option<u
                 }
             }
         }
-        
+
         if !is_duplicate {
             valid_recurrent.push(i);
         }
     }
 
-    let mut valid_mutations = Vec::new();
-
+    // TODO: hm, don't do it like this.
+    let mut valid_mutations = Vec::<u8>::with_capacity(3);
     if !valid_inputs.is_empty() {
         valid_mutations.push(0);
     }
@@ -182,7 +176,7 @@ fn add_connection<T>(individual: &mut Individual<T>, index: usize, id_: Option<u
     }
 
     if !valid_mutations.is_empty() {
-        let mutation = rng.choose(&valid_mutations).expect("2");
+        let mutation = valid_mutations[rng.gen_range(0..valid_mutations.len())];
 
         if let Some(v) = id_ {
             let mut is_valid = false;
@@ -195,36 +189,21 @@ fn add_connection<T>(individual: &mut Individual<T>, index: usize, id_: Option<u
 
             if is_valid {
                 individual.add_forward(id, index);
-
                 return;
             }
         }
 
-        match *mutation {
-            0 => {
-                // Add input connection
-
-                let input = rng.choose(&valid_inputs).expect("3");
-
-                individual.add_input(*input, index);
-            },
+        match mutation {
+            // add input connection
+            0 => individual.add_input(valid_inputs[rng.gen_range(0..valid_inputs.len())], index),
+            // add forward connection
             1 => {
-                // Add neuron connection
-                
-                let id = rng.choose(&valid_forward).expect("5");
-
-                individual.add_forward(*id, index);
-            },
-            2 => {
-                // Add recurrent neuron connection
-
-                let id = rng.choose(&valid_recurrent).unwrap();
-
-                individual.add_recurrent(*id, index);
-            },
-            _ => {
-                unreachable!();
+                individual.add_forward(valid_forward[rng.gen_range(0..valid_forward.len())], index)
             }
+            // add recurrent neuron connection
+            2 => individual
+                .add_recurrent(valid_recurrent[rng.gen_range(0..valid_recurrent.len())], index),
+            _ => unreachable!(),
         }
     }
 }

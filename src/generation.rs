@@ -1,56 +1,73 @@
+use crate::cge_utils::Mutation;
+use crate::cmaes_utils::optimize_network;
+use crate::eant2::EANT2;
+use crate::utils::Individual;
+use crate::FitnessFunction;
+use cge::Network;
+use rand::{thread_rng, Rng};
+use rayon::prelude::*;
 use std::sync::Arc;
 
-use cge::{Network, Activation};
-use rand::thread_rng;
-use rand::distributions::{IndependentSample, Range};
+pub struct Generation<T: FitnessFunction + Clone> {
+    /// The individuals in the generation.
+    // TODO: reuse buffer, guess at capacity on fallback to new alloc.
+    // TODO: this will require something nice and clever to handle the fact that `T` is unknown.
+    pub(crate) individuals: Vec<Individual<T>>,
+}
 
-use crate::utils::Individual;
-use crate::cge_utils::Mutation;
-use crate::NNFitnessFunction;
+impl<T: FitnessFunction + Clone> Generation<T> {
+    /// Creates a generation of random, minimal neural networks.
+    pub fn initialize(options: &EANT2, object: Arc<T>) -> Generation<T> {
+        let individual_count = options.exploration.population * (1 + options.exploration.offspring);
 
-// Creates a generation of random, minimal neural networks
-pub fn initialize_generation<T>(population_size: usize,
-                                offspring_count: usize,
-                                inputs: usize,
-                                outputs: usize,
-                                activation: Activation,
-                                object: Arc<T>) -> Vec<Individual<T>>
-    where T: NNFitnessFunction + Clone
-{
+        // preallocate the exact amount of memory we know we will need (using an object pool in an ergonomic way is hard here because `T` is unknown).
+        let mut individuals = Vec::with_capacity(individual_count);
+        let mut rng = thread_rng();
 
-    let mut rng = thread_rng();
+        (0..individual_count).for_each(|_| {
+            // initialize empty network with the specified activation function
+            let mut network = Network {
+                size: 0,
+                genome: vec![], // TODO: reuse buffer, guess at capacity on fallback to new alloc.
+                function: options.activation.clone(),
+            };
 
-    let mut generation = Vec::new();
-
-    for _ in 0..population_size * (offspring_count + 1) {
-        let mut network = Network {
-            size: 0,
-            genome: Vec::new(),
-            function: activation.clone(),
-        };
-
-        for i in (0..outputs).rev() {
-            network.add_subnetwork(i, 0, inputs)
-        }
-
-        network.size = network.genome.len() - 1;
-
-        generation.push(Individual::new(inputs, outputs, network, object.clone()));
-    }
-
-    // Make sure all inputs are connected
-    for individual in &mut generation {
-        let range = Range::new(0, outputs);
-
-        for i in 0..inputs {
-            if individual.get_input_copies(i) == 0 {
-                let id = range.ind_sample(&mut rng);
-                let index = individual.network.get_neuron_index(id).unwrap() + 1;
-
-                individual.add_input(i, index);
+            // add subnetworks
+            for i in (0..options.outputs).rev() {
+                network.add_subnetwork(i, 0, options.inputs);
             }
-        }
+            network.size = network.genome.len() - 1;
+
+            // push individual into the generation
+            individuals.push(Individual::new(
+                options.inputs,
+                options.outputs,
+                network,
+                object.clone(),
+            ));
+        });
+
+        // ensure all inputs are connected
+        individuals.iter_mut().for_each(|individual| {
+            for i in 0..options.inputs {
+                if individual.get_input_copies(i) == 0 {
+                    let id = rng.gen_range(0..options.outputs);
+                    let index = 1 + individual.network.get_neuron_index(id).unwrap();
+                    individual.add_input(i, index);
+                }
+            }
+        });
+
+        Generation { individuals }
     }
 
-    generation
+    /// Use `CMA-ES` to optimize all the individuals in the generation in parallel, exploiting their existing structure.
+    pub fn update_generation(&mut self, options: &EANT2)
+    where
+        T: 'static + FitnessFunction + Clone + Send + Sync,
+    {
+        self.individuals
+            .par_iter_mut()
+            .for_each(|individual| optimize_network(individual, &options));
+    }
 }

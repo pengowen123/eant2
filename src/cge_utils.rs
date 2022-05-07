@@ -1,6 +1,6 @@
-use rand::{thread_rng, Rng};
+use cge::gene::{Gene, GeneExtras};
 use cge::Network;
-use cge::gene::{GeneExtras, Gene};
+use rand::{thread_rng, Rng};
 
 pub trait Mutation {
     fn add_subnetwork(&mut self, input: usize, output: usize, inputs: usize);
@@ -28,12 +28,14 @@ impl Mutation for Network {
         }
 
         if input_count == 0 {
-            self.genome.insert(output, Gene::input(1.0, rng.gen_range(0, inputs)));
+            self.genome
+                .insert(output, Gene::input(1.0, rng.gen_range(0..inputs)));
             input_count = 1;
         }
-        
-        self.genome.insert(output, Gene::neuron(1.0, id, input_count));
-        
+
+        self.genome
+            .insert(output, Gene::neuron(1.0, id, input_count));
+
         let prev_index = self.previous_neuron_index(output);
 
         if let Some(i) = prev_index {
@@ -75,24 +77,18 @@ impl Mutation for Network {
     // output is the index to put the input connection at
     fn add_input(&mut self, input: usize, output: usize) {
         self.genome.insert(output, Gene::input(1.0, input));
-
         self.size = self.genome.len() - 1;
-
         let prev_index = self.previous_neuron_index(output).unwrap();
         let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
-
         *inputs += 1;
     }
 
     // output is the index to put the bias at
     fn add_bias(&mut self, output: usize) {
         self.genome.insert(output, Gene::bias(1.0));
-
         self.size = self.genome.len() - 1;
-
         let prev_index = self.previous_neuron_index(output).unwrap();
         let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
-
         *inputs += 1;
     }
 
@@ -100,7 +96,6 @@ impl Mutation for Network {
     // index is the index of the gene to remove
     fn remove_connection(&mut self, index: usize, output: usize) {
         self.genome.remove(index);
-
         self.size = self.genome.len() - 1;
 
         let neuron_index = match self.get_neuron_index(output) {
@@ -116,7 +111,7 @@ impl Mutation for Network {
 
         *inputs -= 1;
     }
-    
+
     // get index of the first neuron before the index
     // to prevent code duplication
     fn previous_neuron_index(&self, index: usize) -> Option<usize> {
@@ -129,5 +124,3 @@ impl Mutation for Network {
         None
     }
 }
-
-
