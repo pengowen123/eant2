@@ -32,7 +32,7 @@ use crate::options::*;
 ///   .outputs(3)
 ///   .build();
 /// 
-/// let (network, fitness) = train.run(MyFitnessFunction);
+/// let (network, fitness) = train.run(&MyFitnessFunction);
 /// ```
 /// 
 /// # Advanced Example
@@ -46,16 +46,16 @@ use crate::options::*;
 ///   .inputs(10)
 ///   .outputs(3)
 ///   .activation(Activation::Relu) // use the ReLu activation function
-///   .print()                      // prints optimization progress.
+///   .print()                      // prints optimization progress
 ///   .exploration(                 // EANT2 options (structural optimization)
 ///     Exploration::builder()
 ///       .population(20)           // 20 networks in the population
 ///       .offspring(4)             // each network spawns 4 offspring
-///       .similar_fitness(0.2)     // network 'similarity' threshold
+///       .similarity(0.2)          // network 'similarity' threshold
 ///       .terminate(
-///          EANT2Termination::builder()
-///            .fitness(0.15)       // either terminate EANT2 when fitness hits 0.15,
-///            .generations(12)     // or terminate after 12 generations
+///         EANT2Termination::builder()
+///           .fitness(0.15)        // either terminate EANT2 when best fitness hits 0.15,
+///           .generations(12)      // or terminate after 12 generations
 ///       )
 ///       .mutation_probabilities(  // describe relative mutation probabilities
 ///         MutationProbabilities::zeros()
@@ -72,8 +72,8 @@ use crate::options::*;
 ///        .restart(RestartStrategy::BIPOP(Default::default())) // custom restart strategy for CMA-ES
 ///        .terminate(
 ///          CMAESTermination::builder()
-///            .fitness(0.15)   // terminate CMA-ES when fitness hits 0.15 (defaults to EANT2 fitness)
-///            .generations(40) // force terminate CMA-ES after 40 CMA-ES generations (defaults to no limit)
+///            .evaluations(60) // force terminate CMA-ES if fitness function is evaluated 60 times (default no limit)
+///            .generations(40) // force terminate CMA-ES after 40 CMA-ES generations (default no limit)
 ///        )
 ///        .build()
 ///    )
@@ -127,7 +127,7 @@ impl EANT2 {
       generation.update_generation(&self);
 
       // 2. Select individuals to go on to the next generation
-      generation = select::select(self.exploration.population, &generation.individuals[..], self.exploration.similar_fitness);
+      generation = select::select(self.exploration.population, &generation.individuals[..], self.exploration.similarity);
       generation.individuals.sort_by(|a, b| a.fitness.partial_cmp(&b.fitness).unwrap());
 
       let best = &generation.individuals[0];

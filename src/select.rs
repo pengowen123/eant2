@@ -58,9 +58,9 @@ pub fn select<T: FitnessFunction + Clone + Send>(
 
     generation.sort_by(|a, b| {
         let by_fitness = a.fitness.partial_cmp(&b.fitness).unwrap();
-        let similar_fitness = compare_fitness(&a, &b, threshold);
+        let fitness_similar = compare_fitness(&a, &b, threshold);
 
-        if similar_fitness {
+        if fitness_similar {
             a.network.size.partial_cmp(&b.network.size).unwrap()
         } else {
             by_fitness

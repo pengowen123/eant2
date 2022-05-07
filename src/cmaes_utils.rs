@@ -43,13 +43,15 @@ where
             gene_deviations.clone(),
         );
 
-        let fitness_target = options.exploitation.terminate.fitness.unwrap_or(options.exploration.terminate.fitness);
         let mut restart_options = RestartOptions::new(parameter_count, -1.0..=1.0, options.exploitation.restart.clone())
-          .mode(Mode::Minimize)
-          .fun_target(fitness_target);
+          .mode(Mode::Minimize)                  // minimize the fitness function
+          .fun_target(options.exploration.terminate.fitness); // don't optimize beyond the EANT2 fitness
 
         if let Some(max_gens) = options.exploitation.terminate.generations {
-          restart_options = restart_options.max_generations_per_run(max_gens);
+            restart_options = restart_options.max_generations_per_run(max_gens);
+        }
+        if let Some(max_evals) = options.exploitation.terminate.evaluations {
+            restart_options = restart_options.max_function_evals(max_evals);
         }
 
         // run the CMA-ES optimization pass

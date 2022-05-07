@@ -6,7 +6,7 @@ use crate::mutation_probabilities::MutationSampler;
 pub(crate) const DEFAULT_ACTIVATION:          Activation       = Activation::Sigmoid;
 pub(crate) const DEFAULT_POPULATION_SIZE:     usize            = 10;
 pub(crate) const DEFAULT_OFFSPRING_COUNT:     usize            = 4;
-pub(crate) const DEFAULT_SIMILAR_FITNESS:     f64              = 0.15;
+pub(crate) const DEFAULT_SIMILARITY:          f64              = 0.15;
 pub(crate) const DEFAULT_MAX_GENERATIONS:     usize            = 30;
 pub(crate) const DEFAULT_TERMINATING_FITNESS: f64              = 0.0;
 pub(crate) const DEFAULT_EANT2_TERMINATION:   EANT2Termination = EANT2Termination { fitness: 0.0, generations: 30 };
@@ -43,14 +43,16 @@ pub struct Exploration {
   pub offspring: usize,
 
   #[builder(
-    default = DEFAULT_SIMILAR_FITNESS, 
+    default = DEFAULT_SIMILARITY, 
     setter(doc= "Sets the threshold for deciding whether two neural networks have a similar fitness.
                  Increasing this option will make the algorithm more aggresively prefer smaller
                  neural networks. Decreasing it will do the opposite, allowing larger individuals to stay in
                  the population. It is recommended to set this option higher if a small neural network is
                  preferred. The downside is it will take slightly longer to find a solution, due to more
-                 higher fitness neural networks being discarded."))]
-  pub similar_fitness: f64,
+                 higher fitness neural networks being discarded.
+                 
+                 Default: `0.15`."))]
+  pub similarity: f64,
 
   #[builder(
     default_code = "MutationSampler::default()", 
@@ -65,8 +67,8 @@ pub struct Exploration {
 /// You usually don't need to configure this.
 #[derive(TypedBuilder)]
 pub struct CMAESTermination {
-  #[builder(default = None, setter(strip_option, doc = "Default is to use the fitness from `EANT2Termination` options, which defaults to `0.0`."))]
-  pub fitness:     Option<f64>,
+  #[builder(default = None, setter(strip_option, doc = "Limits the number of times CMA-ES can evaluate the fitness function before it terminates.  Default no limit."))]
+  pub evaluations: Option<usize>,
 
   #[builder(default = None, setter(strip_option, doc = "Default is no CMA-ES generation limit."))]
   pub generations: Option<usize>
