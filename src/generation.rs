@@ -1,13 +1,13 @@
-use cge::gene::{Gene, NeuronId, Neuron, InputId, Input};
+use cge::gene::{Gene, Input, InputId, Neuron, NeuronId};
 use cge::Activation;
 use rand::{thread_rng, Rng};
 use rayon::prelude::*;
 
-use std::sync::Arc;
 use std::collections::HashSet;
+use std::sync::Arc;
 
-use crate::cmaes_utils::optimize_network;
 use crate::cge_utils::{Network, INITIAL_WEIGHT_VALUE};
+use crate::cmaes_utils::optimize_network;
 use crate::eant2::EANT2;
 use crate::utils::Individual;
 use crate::FitnessFunction;
@@ -26,18 +26,10 @@ impl<T: FitnessFunction + Clone> Generation<T> {
 
         let individuals = (0..individual_count)
             .map(|_| {
-                let network = get_random_initial_network(
-                    options.inputs,
-                    options.outputs,
-                    options.activation,
-                );
+                let network =
+                    get_random_initial_network(options.inputs, options.outputs, options.activation);
 
-                Individual::new(
-                    options.inputs,
-                    options.outputs,
-                    network,
-                    object.clone(),
-                )
+                Individual::new(options.inputs, options.outputs, network, object.clone())
             })
             .collect();
 
@@ -102,10 +94,15 @@ fn get_random_initial_network(inputs: usize, outputs: usize, activation: Activat
         }
     }
 
-    for input_id in input_ids_not_connected.into_iter().map(|id| InputId::new(id)) {
+    for input_id in input_ids_not_connected
+        .into_iter()
+        .map(|id| InputId::new(id))
+    {
         // Add unconnected network inputs to a random output neuron
         let parent_id = NeuronId::new(rng.gen_range(0..outputs));
-        network.add_non_neuron(parent_id, Input::new(input_id, INITIAL_WEIGHT_VALUE)).unwrap();
+        network
+            .add_non_neuron(parent_id, Input::new(input_id, INITIAL_WEIGHT_VALUE))
+            .unwrap();
     }
 
     network

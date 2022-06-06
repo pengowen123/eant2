@@ -26,16 +26,16 @@
 //!
 //! Complete this section when the project is finished
 
-mod utils;
-mod cmaes_utils;
-mod mutation;
-mod generation;
 mod cge_utils;
-mod select;
-pub mod options;
+mod cmaes_utils;
 pub mod eant2;
 pub mod fitness;
+mod generation;
+mod mutation;
 pub mod mutation_probabilities;
+pub mod options;
+mod select;
+mod utils;
 
 pub use cge::Activation;
 pub use fitness::FitnessFunction;

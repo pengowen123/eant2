@@ -20,9 +20,9 @@ pub fn mutate<T: FitnessFunction + Clone>(
     let mut rng = thread_rng();
 
     match probabilities.sample(&mut rng) {
-        MutationType::AddConnection => {},
-        MutationType::AddNode => {},
-        MutationType::AddBias => {},
-        MutationType::RemoveConnection => {},
+        MutationType::AddConnection => {}
+        MutationType::AddNode => {}
+        MutationType::AddBias => {}
+        MutationType::RemoveConnection => {}
     }
 }

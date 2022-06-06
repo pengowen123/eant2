@@ -118,7 +118,9 @@ pub fn compare<T: FitnessFunction + Clone>(a: &Individual<T>, b: &Individual<T>)
 /// Are the genomes `a` and `b` structurally identical?
 pub fn is_duplicate(a: &[Gene<f64>], b: &[Gene<f64>]) -> bool {
     // Observation: if the networks are different lengths, this immediately implies that they cannot be structural duplicates.
-    if a.len() != b.len() { return false; }
+    if a.len() != b.len() {
+        return false;
+    }
 
     for (gene_a, gene_b) in a.iter().zip(b.iter()) {
         if !same_gene_type(gene_a, gene_b) {

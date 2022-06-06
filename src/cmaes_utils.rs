@@ -24,12 +24,7 @@ where
     .collect();
 
     // TODO: amortize allocation
-    let initial_mean = DVector::from(
-        individual
-            .network
-            .weights()
-            .collect::<Vec<f64>>(),
-    );
+    let initial_mean = DVector::from(individual.network.weights().collect::<Vec<f64>>());
 
     // TODO: find an ergonomic way to optionally specify termination conditions, restarter, etc. while also capturing (statically in the type system!)
     //       that there is a minimum amount of information that must be provided to prevent infinite looping.
