@@ -27,9 +27,7 @@ where
     let initial_mean = DVector::from(
         individual
             .network
-            .genome
-            .iter()
-            .map(|g| g.weight)
+            .weights()
             .collect::<Vec<f64>>(),
     );
 
@@ -37,7 +35,7 @@ where
     //       that there is a minimum amount of information that must be provided to prevent infinite looping.
     let best = {
         // TODO: avoid these clones if possible.
-        let parameter_count = individual.network.genome.len();
+        let parameter_count = individual.network.len();
         let scaled = Scale::new(
             |x: &DVector<f64>| individual.evaluate(&(x + &initial_mean)),
             gene_deviations.clone(),
@@ -68,13 +66,12 @@ where
     // commit to the new network parameters (the returned value does not have parameter scaling applied, so we do that here!)
     individual
         .network
-        .genome
-        .iter_mut()
+        .mut_weights()
         .zip(best_parameters.iter())
         .zip(initial_mean.iter())
         .zip(gene_deviations.iter())
-        .for_each(|(((gene, initial), &new_weight), &scale)| {
-            gene.weight = initial + (new_weight * scale)
+        .for_each(|(((weight, initial), &new_weight), &scale)| {
+            *weight = initial + (new_weight * scale)
         });
 
     // update the fitness of the network (with its new parameters)

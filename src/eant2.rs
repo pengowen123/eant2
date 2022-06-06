@@ -1,8 +1,10 @@
 use std::sync::Arc;
-use cge::{Network, Activation};
+use cge::Activation;
 use typed_builder::TypedBuilder;
+
 use crate::{FitnessFunction, generation::Generation, select, mutation::mutate};
 use crate::options::*;
+use crate::cge_utils::Network;
 
 /// The EANT2 algorithm.
 /// 
@@ -136,7 +138,7 @@ impl EANT2 {
       if best.fitness <= self.exploration.terminate.fitness || g + 1 >= self.exploration.terminate.generations {
         if self.print {
           println!("EANT2 terminated in {} generations", g + 1);
-          println!("Solution found with size {} and {} fitness", best.network.size + 1, best.fitness);
+          println!("Solution found with size {} and {} fitness", best.network.len(), best.fitness);
         }
 
         return (best.network.clone(), best.fitness);

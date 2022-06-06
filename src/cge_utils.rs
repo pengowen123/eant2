@@ -1,126 +1,59 @@
-use cge::gene::{Gene, GeneExtras};
-use cge::Network;
-use rand::{thread_rng, Rng};
+//! Utilities for working with CGE networks
 
-pub trait Mutation {
-    fn add_subnetwork(&mut self, input: usize, output: usize, inputs: usize);
-    fn add_forward(&mut self, input: usize, output: usize);
-    fn add_recurrent(&mut self, input: usize, output: usize);
-    fn add_bias(&mut self, output: usize);
-    fn add_input(&mut self, input: usize, output: usize);
-    fn remove_connection(&mut self, index: usize, output: usize);
-    fn previous_neuron_index(&self, index: usize) -> Option<usize>;
+use cge::network::{MismatchedLengthsError, NotEnoughInputsError};
+
+use std::ops::Deref;
+
+/// The initial value for the weight of any new gene in a network.
+pub const INITIAL_WEIGHT_VALUE: f64 = 1.0;
+
+/// A CGE network.
+pub type Network = cge::Network<f64>;
+
+/// A view into a [`Network`] that only provides restricted set of operations.
+pub struct NetworkView<'a>(&'a mut Network);
+
+impl<'a> NetworkView<'a> {
+    pub fn new(network: &'a mut Network) -> Self {
+        Self(network)
+    }
+
+    /// See [`Network::evaluate`][Network::evaluate].
+    pub fn evaluate(&mut self, inputs: &[f64]) -> Result<&[f64], NotEnoughInputsError> {
+        self.0.evaluate(inputs)
+    }
+
+    /// See [`Network::clear_state`][Network::clear_state].
+    pub fn clear_state(&mut self) {
+        self.0.clear_state();
+    }
+
+    /// See [`Network::recurrent_state_len`][Network::recurrent_state_len].
+    pub fn recurrent_state_len(&mut self) -> usize {
+        self.0.recurrent_state_len()
+    }
+
+    /// See [`Network::recurrent_state`][Network::recurrent_state].
+    pub fn recurrent_state(&mut self) -> impl Iterator<Item = f64> + '_ {
+        self.0.recurrent_state()
+    }
+
+    /// See [`Network::set_recurrent_state`][Network::set_recurrent_state].
+    pub fn set_recurrent_state(&mut self, state: &[f64]) -> Result<(), MismatchedLengthsError> {
+        self.0.set_recurrent_state(state)
+    }
+
+    /// See [`Network::map_recurrent_state`][Network::map_recurrent_state].
+    pub fn map_recurrent_state<F: FnMut(usize, &mut f64)>(&mut self, f: F) {
+        self.0.map_recurrent_state(f)
+    }
 }
 
-impl Mutation for Network {
-    // inputs is the number of inputs to the network
-    // id is the id of the new neuron
-    // output is the index to put the neuron at
-    fn add_subnetwork(&mut self, id: usize, output: usize, inputs: usize) {
-        let mut rng = thread_rng();
-        let mut input_count = 0;
+// Allow access to immutable methods from `Network`
+impl<'a> Deref for NetworkView<'a> {
+    type Target = Network;
 
-        for i in 0..inputs {
-            if rng.gen() {
-                self.genome.insert(output, Gene::input(1.0, i));
-                input_count += 1;
-            }
-        }
-
-        if input_count == 0 {
-            self.genome
-                .insert(output, Gene::input(1.0, rng.gen_range(0..inputs)));
-            input_count = 1;
-        }
-
-        self.genome
-            .insert(output, Gene::neuron(1.0, id, input_count));
-
-        let prev_index = self.previous_neuron_index(output);
-
-        if let Some(i) = prev_index {
-            let (_, _, _, inputs) = self.genome[i].ref_mut_neuron().unwrap();
-
-            *inputs += 1;
-        }
-
-        self.size = self.genome.len() - 1;
-    }
-
-    // input is the id of the neuron to take input from
-    // output is the index to put the jumper at
-    fn add_forward(&mut self, input: usize, output: usize) {
-        self.genome.insert(output, Gene::forward(1.0, input));
-
-        self.size = self.genome.len() - 1;
-
-        let prev_index = self.previous_neuron_index(output).unwrap();
-        let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
-
-        *inputs += 1;
-    }
-
-    // input is the id of the neuron to take input from
-    // output is the index to put the jumper at
-    fn add_recurrent(&mut self, input: usize, output: usize) {
-        self.genome.insert(output, Gene::recurrent(1.0, input));
-
-        self.size = self.genome.len() - 1;
-
-        let prev_index = self.previous_neuron_index(output).unwrap();
-        let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
-
-        *inputs += 1;
-    }
-
-    // input is the id of the input to add a connection from
-    // output is the index to put the input connection at
-    fn add_input(&mut self, input: usize, output: usize) {
-        self.genome.insert(output, Gene::input(1.0, input));
-        self.size = self.genome.len() - 1;
-        let prev_index = self.previous_neuron_index(output).unwrap();
-        let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
-        *inputs += 1;
-    }
-
-    // output is the index to put the bias at
-    fn add_bias(&mut self, output: usize) {
-        self.genome.insert(output, Gene::bias(1.0));
-        self.size = self.genome.len() - 1;
-        let prev_index = self.previous_neuron_index(output).unwrap();
-        let (_, _, _, inputs) = self.genome[prev_index].ref_mut_neuron().unwrap();
-        *inputs += 1;
-    }
-
-    // output is the id of the neuron to remove the connection from
-    // index is the index of the gene to remove
-    fn remove_connection(&mut self, index: usize, output: usize) {
-        self.genome.remove(index);
-        self.size = self.genome.len() - 1;
-
-        let neuron_index = match self.get_neuron_index(output) {
-            Some(v) => v,
-            None => {
-                println!("{}", output);
-                println!("{:?}", self);
-                panic!();
-            }
-        };
-
-        let (_, _, _, inputs) = self.genome[neuron_index].ref_mut_neuron().expect("bar");
-
-        *inputs -= 1;
-    }
-
-    // get index of the first neuron before the index
-    // to prevent code duplication
-    fn previous_neuron_index(&self, index: usize) -> Option<usize> {
-        for i in (0..index).rev() {
-            if let GeneExtras::Neuron(_, _) = self.genome[i].variant {
-                return Some(i);
-            }
-        }
-
-        None
+    fn deref(&self) -> &Self::Target {
+        self.0
     }
 }

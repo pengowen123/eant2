@@ -2,7 +2,7 @@ use crate::generation::Generation;
 use crate::utils::Individual;
 use crate::FitnessFunction;
 use cge::gene::Gene;
-use cge::gene::GeneExtras::*;
+use std::mem;
 
 // For preserving diversity
 const MAX_DUPLICATES: usize = 1;
@@ -61,7 +61,7 @@ pub fn select<T: FitnessFunction + Clone + Send>(
         let fitness_similar = compare_fitness(&a, &b, threshold);
 
         if fitness_similar {
-            a.network.size.partial_cmp(&b.network.size).unwrap()
+            a.network.len().cmp(&b.network.len())
         } else {
             by_fitness
         }
@@ -91,23 +91,22 @@ pub fn compare<T: FitnessFunction + Clone>(a: &Individual<T>, b: &Individual<T>)
     // -> Maybe a fool's errand, you decide.
 
     // if we know it is a duplicate already, escape early
-    if is_duplicate(&a.network.genome, &b.network.genome) {
+    if is_duplicate(a.network.genome(), b.network.genome()) {
         return Category::Duplicate;
     }
 
     // get an iterator over the neuron *pairs*, e.g. the `i`th neuron in network A and the `i`th neuron in network B.
     // written in this funky way to avoid two vector allocations that used to be used here.
-    let is_neuron = |g: &&Gene| matches!(g.variant, Neuron(_, _));
     let neurons = a
         .network
-        .genome
+        .genome()
         .iter()
-        .filter(is_neuron)
-        .zip(b.network.genome.iter().filter(is_neuron));
+        .filter(|g| g.is_neuron())
+        .zip(b.network.genome().iter().filter(|g| g.is_neuron()));
 
     for (gene_a, gene_b) in neurons {
         // if the `i`th neuron-gene in A and B don't have the same ID, we immediately claim they are structurally unique.
-        if gene_a.id != gene_b.id {
+        if gene_a.as_neuron().unwrap().id() != gene_b.as_neuron().unwrap().id() {
             return Category::Unique;
         }
     }
@@ -117,12 +116,12 @@ pub fn compare<T: FitnessFunction + Clone>(a: &Individual<T>, b: &Individual<T>)
 }
 
 /// Are the genomes `a` and `b` structurally identical?
-pub fn is_duplicate(a: &[Gene], b: &[Gene]) -> bool {
+pub fn is_duplicate(a: &[Gene<f64>], b: &[Gene<f64>]) -> bool {
     // Observation: if the networks are different lengths, this immediately implies that they cannot be structural duplicates.
     if a.len() != b.len() { return false; }
 
     for (gene_a, gene_b) in a.iter().zip(b.iter()) {
-        if variant(gene_a) != variant(gene_b) {
+        if !same_gene_type(gene_a, gene_b) {
             return false;
         }
     }
@@ -139,12 +138,7 @@ where
     diff / b.fitness < threshold
 }
 
-fn variant(gene: &Gene) -> u8 {
-    match gene.variant {
-        Neuron(_, _) => 0,
-        Input(_) => 1,
-        Forward => 2,
-        Recurrent => 3,
-        Bias => 4,
-    }
+/// Returns whether the two genes are of the same gene type.
+fn same_gene_type(a: &Gene<f64>, b: &Gene<f64>) -> bool {
+    mem::discriminant(a) == mem::discriminant(b)
 }

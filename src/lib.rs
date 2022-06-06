@@ -26,25 +26,8 @@
 //!
 //! Complete this section when the project is finished
 
-// I couldn't care less about whether this implementation is efficent. 99% of time spent is on
-// CMA-ES, so it doesn't even matter.
-
-// FIXME: It appears CMA-ES is causing problems again. It spirals out of control, increasing
-// fitness to an enormous value, eventually overflowing the stack (actually it doesn't overflow
-// anymore for some reason). Please investigate.
-
-// TODO: Test with the sigmoid transfer function, and a modified fitness function. The library may
-// be broken because CMA-ES cannot correctly optimize a neural network to learn boolean logic.
-// Fixing CMA-ES may solve this issue, but until then it would be good to know whether other types
-// of neural networks can be trained. If they cannot, this library is broken, and should be fixed.
-
-extern crate cmaes;
-extern crate cge;
-extern crate rand;
-
 mod utils;
 mod cmaes_utils;
-mod mutation_utils;
 mod mutation;
 mod generation;
 mod cge_utils;
@@ -53,8 +36,11 @@ pub mod options;
 pub mod eant2;
 pub mod fitness;
 pub mod mutation_probabilities;
-pub use cge::{Network, Activation};
+
+pub use cge::Activation;
 pub use fitness::FitnessFunction;
+
+pub use crate::cge_utils::{Network, NetworkView};
 
 #[cfg(test)]
 mod tests;

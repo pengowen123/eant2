@@ -2,25 +2,26 @@ extern crate cge;
 extern crate eant2;
 extern crate gym_rs;
 
-use cge::Activation;
-use eant2::{eant_loop, EANT2Options, FitnessFunction, Network};
-use gym_rs::{ActionType, CartPoleEnv, GymEnv, Viewer};
+use cge::encoding::{Metadata, WithRecurrentState};
+use eant2::{FitnessFunction, Network, NetworkView, Activation};
+use eant2::eant2::EANT2;
+use gym_rs::{ActionType, CartPoleEnv, GymEnv, GifRender};
 
 #[derive(Clone)]
-pub struct MyEnv {}
+pub struct MyEnv;
 
 impl MyEnv {
-  fn fitness(&self, net: &mut Network) -> f64 {
+  fn fitness(&self, net: &mut NetworkView) -> f64 {
     let mut env = CartPoleEnv::default();
     let mut state: Vec<f64> = env.reset();
 
     let mut end: bool = false;
     let mut total_reward: f64 = 0.0;
     while !end {
-      if total_reward > 200.0 {
+      if total_reward > 1000.0 {
         break;
       }
-      let output = net.evaluate(&state);
+      let output = net.evaluate(&state).unwrap();
 
       let action: ActionType = if output[0] < -0.0 {
         ActionType::Discrete(0)
@@ -33,66 +34,72 @@ impl MyEnv {
       state = s;
     }
 
-    // println!("total_reward: {}", total_reward);
-    total_reward
+    -total_reward
   }
 }
 
 impl FitnessFunction for MyEnv {
-  fn fitness(&self, net: &mut Network) -> f64 {
-    // Get the avg score of 10 sample runs
+  fn fitness(&self, mut net: NetworkView) -> f64 {
+    // Get the worst score of 10 sample runs
     (0..10)
       .collect::<Vec<usize>>()
       .iter()
-      .map(|_| self.fitness(net))
-      .sum::<f64>()
-      / 10.0
+      .map(|_| self.fitness(&mut net))
+      .max_by(|a, b| a.partial_cmp(b).unwrap())
+      .unwrap()
   }
 }
 
 fn render_champion(net: &mut Network) {
-  let mut env = CartPoleEnv::default();
-  let mut state: Vec<f64> = env.reset();
+     println!("Rendering solution");
+     let mut env = CartPoleEnv::default();
+     let mut state: Vec<f64> = env.reset();
 
-  let mut viewer = Viewer::new(1080, 1080);
+     let mut render = GifRender::new(540, 540, "./examples/cart_pole_champion.gif", 20).unwrap();
 
-  let mut end: bool = false;
-  let mut total_reward: f64 = 0.0;
-  while !end {
-    if total_reward > 300.0 {
-      println!("win!!!");
-      break;
-    }
-    let output = net.evaluate(&state);
+     let mut end: bool = false;
+     let mut total_reward: f64 = 0.0;
+     while !end {
+         if total_reward > 300.0 {
+             println!("win!!!");
+             break;
+         }
+         let output = net.evaluate(&state).unwrap();
 
-    let action: ActionType = if output[0] < 0.0 {
-      ActionType::Discrete(0)
-    } else {
-      ActionType::Discrete(1)
-    };
-    let (s, reward, done, _info) = env.step(action);
-    end = done;
-    total_reward += reward;
-    state = s;
+         let action: ActionType = if output[0] < 0.0 {
+             ActionType::Discrete(0)
+         } else {
+             ActionType::Discrete(1)
+         };
+         let (s, reward, done, _info) = env.step(action);
+         end = done;
+         total_reward += reward;
+         state = s;
 
-    env.render(&mut viewer);
-  }
+         env.render(&mut render);
+     }
 }
 
 fn main() {
-  let options = EANT2Options::new(4, 1)
-    .print(true)
-    .max_generations(10)
-    .transfer_function(Activation::Tanh);
-  let mut solution = eant_loop(&MyEnv {}, options);
+    let mut eant2 = EANT2::builder()
+        .inputs(4)
+        .outputs(1)
+        .print()
+        .activation(Activation::Tanh)
+        .build();
+    let (mut network, _) = eant2.run(&MyEnv);
 
-  println!("solution: {:?}", solution);
+    render_champion(&mut network);
 
-  render_champion(&mut solution.0);
-
-  // save champion to file using cge crate
-  solution
-    .0
-    .save_to_file("./examples/gym_cart_pole_champion.cge")
-    .unwrap();
+    println!("Saving solution to file");
+    // save champion to file using cge crate
+    network
+        .to_file(
+            Metadata::new(Some("A solution network for the gym cart pole problem.".into())),
+            (),
+            WithRecurrentState(false),
+            "./examples/gym_cart_pole_champion.cge",
+            true,
+        )
+        .unwrap();
 }
