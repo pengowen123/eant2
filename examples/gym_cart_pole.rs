@@ -81,7 +81,7 @@ fn render_champion(net: &mut Network) {
 }
 
 fn main() {
-    let mut eant2 = EANT2::builder()
+    let eant2 = EANT2::builder()
         .inputs(4)
         .outputs(1)
         .print()

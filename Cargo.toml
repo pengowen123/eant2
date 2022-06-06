@@ -13,7 +13,7 @@ cge = "0.1.1"
 rand_distr = "0.4.3"
 
 [dev-dependencies]
-gym-rs = { git = "https://github.com/MathisWellmann/gym-rs" }
+gym-rs = "0.2.1"
 
 [[example]]
 name = "gym_cart_pole"
