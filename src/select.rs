@@ -127,7 +127,7 @@ pub fn is_duplicate(a: &[Gene<f64>], b: &[Gene<f64>]) -> bool {
 
         if let (Gene::Neuron(a), Gene::Neuron(b)) = (gene_a, gene_b) {
             if a.num_inputs() != b.num_inputs() {
-                return false
+                return false;
             }
         }
     }

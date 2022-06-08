@@ -175,7 +175,8 @@ impl EANT2 {
                 self.exploration.similarity,
             );
 
-            let best = generation.individuals
+            let best = generation
+                .individuals
                 .iter()
                 .min_by(|a, b| a.fitness.partial_cmp(&b.fitness).unwrap())
                 .unwrap();

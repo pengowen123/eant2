@@ -8,7 +8,6 @@ use eant2::eant2::EANT2;
 use eant2::options::{EANT2Termination, Exploration};
 use eant2::{Activation, FitnessFunction, NetworkView};
 
-
 #[derive(Clone)]
 struct Xor;
 
@@ -36,6 +35,7 @@ impl FitnessFunction for Xor {
 }
 
 fn main() {
+    // Configure EANT2
     let eant = EANT2::builder()
         .inputs(2)
         .outputs(1)
@@ -43,16 +43,22 @@ fn main() {
         .print()
         .exploration(
             Exploration::builder()
-                .terminate(
-                    EANT2Termination::builder()
-                        .fitness(0.01)
-                        .build()
-                )
-                .build()
+                .terminate(EANT2Termination::builder().fitness(0.01).build())
+                .build(),
         )
         .build();
 
+    // Find a solution
     let (network, _) = eant.run(&Xor);
-    let metadata = Metadata::new(None);
-    println!("{}", network.to_string(metadata, (), WithRecurrentState(false)).unwrap());
+
+    // Save it for later use or inspection
+    network
+        .to_file(
+            Metadata::new(Some("A solution network for performing XOR logic.".into())),
+            (),
+            WithRecurrentState(false),
+            "./test_output/xor.cge",
+            true,
+        )
+        .unwrap();
 }
