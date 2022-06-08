@@ -3,7 +3,7 @@ use rand::prelude::Rng;
 use rand_distr::{Distribution, WeightedAliasIndex, WeightedError};
 use std::convert::TryFrom;
 
-/// Generates different structural mutations. Uses configurable relative probabilites.
+/// Generates different structural mutations. Uses configurable relative probabilities.
 ///
 /// - Use `MutationProbabilities` to create a `MutationSampler`:
 /// ```rust
@@ -80,10 +80,11 @@ impl TryFrom<MutationProbabilities> for MutationSampler {
         let MutationProbabilities((a, b, c, d)) = p;
 
         // map to u16s with maximum possible precision
-        let scaling = {
-            let sum = a + b + c + d;
-            (u16::MAX as f64) / sum
-        };
+        let max = a.max(b).max(c).max(d);
+        // The largest weight value allowed by `WeightedAliasIndex`
+        let largest_allowed = (u16::MAX as f64) / 4.0;
+        // Scale all weights such that the largest weight equals `largest_allowed`
+        let scaling = largest_allowed / max;
 
         MutationSampler::new((
             (a * scaling) as u16,

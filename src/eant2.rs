@@ -136,7 +136,6 @@ impl EANT2 {
         loop {
             // 1. Get fitness of network topologies by optimizing the parameters of each individual with CMA-ES to get their maximum potential.
             //    - This stage makes up for nearly all the running time of the algorithm, sometimes taking hours or days.
-            //    - The good news is that EANT2 will only need 20 generations or so at most to find a solution, even on complicated tasks.
             if self.print {
                 println!("Beginning EANT2 generation {}", g + 1);
             }
@@ -181,10 +180,11 @@ impl EANT2 {
             for individual in generation.individuals.iter() {
                 for _ in 0..self.exploration.offspring {
                     let mut new = individual.clone();
+                    // increment the gene ages here. We don't want to revisit memory later when we
+                    // could do the job now (cpu cache).
+                    new.ages.iter_mut().for_each(|a| *a += 1);
                     mutate(&mut new, &self.exploration.mutation_probabilities);
 
-                    // increment the gene ages here. We don't want to revisit memory later when we could do the job now (cpu cache).
-                    new.ages.iter_mut().for_each(|a| *a += 1);
                     new_individuals.push(new);
                 }
             }

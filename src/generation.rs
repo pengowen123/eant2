@@ -85,8 +85,7 @@ fn get_random_initial_network(inputs: usize, outputs: usize, activation: Activat
     let mut network = Network::new(genome, activation).unwrap();
 
     // Ensure that all network inputs are connected to a neuron
-    let mut input_ids_not_connected = HashSet::new();
-    input_ids_not_connected.extend(0..inputs);
+    let mut input_ids_not_connected = (0..inputs).collect::<HashSet<_>>();
 
     for g in network.genome() {
         if let Gene::Input(input) = g {

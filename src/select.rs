@@ -75,10 +75,8 @@ pub fn select<T: FitnessFunction + Clone + Send>(
 pub enum Category {
     /// The network is a structural duplicate of another
     Duplicate,
-
     /// The network is structurally similar to another
     Similar,
-
     /// The network is structurally unique
     Unique,
 }
