@@ -131,29 +131,56 @@ impl EANT2 {
     {
         let object = Arc::new(object.clone());
         let mut g = 0;
+        // Initialize a set of minimal networks
         let mut generation = Generation::initialize(&self, object);
 
         loop {
-            // 1. Get fitness of network topologies by optimizing the parameters of each individual with CMA-ES to get their maximum potential.
-            //    - This stage makes up for nearly all the running time of the algorithm, sometimes taking hours or days.
             if self.print {
                 println!("Beginning EANT2 generation {}", g + 1);
             }
+
+            // 1. Add new individuals to the population by mutating the existing ones
+            // TODO: consider parallelizing this step
+            let mut new_individuals =
+                Vec::with_capacity((self.exploration.offspring + 1) * self.exploration.population);
+            for mut individual in generation.individuals {
+                // Increment gene ages
+                for age in &mut individual.ages {
+                    *age += 1;
+                }
+
+                // Carry over each individual to the next generation unchanged
+                new_individuals.push(individual.clone());
+
+                // Also mutate it to produce offspring
+                for _ in 0..self.exploration.offspring {
+                    let mut offspring = individual.clone();
+                    mutate(&mut offspring, &self.exploration.mutation_probabilities);
+
+                    new_individuals.push(offspring);
+                }
+            }
+            generation.individuals = new_individuals;
+
+            // 2. Get fitness of network topologies by optimizing the parameters of each individual
+            // with CMA-ES to get their maximum potential.
+            //    - This stage makes up for nearly all the running time of the algorithm, sometimes
+            //    taking hours or days.
             generation.update_generation(&self);
 
-            // 2. Select individuals to go on to the next generation
+            // 3. Select individuals to go on to the next generation
             generation = select::select(
                 self.exploration.population,
                 &generation.individuals[..],
                 self.exploration.similarity,
             );
-            generation
-                .individuals
-                .sort_by(|a, b| a.fitness.partial_cmp(&b.fitness).unwrap());
 
-            let best = &generation.individuals[0];
+            let best = generation.individuals
+                .iter()
+                .max_by(|a, b| a.fitness.partial_cmp(&b.fitness).unwrap())
+                .unwrap();
 
-            // 3. Check EANT2 termination conditions
+            // 4. Check EANT2 termination conditions
             if best.fitness <= self.exploration.terminate.fitness
                 || g + 1 >= self.exploration.terminate.generations
             {
@@ -173,23 +200,6 @@ impl EANT2 {
                 println!("Current best fitness: {}", best.fitness);
             }
 
-            // 4. Add new individuals to the population by mutating the existing ones
-            // TODO: consider parallelizing this step
-            let mut new_individuals =
-                Vec::with_capacity(self.exploration.offspring * self.exploration.population);
-            for individual in generation.individuals.iter() {
-                for _ in 0..self.exploration.offspring {
-                    let mut new = individual.clone();
-                    // increment the gene ages here. We don't want to revisit memory later when we
-                    // could do the job now (cpu cache).
-                    new.ages.iter_mut().for_each(|a| *a += 1);
-                    mutate(&mut new, &self.exploration.mutation_probabilities);
-
-                    new_individuals.push(new);
-                }
-            }
-
-            generation.individuals.extend_from_slice(&new_individuals);
             g += 1;
         }
     }

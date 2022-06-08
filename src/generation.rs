@@ -22,7 +22,7 @@ pub struct Generation<T: FitnessFunction + Clone> {
 impl<T: FitnessFunction + Clone> Generation<T> {
     /// Creates a generation of random, minimal neural networks.
     pub fn initialize(options: &EANT2, object: Arc<T>) -> Generation<T> {
-        let individual_count = options.exploration.population * (1 + options.exploration.offspring);
+        let individual_count = options.exploration.population;
 
         let individuals = (0..individual_count)
             .map(|_| {
