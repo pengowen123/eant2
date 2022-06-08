@@ -58,17 +58,20 @@ where
     // extract the best parameters
     let best_parameters = &best.point;
 
-    // commit to the new network parameters (the returned value does not have parameter scaling applied, so we do that here!)
-    individual
-        .network
-        .mut_weights()
-        .zip(best_parameters.iter())
-        .zip(initial_mean.iter())
-        .zip(gene_deviations.iter())
-        .for_each(|(((weight, initial), &new_weight), &scale)| {
-            *weight = initial + (new_weight * scale)
-        });
+    // commit to the new network parameters only if the fitness value improves
+    // the returned value does not have parameter scaling applied, so we do that here!
+    if individual.fitness.is_none() || best.value < individual.fitness.unwrap() {
+        individual
+            .network
+            .mut_weights()
+            .zip(initial_mean.iter())
+            .zip(best_parameters.iter())
+            .zip(gene_deviations.iter())
+            .for_each(|(((weight, initial), &new_weight), &scale)| {
+                *weight = initial + (new_weight * scale)
+            });
 
-    // update the fitness of the network (with its new parameters)
-    individual.fitness = best.value;
+        // update the fitness of the network (with its new parameters)
+        individual.fitness = Some(best.value);
+    }
 }

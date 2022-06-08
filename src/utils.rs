@@ -1,4 +1,3 @@
-use cge::gene::Gene;
 use cmaes::{DVector, ObjectiveFunction};
 use std::sync::Arc;
 
@@ -16,7 +15,8 @@ pub struct Individual<T: FitnessFunction + Clone> {
     pub ages: Vec<usize>,
     pub inputs: usize,
     pub outputs: usize,
-    pub fitness: f64,
+    /// Always `Some` after at least one optimization has been performed
+    pub fitness: Option<f64>,
     pub object: Arc<T>,
     pub duplicates: usize,
     pub similar: usize,
@@ -30,7 +30,7 @@ impl<T: FitnessFunction + Clone> Individual<T> {
             network,
             inputs,
             outputs,
-            fitness: 0.0,
+            fitness: None,
             object,
             duplicates: 0,
             similar: 0,

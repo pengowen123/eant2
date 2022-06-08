@@ -177,11 +177,12 @@ impl EANT2 {
 
             let best = generation.individuals
                 .iter()
-                .max_by(|a, b| a.fitness.partial_cmp(&b.fitness).unwrap())
+                .min_by(|a, b| a.fitness.partial_cmp(&b.fitness).unwrap())
                 .unwrap();
+            let best_fitness = best.fitness.unwrap();
 
             // 4. Check EANT2 termination conditions
-            if best.fitness <= self.exploration.terminate.fitness
+            if best_fitness <= self.exploration.terminate.fitness
                 || g + 1 >= self.exploration.terminate.generations
             {
                 if self.print {
@@ -189,15 +190,15 @@ impl EANT2 {
                     println!(
                         "Solution found with size {} and {} fitness",
                         best.network.len(),
-                        best.fitness
+                        best_fitness,
                     );
                 }
 
-                return (best.network.clone(), best.fitness);
+                return (best.network.clone(), best_fitness);
             }
 
             if self.print {
-                println!("Current best fitness: {}", best.fitness);
+                println!("Current best fitness: {}", best.fitness.unwrap());
             }
 
             g += 1;

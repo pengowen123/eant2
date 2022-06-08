@@ -41,6 +41,3 @@ pub use cge::Activation;
 pub use fitness::FitnessFunction;
 
 pub use crate::cge_utils::{Network, NetworkView};
-
-#[cfg(test)]
-mod tests;

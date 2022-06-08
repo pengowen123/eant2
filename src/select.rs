@@ -139,9 +139,13 @@ pub fn compare_fitness<T>(a: &Individual<T>, b: &Individual<T>, threshold: f64) 
 where
     T: FitnessFunction + Clone,
 {
-    let diff = (a.fitness - b.fitness).abs();
+    if a.fitness.is_none() || b.fitness.is_none() {
+        return false;
+    }
 
-    diff / b.fitness < threshold
+    let diff = (a.fitness.unwrap() - b.fitness.unwrap()).abs();
+
+    diff / b.fitness.unwrap() < threshold
 }
 
 /// Returns whether the two genes are of the same gene type.
