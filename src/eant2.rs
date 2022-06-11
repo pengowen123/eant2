@@ -169,10 +169,15 @@ impl EANT2 {
             generation.update_generation(&self);
 
             // 3. Select individuals to go on to the next generation
+            // TODO: Should this be customizable? `false` seems more in line with the paper
+            //       because the constraints are met exactly (and it wastes less CMA-ES runs on
+            //       similar/duplicate networks), but maybe `true` is better in some cases.
+            let force_meet_population_size = false;
             generation = select::select(
+                generation.individuals,
                 self.exploration.population,
-                &generation.individuals[..],
                 self.exploration.similarity,
+                force_meet_population_size,
             );
 
             let best = generation

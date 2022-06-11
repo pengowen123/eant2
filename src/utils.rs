@@ -1,4 +1,6 @@
+use cge::gene::{Gene, NeuronId};
 use cmaes::{DVector, ObjectiveFunction};
+
 use std::sync::Arc;
 
 use crate::cge_utils::{Network, NetworkView};
@@ -58,4 +60,19 @@ impl<'a, T: FitnessFunction + Clone> ObjectiveFunction for &'a mut Individual<T>
     fn evaluate(&mut self, x: &cmaes::DVector<f64>) -> f64 {
         self.eval(x)
     }
+}
+
+/// Returns an iterator over the direct children of the neuron with the given ID, or panics if it
+/// does not exist.
+pub fn get_direct_children(network: &Network, id: NeuronId) -> impl Iterator<Item = &Gene<f64>> {
+    // TODO: Subnetworks could be detected and skipped here, though it might not be much faster on
+    //       average
+    let range = network[id].subgenome_range();
+    range.filter_map(move |i| {
+        if network.parent_of(i).unwrap() == Some(id) {
+            Some(&network[i])
+        } else {
+            None
+        }
+    })
 }

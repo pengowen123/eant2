@@ -39,9 +39,9 @@ use rand::{thread_rng, Rng};
 use std::collections::HashSet;
 use std::iter;
 
-use crate::cge_utils::{Network, INITIAL_WEIGHT_VALUE};
+use crate::cge_utils::INITIAL_WEIGHT_VALUE;
 use crate::mutation_probabilities::MutationSampler;
-use crate::utils::Individual;
+use crate::utils::{self, Individual};
 use crate::FitnessFunction;
 
 /// The chance for each valid incoming or outgoing forward connection to/from a new subnetwork to be
@@ -108,7 +108,7 @@ fn add_forward_jumper<T: FitnessFunction + Clone>(
             .get_valid_forward_jumper_sources(parent_depth)
             .collect::<HashSet<_>>();
 
-        for g in get_direct_children(network, parent_id) {
+        for g in utils::get_direct_children(network, parent_id) {
             if let Gene::ForwardJumper(forward) = g {
                 // Check for explicit connections
                 missing_connections.remove(&forward.source_id());
@@ -146,7 +146,7 @@ fn add_recurrent_jumper<T: FitnessFunction + Clone>(
         // The neuron IDs that aren't connected to this neuron
         let mut missing_connections = network.neuron_ids().collect::<HashSet<_>>();
 
-        for g in get_direct_children(network, parent_id) {
+        for g in utils::get_direct_children(network, parent_id) {
             if let Gene::RecurrentJumper(recurrent) = g {
                 missing_connections.remove(&recurrent.source_id());
             }
@@ -180,7 +180,7 @@ fn add_input<T: FitnessFunction + Clone>(
         let mut missing_input_connections = HashSet::new();
         missing_input_connections.extend(0..individual.inputs);
 
-        for g in get_direct_children(network, parent_id) {
+        for g in utils::get_direct_children(network, parent_id) {
             if let Gene::Input(input) = g {
                 missing_input_connections.remove(&input.id().as_usize());
             }
@@ -297,7 +297,7 @@ fn add_bias<T: FitnessFunction + Clone>(
     // Choose a random neuron without an existing bias input
     let valid_parents = network
         .neuron_ids()
-        .filter(|id| get_direct_children(network, *id).all(|g| !g.is_bias()));
+        .filter(|id| utils::get_direct_children(network, *id).all(|g| !g.is_bias()));
     let parent = valid_parents.choose(rng);
 
     // Add a bias gene to it
@@ -343,19 +343,4 @@ fn add_non_neuron<T: FitnessFunction + Clone, G: Into<NonNeuronGene<f64>>>(
     individual.network.add_non_neuron(parent, gene).unwrap();
     // Insert a new age counter for the gene
     individual.ages.insert(gene_index, 0);
-}
-
-/// Returns an iterator over the direct children of the neuron with the given ID, or panics if it
-/// does not exist.
-fn get_direct_children(network: &Network, id: NeuronId) -> impl Iterator<Item = &Gene<f64>> {
-    // TODO: Subnetworks could be detected and skipped here, though it might not be much faster on
-    //       average
-    let range = network[id].subgenome_range();
-    range.filter_map(move |i| {
-        if network.parent_of(i).unwrap() == Some(id) {
-            Some(&network[i])
-        } else {
-            None
-        }
-    })
 }

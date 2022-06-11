@@ -19,7 +19,7 @@ pub struct MutationSampler(WeightedAliasIndex<u16>);
 
 impl MutationSampler {
     /// Reasonable default that works for most problems.
-    pub const REASONABLE_DEFAULT: (u16, u16, u16, u16) = (3, 8, 1, 3);
+    pub const REASONABLE_DEFAULT: (u16, u16, u16, u16) = (1, 1, 1, 1);
 
     /// Table of `::sample()` output values.
     const OUTPUTS: [MutationType; 4] = [
