@@ -1,6 +1,6 @@
 use crate::mutation_probabilities::MutationSampler;
 use cge::Activation;
-use cmaes::restart::RestartStrategy;
+use cmaes::restart::{Local, RestartStrategy};
 use typed_builder::TypedBuilder;
 
 pub(crate) const DEFAULT_ACTIVATION: Activation = Activation::Sigmoid;
@@ -84,9 +84,9 @@ pub struct CMAESTermination {
 /// These are the options that control parameter optimization (CMA-ES).
 #[derive(TypedBuilder)]
 pub struct Exploitation {
-    /// CMA-ES parameter optimization restart strategy. Defaults to `RestartStrategy::BIPOP`.
+    /// CMA-ES parameter optimization restart strategy. Defaults to `RestartStrategy::Local`.
     #[builder(
-        default_code = "RestartStrategy::BIPOP(Default::default())",
+        default_code = "RestartStrategy::Local(Local::new(2, Some(5e1)).unwrap())",
         setter(
             doc = "CMA-ES parameter optimization (exploitation) restart strategy. Defaults to `RestartStrategy::BIPOP`."
         )
