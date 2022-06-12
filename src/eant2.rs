@@ -155,7 +155,11 @@ impl EANT2 {
                 // Also mutate it to produce offspring
                 for _ in 0..self.exploration.offspring {
                     let mut offspring = individual.clone();
-                    mutate(&mut offspring, &self.exploration.mutation_probabilities);
+                    if mutate(&mut offspring, &self.exploration.mutation_probabilities) {
+                        // If the offspring was mutated, its fitness is now invalid and must be
+                        // reset
+                        offspring.fitness = None;
+                    }
 
                     new_individuals.push(offspring);
                 }

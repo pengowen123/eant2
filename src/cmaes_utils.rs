@@ -58,9 +58,13 @@ where
     // extract the best parameters
     let best_parameters = &best.point;
 
-    // commit to the new network parameters only if the fitness value improves
-    // the returned value does not have parameter scaling applied, so we do that here!
-    if individual.fitness.is_none() || best.value < individual.fitness.unwrap() {
+    // Commit to the new parameters if the fitness value improved or the individual has not been
+    // evaluated yet
+    let use_new_parameters = individual.fitness.is_none()
+        || best.value < individual.fitness.unwrap();
+
+    if use_new_parameters {
+        // the returned value does not have parameter scaling applied, so we do that here!
         individual
             .network
             .mut_weights()
@@ -73,5 +77,10 @@ where
 
         // update the fitness of the network (with its new parameters)
         individual.fitness = Some(best.value);
+    } else {
+        // Otherwise, go back to the original parameters
+        // This is necessary because the network's parameters are modified during evaluation to
+        // avoid allocations
+        individual.network.set_weights(initial_mean.as_slice()).unwrap();
     }
 }
